@@ -14,9 +14,11 @@ internal sealed class LoggingBehavior(
 
     public async Task InvokeAsync(CacheContext context, CacheDelegate next)
     {
+        var sanitizedKey = SanitizeForLog(context.Key);
+
         logger.LogDebug(
             "Executing cache operation for key {Key} on {Storage}",
-            context.Key,
+            sanitizedKey,
             context.Storage?.GetType().Name);
 
         try
@@ -25,16 +27,26 @@ internal sealed class LoggingBehavior(
 
             logger.LogDebug(
                 "Cache operation completed for key {Key}",
-                context.Key);
+                sanitizedKey);
         }
         catch (Exception ex)
         {
             logger.LogError(
                 ex,
                 "Cache operation failed for key {Key}",
-                context.Key);
+                sanitizedKey);
 
             throw;
         }
+    }
+
+    private static string SanitizeForLog(string? value)
+    {
+        if (string.IsNullOrEmpty(value))
+            return string.Empty;
+
+        return value
+            .Replace("\r", string.Empty)
+            .Replace("\n", string.Empty);
     }
 }
