@@ -60,10 +60,10 @@ jobs:
 
       - name: Restore package project and its tests
         run: |
-          dotnet restore "$PROJECT_PATH" --locked-mode /p:UseLocalObservabilityAbstractions=false
+          dotnet restore "$PROJECT_PATH" --locked-mode
 
           for test_project in $TEST_PROJECTS; do
-            dotnet restore "$test_project" --locked-mode /p:UseLocalObservabilityAbstractions=false
+            dotnet restore "$test_project" --locked-mode
           done
 
       - name: Build package project
@@ -71,7 +71,6 @@ jobs:
           dotnet build "$PROJECT_PATH" \
             --configuration Release \
             --no-restore \
-            /p:UseLocalObservabilityAbstractions=false \
             /p:Version=$VERSION
 
       - name: Test package project
@@ -80,7 +79,6 @@ jobs:
             dotnet test "$test_project" \
               --configuration Release \
               --no-restore \
-              /p:UseLocalObservabilityAbstractions=false \
               /p:Version=$VERSION
           done
 
@@ -91,7 +89,6 @@ jobs:
             /p:Version=$VERSION \
             --no-build \
             --no-restore \
-            /p:UseLocalObservabilityAbstractions=false \
             --output ./nupkgs
 
       - name: Publish to NuGet
