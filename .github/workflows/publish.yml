@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: read
+  id-token: write
   packages: write
 
 jobs:
@@ -23,9 +24,9 @@ jobs:
       - name: Extract info
         run: |
           # Extract project name (before the '/')
-          PROJECT_NAME=$(echo $GITHUB_REF_NAME | cut -d'/' -f1)
+          PROJECT_NAME=$(echo "$GITHUB_REF_NAME" | cut -d'/' -f1)
           # Extract version (after the '/') and remove the 'v' prefix
-          VERSION=$(echo $GITHUB_REF_NAME | cut -d'/' -f2 | sed 's/v//')
+          VERSION=$(echo "$GITHUB_REF_NAME" | cut -d'/' -f2 | sed 's/^v//')
           
           echo "PROJECT=$PROJECT_NAME" >> $GITHUB_ENV
           echo "VERSION=$VERSION" >> $GITHUB_ENV
@@ -91,12 +92,17 @@ jobs:
             --no-restore \
             --output ./nupkgs
 
+      - name: NuGet login
+        uses: NuGet/login@v1
+        id: login
+        with:
+          user: ${{ secrets.NUGET_USER }}
+
       - name: Publish to NuGet
         run: |
-          # Push the package to NuGet.org
           dotnet nuget push ./nupkgs/*.nupkg \
-            --api-key ${{ secrets.NUGET_API_KEY }} \
-            --source https://api.nuget.org/v3/index.json \
+            --api-key "${{ steps.login.outputs.NUGET_API_KEY }}" \
+            --source "https://api.nuget.org/v3/index.json" \
             --skip-duplicate
 
       - name: Configure GitHub Packages
