@@ -1,0 +1,68 @@
+site_name: CoreSystem.Cache
+site_description: Production-ready caching libraries for modern .NET applications
+site_author: Federin Pastor Gutierrez Ortiz
+site_url: https://federin.github.io/CoreSystem.Cache/
+
+repo_name: FEDERIN/CoreSystem.Cache
+repo_url: https://github.com/FEDERIN/CoreSystem.Cache
+
+theme:
+  name: material
+  language: en
+
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - content.code.copy
+    - search.highlight
+    - search.suggest
+
+plugins:
+  - search
+  - mermaid2
+
+markdown_extensions:
+  - admonition
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+
+nav:
+  - Home: index.md
+
+  - Getting Started: GettingStarted.md
+
+  - Core Cache:
+      - Why: Why.md
+      - Architecture: Architecture.md
+      - Configuration: Configuration.md
+      - Basic Usage: BasicUsage.md
+      - HTTP Cache: HttpCache.md
+      - Health Checks: HealthChecks.md
+      - Observability: Observability.md
+      - Extensibility: Extensibility.md
+      - Roadmap: Roadmap.md
+
+  - Providers:
+      - Redis:
+          - Overview: Redis/index.md
+          - Getting Started: Redis/GettingStarted.md
+          - Architecture: Redis/Architecture.md
+          - Configuration: Redis/Configuration.md
+          - Basic Usage: Redis/BasicUsage.md
+          - Health Checks: Redis/HealthChecks.md
+          - Extensibility: Redis/Extensibility.md
+          - Roadmap: Redis/Roadmap.md
+
+  - Rehydration:
+      - Overview: Rehydration/index.md
+      - Getting Started: Rehydration/GettingStarted.md
+      - Architecture: Rehydration/Architecture.md
+      - Configuration: Rehydration/Configuration.md
+      - Basic Usage: Rehydration/BasicUsage.md
+      - Roadmap: Rehydration/Roadmap.md

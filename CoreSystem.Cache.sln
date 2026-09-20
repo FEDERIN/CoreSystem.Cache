@@ -1,0 +1,140 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.11.12210.170
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{37EEAAF3-7A07-464B-A523-ADB91A3CC711}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{EA4D4854-F31F-41B5-A93B-515178E73F95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Cache", "src\Core.Cache\Core.Cache.csproj", "{06723AE8-8091-D742-8CE3-5F454F109523}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Cache.Redis", "src\Core.Cache.Redis\Core.Cache.Redis.csproj", "{B19C8FFB-A20D-06A2-4B86-D056FDF77D08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Cache.Rehydration", "src\Core.Cache.Rehydration\Core.Cache.Rehydration.csproj", "{1765B10F-5063-B3EC-BD85-0397607C7FD9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Cache.UnitTests", "tests\Core.Cache.UnitTests\Core.Cache.UnitTests.csproj", "{F234E5B5-A761-4AE4-1E28-5ACED02935D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Cache.IntegrationTests", "tests\Core.Cache.IntegrationTests\Core.Cache.IntegrationTests.csproj", "{79BCCBF1-6E43-A1E2-1EC9-D67E34B0CD71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Cache.Redis.UnitTests", "tests\Core.Cache.Redis.UnitTests\Core.Cache.Redis.UnitTests.csproj", "{29879855-29DE-3463-0752-E0FA44AA1C26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Cache.Rehydration.UnitTests", "tests\Core.Cache.Rehydration.UnitTests\Core.Cache.Rehydration.UnitTests.csproj", "{8AA68C7A-DC7C-C630-252C-A3610FBCAE7C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementos de la solución", "Elementos de la solución", "{CDA9FC18-7D81-4CA8-9746-A8FCF0455B59}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Packages.props = Directory.Packages.props
+		mkdocs.yml = mkdocs.yml
+		requirements.txt = requirements.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{42EFAA1D-0C71-4B34-8ABF-1C5CDB93D3C6}"
+	ProjectSection(SolutionItems) = preProject
+		docs\Architecture.md = docs\Architecture.md
+		docs\BasicUsage.md = docs\BasicUsage.md
+		docs\Configuration.md = docs\Configuration.md
+		docs\Extensibility.md = docs\Extensibility.md
+		docs\GettingStarted.md = docs\GettingStarted.md
+		docs\HealthChecks.md = docs\HealthChecks.md
+		docs\HttpCache.md = docs\HttpCache.md
+		docs\index.md = docs\index.md
+		docs\Observability.md = docs\Observability.md
+		docs\Roadmap.md = docs\Roadmap.md
+		docs\Why.md = docs\Why.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Redis", "Redis", "{10B75CA0-8927-4C2A-B5A9-D4E873A9E54E}"
+	ProjectSection(SolutionItems) = preProject
+		docs\Redis\Architecture.md = docs\Redis\Architecture.md
+		docs\Redis\BasicUsage.md = docs\Redis\BasicUsage.md
+		docs\Redis\Configuration.md = docs\Redis\Configuration.md
+		docs\Redis\Extensibility.md = docs\Redis\Extensibility.md
+		docs\Redis\GettingStarted.md = docs\Redis\GettingStarted.md
+		docs\Redis\HealthChecks.md = docs\Redis\HealthChecks.md
+		docs\Redis\HttpCache.md = docs\Redis\HttpCache.md
+		docs\Redis\index.md = docs\Redis\index.md
+		docs\Redis\Observability.md = docs\Redis\Observability.md
+		docs\Redis\Roadmap.md = docs\Redis\Roadmap.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Rehydration", "Rehydration", "{2FF42DC8-9A23-4798-A13A-A1988C02014E}"
+	ProjectSection(SolutionItems) = preProject
+		docs\Rehydration\Architecture.md = docs\Rehydration\Architecture.md
+		docs\Rehydration\BasicUsage.md = docs\Rehydration\BasicUsage.md
+		docs\Rehydration\Configuration.md = docs\Rehydration\Configuration.md
+		docs\Rehydration\Extensibility.md = docs\Rehydration\Extensibility.md
+		docs\Rehydration\GettingStarted.md = docs\Rehydration\GettingStarted.md
+		docs\Rehydration\HealthChecks.md = docs\Rehydration\HealthChecks.md
+		docs\Rehydration\HttpCache.md = docs\Rehydration\HttpCache.md
+		docs\Rehydration\index.md = docs\Rehydration\index.md
+		docs\Rehydration\Observability.md = docs\Rehydration\Observability.md
+		docs\Rehydration\Roadmap.md = docs\Rehydration\Roadmap.md
+		docs\Rehydration\Why.md = docs\Rehydration\Why.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{B05FC84D-9070-4B4A-B41F-E8E9B09BAF52}"
+	ProjectSection(SolutionItems) = preProject
+		.github\dependabot.yml = .github\dependabot.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{8FCF9515-A088-4494-AE9D-038A0ED9F1C6}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\codeql.yml = .github\workflows\codeql.yml
+		.github\workflows\documentation.yml = .github\workflows\documentation.yml
+		.github\workflows\publish.yml = .github\workflows\publish.yml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{06723AE8-8091-D742-8CE3-5F454F109523}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06723AE8-8091-D742-8CE3-5F454F109523}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06723AE8-8091-D742-8CE3-5F454F109523}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06723AE8-8091-D742-8CE3-5F454F109523}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B19C8FFB-A20D-06A2-4B86-D056FDF77D08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B19C8FFB-A20D-06A2-4B86-D056FDF77D08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B19C8FFB-A20D-06A2-4B86-D056FDF77D08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B19C8FFB-A20D-06A2-4B86-D056FDF77D08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1765B10F-5063-B3EC-BD85-0397607C7FD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1765B10F-5063-B3EC-BD85-0397607C7FD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1765B10F-5063-B3EC-BD85-0397607C7FD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1765B10F-5063-B3EC-BD85-0397607C7FD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F234E5B5-A761-4AE4-1E28-5ACED02935D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F234E5B5-A761-4AE4-1E28-5ACED02935D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F234E5B5-A761-4AE4-1E28-5ACED02935D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F234E5B5-A761-4AE4-1E28-5ACED02935D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79BCCBF1-6E43-A1E2-1EC9-D67E34B0CD71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79BCCBF1-6E43-A1E2-1EC9-D67E34B0CD71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79BCCBF1-6E43-A1E2-1EC9-D67E34B0CD71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79BCCBF1-6E43-A1E2-1EC9-D67E34B0CD71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29879855-29DE-3463-0752-E0FA44AA1C26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29879855-29DE-3463-0752-E0FA44AA1C26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29879855-29DE-3463-0752-E0FA44AA1C26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29879855-29DE-3463-0752-E0FA44AA1C26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AA68C7A-DC7C-C630-252C-A3610FBCAE7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AA68C7A-DC7C-C630-252C-A3610FBCAE7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AA68C7A-DC7C-C630-252C-A3610FBCAE7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AA68C7A-DC7C-C630-252C-A3610FBCAE7C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{06723AE8-8091-D742-8CE3-5F454F109523} = {37EEAAF3-7A07-464B-A523-ADB91A3CC711}
+		{B19C8FFB-A20D-06A2-4B86-D056FDF77D08} = {37EEAAF3-7A07-464B-A523-ADB91A3CC711}
+		{1765B10F-5063-B3EC-BD85-0397607C7FD9} = {37EEAAF3-7A07-464B-A523-ADB91A3CC711}
+		{F234E5B5-A761-4AE4-1E28-5ACED02935D3} = {EA4D4854-F31F-41B5-A93B-515178E73F95}
+		{79BCCBF1-6E43-A1E2-1EC9-D67E34B0CD71} = {EA4D4854-F31F-41B5-A93B-515178E73F95}
+		{29879855-29DE-3463-0752-E0FA44AA1C26} = {EA4D4854-F31F-41B5-A93B-515178E73F95}
+		{8AA68C7A-DC7C-C630-252C-A3610FBCAE7C} = {EA4D4854-F31F-41B5-A93B-515178E73F95}
+		{10B75CA0-8927-4C2A-B5A9-D4E873A9E54E} = {42EFAA1D-0C71-4B34-8ABF-1C5CDB93D3C6}
+		{2FF42DC8-9A23-4798-A13A-A1988C02014E} = {42EFAA1D-0C71-4B34-8ABF-1C5CDB93D3C6}
+		{8FCF9515-A088-4494-AE9D-038A0ED9F1C6} = {B05FC84D-9070-4B4A-B41F-E8E9B09BAF52}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E5DD06F6-ED13-45B6-9DCD-76AC7092A75F}
+	EndGlobalSection
+EndGlobal

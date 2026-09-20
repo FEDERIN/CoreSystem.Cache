@@ -1,0 +1,89 @@
+name: Publish NuGet Package
+
+on:
+  push:
+    tags:
+      - '*/v*'
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x' 
+
+      - name: Extract info
+        run: |
+          # Extract project name (before the '/')
+          PROJECT_NAME=$(echo $GITHUB_REF_NAME | cut -d'/' -f1)
+          # Extract version (after the '/') and remove the 'v' prefix
+          VERSION=$(echo $GITHUB_REF_NAME | cut -d'/' -f2 | sed 's/v//')
+          
+          echo "PROJECT=$PROJECT_NAME" >> $GITHUB_ENV
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Validate project folder
+        run: |
+          if [ ! -d "src/${{ env.PROJECT }}" ]; then
+            echo "Error: Project directory 'src/${{ env.PROJECT }}' does not exist."
+            exit 1
+          fi
+
+      - name: Restore solution
+        run: dotnet restore CoreSystem.Cache.sln /p:UseLocalObservabilityAbstractions=false
+
+      - name: Build package project
+        run: |
+          dotnet build src/${{ env.PROJECT }}/${{ env.PROJECT }}.csproj \
+            --configuration Release \
+            --no-restore \
+            /p:UseLocalObservabilityAbstractions=false \
+            /p:Version=${{ env.VERSION }}
+
+      - name: Test solution
+        run: |
+          dotnet test CoreSystem.Cache.sln \
+            --configuration Release \
+            --no-restore \
+            /p:UseLocalObservabilityAbstractions=false
+
+      - name: Pack package
+        run: |
+          dotnet pack src/${{ env.PROJECT }}/${{ env.PROJECT }}.csproj \
+            --configuration Release \
+            /p:Version=${{ env.VERSION }} \
+            --no-build \
+            --no-restore \
+            /p:UseLocalObservabilityAbstractions=false \
+            --output ./nupkgs
+
+      - name: Publish to NuGet
+        run: |
+          # Push the package to NuGet.org
+          dotnet nuget push ./nupkgs/*.nupkg \
+            --api-key ${{ secrets.NUGET_API_KEY }} \
+            --source https://api.nuget.org/v3/index.json \
+            --skip-duplicate
+
+      - name: Configure GitHub Packages
+        run: |
+          dotnet nuget add source \
+            --username "${{ github.actor }}" \
+            --password "${{ secrets.GITHUB_TOKEN }}" \
+            --store-password-in-clear-text \
+            --name github \
+            "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json"
+
+      - name: Publish to GitHub Packages
+        run: |
+          dotnet nuget push ./nupkgs/*.nupkg \
+            --source github \
+            --skip-duplicate
