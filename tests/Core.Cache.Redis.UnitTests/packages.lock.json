@@ -530,29 +530,14 @@
       },
       "CoreSystem.Cache": {
         "type": "CentralTransitive",
-        "requested": "[2.0.1, )",
-        "resolved": "2.0.1",
-        "contentHash": "yRpFns5CX7LnDyFDQxPUL5KzTKNJcj+zKYHp+GWGgFVsfmPW/jAHpXc1Piru+oOpjxe9l08/fRaX8hYvX03zaA==",
+        "requested": "[2.0.2, )",
+        "resolved": "2.0.2",
+        "contentHash": "W2w0wyYS2dxOFwWRDQU2X51cdxJf6phmhMc1nJjHNfDZoJ0bCRRLyEAuN2xPPtwnq/KwK6jDzKN0T89ThDwmQg==",
         "dependencies": {
           "CoreSystem.Http": "1.0.6",
           "CoreSystem.Memory": "1.0.0",
-          "CoreSystem.Observability.Abstractions": "1.0.0",
           "CoreSystem.Resilience": "2.0.0",
-          "CoreSystem.Serialization": "1.2.0",
-          "MessagePack": "3.1.8",
-          "Microsoft.Extensions.Configuration": "8.0.0",
-          "Microsoft.Extensions.Configuration.Abstractions": "8.0.0",
-          "Microsoft.Extensions.Configuration.Binder": "8.0.2",
-          "Microsoft.Extensions.DependencyInjection": "8.0.0",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.2",
-          "Microsoft.Extensions.Diagnostics.HealthChecks": "8.0.28",
-          "Microsoft.Extensions.Options": "8.0.2",
-          "OpenTelemetry": "1.15.3",
-          "OpenTelemetry.Api": "1.15.3",
-          "OpenTelemetry.Extensions.Hosting": "1.15.3",
-          "Polly": "8.7.0",
-          "protobuf-net": "3.2.56",
-          "protobuf-net.Core": "3.2.56"
+          "CoreSystem.Serialization": "1.2.0"
         }
       },
       "CoreSystem.Cache.Rehydration": {
