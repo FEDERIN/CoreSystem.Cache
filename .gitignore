@@ -16,9 +16,6 @@ obj/
 appsettings.Development.json
 appsettings.Local.json
 
-# Local bootstrap scripts
-*.bat
-
 # OS files
 Thumbs.db
 .DS_Store
@@ -49,3 +46,11 @@ packages/
 .data/
 grafana/data/
 prometheus/data/
+
+
+# Ignore all batch files
+*.bat
+
+# Allow repository development scripts
+!serve-docs.bat
+!generate-lock-files.bat

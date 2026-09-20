@@ -2,17 +2,13 @@
 
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
-		<TargetFramework>net8.0</TargetFramework>
-
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
 		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageId>CoreSystem.Cache.Rehydration</PackageId>
-		<Version>2.0.1</Version>
-		<AssemblyVersion>2.0.1</AssemblyVersion>
-		<FileVersion>2.0.1.0</FileVersion>
-		<InformationalVersion>2.0.1</InformationalVersion>
+		<Version>2.0.2</Version>
+		<AssemblyVersion>2.0.2</AssemblyVersion>
+		<FileVersion>2.0.2.0</FileVersion>
+		<InformationalVersion>2.0.2</InformationalVersion>
 		<Authors>Federin Pastor Gutierrez Ortiz</Authors>
 		<Description>
 			Cache recovery component for CoreSystem.Cache on .NET 8 that restores

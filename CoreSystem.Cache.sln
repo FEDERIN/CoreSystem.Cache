@@ -23,8 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Cache.Rehydration.Unit
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementos de la solución", "Elementos de la solución", "{CDA9FC18-7D81-4CA8-9746-A8FCF0455B59}"
 	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
 		Directory.Packages.props = Directory.Packages.props
 		mkdocs.yml = mkdocs.yml
+		README.md = README.md
 		requirements.txt = requirements.txt
 	EndProjectSection
 EndProject
