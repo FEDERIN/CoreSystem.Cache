@@ -23,6 +23,11 @@ internal sealed class RedisCacheStorage(
     private readonly IPayloadSerializer _payloadSerializer = payloadSerializer;
     private readonly IDistributedLockProvider _distributedLockProvider = distributedLockProvider;
 
+    private static string SanitizeForLog(string value)
+        => value
+            .Replace("\r", string.Empty)
+            .Replace("\n", string.Empty);
+
     private string GetFullKey(string key) => _keyBuilder.BuildCacheKey(key);
 
     public async Task<T?> GetAsync<T>(
@@ -45,7 +50,7 @@ internal sealed class RedisCacheStorage(
             logger.LogWarning(
                 ex,
                 "Corrupted cache entry detected for key '{Key}'. Removing it from Redis.",
-                fullKey);
+                SanitizeForLog(fullKey));
 
             await _database.KeyDeleteAsync(fullKey);
 
