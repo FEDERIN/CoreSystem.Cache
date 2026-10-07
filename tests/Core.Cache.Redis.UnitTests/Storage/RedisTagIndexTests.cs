@@ -176,7 +176,7 @@ public sealed class RedisTagIndexTests
         RedisValue[] tags =
         [
             "users",
-        "premium"
+            "premium"
         ];
 
         _database
@@ -278,7 +278,7 @@ public sealed class RedisTagIndexTests
         RedisValue[] members =
         [
             "user:1",
-        "user:2"
+            "user:2"
         ];
 
         _database
@@ -320,7 +320,7 @@ public sealed class RedisTagIndexTests
         RedisValue[] members =
         [
             "user:1",
-        "user:2"
+            "user:2"
         ];
 
         _database

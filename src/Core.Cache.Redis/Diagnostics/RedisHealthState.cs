@@ -3,7 +3,7 @@ using Core.Cache.Redis.Storage.Abstractions;
 
 namespace Core.Cache.Redis.Diagnostics;
 
-internal sealed class RedisHealthState : 
+internal sealed class RedisHealthState :
     IHealthState,
     IPrimaryHealthStateWriter
 {

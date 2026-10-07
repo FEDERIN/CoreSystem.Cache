@@ -35,7 +35,7 @@ public sealed class CacheRedisRegistrationTests
         IServiceCollection action() =>
             services.AddCoreCacheRedis(options =>
             {
-                options.Configuration = _ => {};
+                options.Configuration = _ => { };
             });
 
         var exception = Assert.Throws<InvalidOperationException>(

@@ -22,7 +22,7 @@ public static class CacheRegistration
 
         services.AddSingleton(options);
 
-        if(!options.Enabled)
+        if (!options.Enabled)
         {
             services.AddSingleton<ICoreCache, NoOpCoreCache>();
             return services;
