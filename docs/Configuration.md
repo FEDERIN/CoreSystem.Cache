@@ -7,9 +7,8 @@ You'll learn how to configure:
 
 - Cache provider behavior
 - Serialization
-- Default expiration
+- HTTP response cache expiration
 - Cache key instance name
-- HTTP cache settings
 - Cache entry rehydration options
 
 ---
@@ -33,9 +32,9 @@ builder.Services.AddCoreCache(options =>
 |----------|-------------|---------|
 | Enabled | Enables or disables the cache implementation | `true` |
 | InstanceName | Optional prefix for cache keys | `null` |
-| DefaultExpiration | Default cache lifetime | 30 minutes |
+| DefaultExpiration | HTTP response cache lifetime, used when `[Cacheable]` omits `expirationSeconds` | 30 minutes |
 | SerializerType | Serialization format | JSON |
-| MaxCacheableSize | Maximum cache entry size | 1 MB |
+| MaxCacheableSize | Reserved; not enforced by any cache storage | 1 MB |
 
 ---
 
@@ -70,14 +69,18 @@ The option is intended to help avoid key collisions when multiple applications s
 
 ## Cache Expiration
 
-Configure the default cache lifetime.
+`DefaultExpiration` applies **only to the HTTP response cache**. It sets the
+lifetime of a cached response when the endpoint's `CacheableAttribute` does not
+specify `expirationSeconds`.
 
 ```csharp
 options.DefaultExpiration =
     TimeSpan.FromMinutes(30);
 ```
 
-Individual cache operations can override this value.
+It is **not** a fallback for direct cache operations. `SetAsync` and
+`GetOrAddAsync` store the entry with no expiration at all when the `expiration`
+argument is `null`, so each call that needs a lifetime must pass one explicitly.
 
 ```csharp
 await cache.SetAsync(
@@ -123,9 +126,7 @@ options.SerializerType =
 
 ---
 
-## HTTP Cache
-
-Configure the maximum allowed cache entry size.
+## Maximum Cacheable Size
 
 ```csharp
 options.MaxCacheableSize =
@@ -138,7 +139,13 @@ Default:
 1 MB
 ```
 
-The option is part of the HTTP/cache configuration, while the current `HttpCacheHandler` uses the configured `CacheOptions` for expiration and response caching behavior.
+!!! warning
+    This option is **reserved and currently has no effect**. No cache storage and
+    no HTTP handler reads it, so entries of any size are cached. It is accepted
+    for forward compatibility only.
+
+HTTP cache behavior is configured through `DefaultExpiration` and the
+`CacheableAttribute`, not through this option.
 
 ---
 
@@ -195,8 +202,8 @@ When using an external provider, configure that provider through its correspondi
 ## Best Practices
 
 - Use an `InstanceName` when multiple applications share the same cache infrastructure.
-- Configure a sensible default expiration.
-- Override expiration for entries with different lifetimes.
+- Configure `DefaultExpiration` for HTTP-cached responses, and pass an explicit `expiration` on every `SetAsync` or `GetOrAddAsync` call that needs a lifetime.
+- Prefer an explicit expiration over relying on a default: without one, entries do not expire.
 - Choose the serializer according to the application's requirements.
 - Use the Memory provider when an external distributed provider is not required.
 - Configure external provider options in the corresponding provider package.

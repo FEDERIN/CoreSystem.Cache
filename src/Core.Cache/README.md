@@ -52,7 +52,7 @@ Register the framework:
 ``` csharp
 builder.Services.AddCoreCache(options =>
 {
-    options.DefaultExpiration = TimeSpan.FromMinutes(30);
+    options.InstanceName = "my-app";
 });
 ```
 
@@ -112,6 +112,12 @@ public async Task<IActionResult> Get(Guid id)
 HTTP response caching is applied only to endpoints decorated with
 `CacheableAttribute`. The default request policy allows `GET` and `HEAD`
 requests and excludes requests containing an `Authorization` header.
+
+`CacheOptions.DefaultExpiration` sets the lifetime of a cached response when the
+attribute omits `expirationSeconds`. It is not a fallback for `SetAsync` or
+`GetOrAddAsync`: those operations store the entry with **no expiration** when the
+`expiration` argument is `null`, so pass one explicitly when a lifetime is
+needed.
 
 ------------------------------------------------------------------------
 
