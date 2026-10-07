@@ -1,8 +1,10 @@
-# INERT: this repository has no samples/ directory.
-# It previously triggered on src/** and Directory.*.props, so it failed on every
-# source change. Those paths were removed from the filters below: the workflow now
-# only runs on workflow_dispatch, and will start running automatically once a
-# samples/ project is actually added.
+# INERT: this repository has no samples/ directory, so the compose stack this
+# workflow drives does not exist and the job fails.
+#
+# The filters below deliberately match only samples/**. They must NOT include
+# this file, src/** or Directory.*.props: any of those would make the workflow
+# fire on ordinary changes and then fail. It runs on workflow_dispatch, and
+# starts running automatically once a samples/ project is added.
 name: Samples Smoke
 
 on:
@@ -10,13 +12,11 @@ on:
     branches: [main]
     paths:
       - samples/**
-      - .github/workflows/samples-smoke.yml
 
   pull_request:
     branches: [main]
     paths:
       - samples/**
-      - .github/workflows/samples-smoke.yml
 
   workflow_dispatch:
 
