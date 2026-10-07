@@ -36,8 +36,12 @@
 		<None Include="..\..\LICENSE" Pack="true" PackagePath="" />
 	</ItemGroup>
 	
+	<ItemGroup Condition="'$(UseLocalProjectReferences)' == 'true'">
+	  <ProjectReference Include="..\Core.Cache\Core.Cache.csproj" />
+	</ItemGroup>
+	
 	<ItemGroup>
-	  <PackageReference Include="CoreSystem.Cache" />
+	  <ProjectReference Include="..\Core.Cache\Core.Cache.csproj" />
 	</ItemGroup>
 
 </Project>

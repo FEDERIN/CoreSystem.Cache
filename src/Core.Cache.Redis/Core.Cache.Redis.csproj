@@ -43,8 +43,15 @@
 		<InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
 	</ItemGroup>
 	
+	<ItemGroup Condition="'$(UseLocalProjectReferences)' == 'true'">
+	  <ProjectReference Include="..\Core.Cache.Rehydration\Core.Cache.Rehydration.csproj" />
+	</ItemGroup>
+	
 	<ItemGroup>
-	  <PackageReference Include="CoreSystem.Cache.Rehydration" />
 	  <PackageReference Include="CoreSystem.Redis" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Core.Cache.Rehydration\Core.Cache.Rehydration.csproj" />
 	</ItemGroup>
 </Project>
