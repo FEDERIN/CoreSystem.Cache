@@ -30,7 +30,7 @@ Facts and current repo state NOT covered by AGENTS.md. Read this after AGENTS.md
 - `options.InstanceName = "my-app:"` in `src/Core.Cache.Rehydration/README.md:41` and `docs/Rehydration/GettingStarted.md:14` yields a doubled colon — `CacheRedisRegistration.cs:53` appends its own separator.
 - `src/Core.Cache/DependencyInjection/MemoryRegistration.cs:24` has dead commented code referencing `IRehydrationTracker`, a type that never existed post-split.
 - Decide whether to enable `TreatWarningsAsErrors` + `AnalysisLevel=latest-recommended` + `GenerateDocumentationFile`. Cost measured: 66 CS1591 in `src/`, 12 CA1848 (`LoggerMessage`), 1 CA1716 (`next` in `ICacheBehavior`), 1 CA1711 (`CacheDelegate`). The last two are breaking API changes — suppress with justification, do not rename.
-- `codeql.yml` staged change flips `build-mode: manual → none` for C#. Needs a decision.
+- `codeql.yml` now matches the CoreSystem base project: C# uses `build-mode: none` (officially supported for C# since June 2024). The `Run manual build steps` step is dead code by design — nothing uses `manual` — and is the documented fallback if the analyze step ever fails.
 
 ## Gotchas
 
