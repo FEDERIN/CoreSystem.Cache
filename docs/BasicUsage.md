@@ -105,7 +105,10 @@ await cache.SetAsync(
     TimeSpan.FromMinutes(5));
 ```
 
-If omitted, the framework uses the configured default expiration.
+If omitted, the entry is stored with **no expiration** and stays until it is
+removed or evicted. `CacheOptions.DefaultExpiration` does not apply here: it is
+only used by the HTTP response cache. Pass an explicit expiration on every
+`SetAsync` or `GetOrAddAsync` call that needs one.
 
 ---
 

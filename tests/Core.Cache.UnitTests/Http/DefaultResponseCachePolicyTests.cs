@@ -46,7 +46,7 @@ public sealed class DefaultResponseCachePolicyTests
         result.Should().BeFalse();
     }
 
-    
+
     [Theory]
     [InlineData("private", false)]
     [InlineData("no-store", false)]
@@ -66,7 +66,7 @@ public sealed class DefaultResponseCachePolicyTests
 
         // Assert
 
-        if(should)
+        if (should)
             result.Should().BeTrue();
         else
             result.Should().BeFalse();

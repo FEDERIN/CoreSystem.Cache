@@ -6,7 +6,7 @@ namespace Core.Cache.IntegrationTests.Cache;
 public abstract class GetOrAddAsyncTestsBase
 {
     protected abstract ICoreCache Cache { get; }
-    
+
     [Fact]
     public async Task GetOrAddAsync_WhenKeyDoesNotExist_ShouldExecuteFactoryAndStoreValue()
     {

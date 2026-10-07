@@ -208,14 +208,19 @@ The available unit tests cover:
 
 ## 📚 Documentation
 
-- [Getting Started](GettingStarted.md)
-- [Basic Usage](BasicUsage.md)
-- [Architecture](Architecture.md)
-- [Configuration](Configuration.md)
-- [Health Checks](HealthChecks.md)
-- [Observability](Observability.md)
-- [Extensibility](Extensibility.md)
-- [Roadmap](Roadmap.md)
+The full reference is published at
+[federin.github.io/CoreSystem.Cache/Rehydration](https://federin.github.io/CoreSystem.Cache/Rehydration):
+
+- [Overview](https://federin.github.io/CoreSystem.Cache/Rehydration/)
+- [Getting Started](https://federin.github.io/CoreSystem.Cache/Rehydration/GettingStarted/)
+- [Architecture](https://federin.github.io/CoreSystem.Cache/Rehydration/Architecture/)
+- [Configuration](https://federin.github.io/CoreSystem.Cache/Rehydration/Configuration/)
+- [Basic Usage](https://federin.github.io/CoreSystem.Cache/Rehydration/BasicUsage/)
+- [Roadmap](https://federin.github.io/CoreSystem.Cache/Rehydration/Roadmap/)
+
+The Health Checks, Observability and Extensibility pages are maintained in this
+repository under `docs/Rehydration/` and are not yet part of the published
+navigation.
 
 ---
 
@@ -231,4 +236,4 @@ batch processing and additional recovery policies.
 
 ## 📄 License
 
-MIT
+Released under the MIT License.

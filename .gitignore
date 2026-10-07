@@ -15,6 +15,7 @@ obj/
 # Local configuration
 appsettings.Development.json
 appsettings.Local.json
+Directory.Build.local.props
 
 # OS files
 Thumbs.db

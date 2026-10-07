@@ -13,7 +13,7 @@ public class CacheRegistrationTests
     {
         var services = new ServiceCollection();
 
-        services.AddCoreCache(options => {});
+        services.AddCoreCache(options => { });
 
         var provider = services.BuildServiceProvider();
 

@@ -31,7 +31,8 @@ public static class CacheRedisRegistration
 
         var cacheOptions = GetCacheOptions(services);
 
-        if (!cacheOptions.Enabled) {
+        if (!cacheOptions.Enabled)
+        {
             return services;
         }
 

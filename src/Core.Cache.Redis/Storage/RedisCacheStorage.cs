@@ -95,8 +95,8 @@ internal sealed class RedisCacheStorage(
     public async Task<bool> ExistsAsync(string key, CancellationToken ct = default)
         => await _database.KeyExistsAsync(GetFullKey(key));
 
-    public async Task<T?> GetOrAddAsync<T>(string key, 
-        Func<CancellationToken, Task<T>> factory, 
+    public async Task<T?> GetOrAddAsync<T>(string key,
+        Func<CancellationToken, Task<T>> factory,
         CacheEntryOptions? options = null,
         TimeSpan? expiration = null, string[]? tags = null, CancellationToken ct = default)
     {

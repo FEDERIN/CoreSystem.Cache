@@ -194,7 +194,7 @@ public sealed class RedisCacheStorageTests
         string[] tags =
         [
             "users",
-        "premium"
+            "premium"
         ];
 
         _serializer
@@ -331,7 +331,7 @@ public sealed class RedisCacheStorageTests
                     factoryCalled = true;
 
                     return Task.FromResult("Generated");
-                }, 
+                },
                 ct: TestContext.Current.CancellationToken);
 
         Assert.Equal("John", result);

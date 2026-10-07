@@ -11,9 +11,9 @@ internal sealed class ResilienceBehavior(
 {
     private readonly IResiliencePipeline _pipeline = pipeline;
 
-    public int Order => 
+    public int Order =>
         (int)CacheBehaviorOrder.Resilience;
-    
+
     public Task InvokeAsync(
         CacheContext context,
         CacheDelegate next)

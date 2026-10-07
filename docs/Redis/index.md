@@ -28,7 +28,7 @@ the resilience and rehydration components of the CoreSystem cache ecosystem.
 
 ## 📚 Table of Contents
 
-- 🚀 [Getting Started](./Getting-Started.md)
+- 🚀 [Getting Started](./GettingStarted.md)
 - 🏗️ [Architecture](./Architecture.md)
 - ⚙️ [Configuration](./Configuration.md)
 - 🧑‍💻 [Basic Usage](./BasicUsage.md)

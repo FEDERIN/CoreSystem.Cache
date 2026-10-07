@@ -47,7 +47,7 @@ internal sealed class MemoryStorage(
                 DateTimeOffset.UtcNow.Add(expiration.Value);
         }
 
-        var effectiveOptions = 
+        var effectiveOptions =
             options ?? CacheEntryOptions.Default;
 
         var wrapper = _entryFactory.Create(

@@ -6,11 +6,11 @@
   <ItemGroup>
     <PackageVersion Include="CoreSystem.Cache" Version="2.0.2" />
     <PackageVersion Include="CoreSystem.Cache.Rehydration" Version="2.0.2" />
-    <PackageVersion Include="CoreSystem.Http" Version="1.0.6" />
-    <PackageVersion Include="CoreSystem.Memory" Version="1.0.0" />
-    <PackageVersion Include="CoreSystem.Redis" Version="1.0.0" />
-    <PackageVersion Include="CoreSystem.Resilience" Version="2.0.0" />
-    <PackageVersion Include="CoreSystem.Serialization" Version="1.2.0" />
+    <PackageVersion Include="CoreSystem.Http" Version="1.1.0" />
+    <PackageVersion Include="CoreSystem.Memory" Version="1.0.3" />
+    <PackageVersion Include="CoreSystem.Redis" Version="1.0.3" />
+    <PackageVersion Include="CoreSystem.Resilience" Version="2.0.1" />
+    <PackageVersion Include="CoreSystem.Serialization" Version="1.2.3" />
     <PackageVersion Include="Microsoft.AspNetCore.TestHost" Version="8.0.28" />
     <PackageVersion Include="coverlet.collector" Version="10.0.1" />
     <PackageVersion Include="FluentAssertions" Version="8.10.0" />
