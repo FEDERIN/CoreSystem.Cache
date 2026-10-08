@@ -38,12 +38,17 @@ services.AddCoreCacheRehydration(options =>
 });
 ```
 
-The registration requires:
+Registration behaves as follows:
 
-- `Core.Cache` to be registered and enabled;
-- an `IExternalCacheStorage` to be registered.
+| Situation | Result |
+|---|---|
+| `AddCoreCache()` was never called | throws `InvalidOperationException` |
+| No `IExternalCacheStorage` is registered | throws `InvalidOperationException` |
+| The core cache is registered but disabled | services are not registered, **no exception** |
+| `RehydrationOptions.Enabled` is `false` | services are not registered, **no exception** |
 
-Otherwise, registration throws an `InvalidOperationException`.
+In the last two cases the options instance stays registered, but the rehydration
+source, target, rehydrator, service and hosted background service are not.
 
 ## Recovery Flow
 
