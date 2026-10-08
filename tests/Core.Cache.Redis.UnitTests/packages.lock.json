@@ -543,14 +543,14 @@
       "CoreSystem.Cache.Redis": {
         "type": "Project",
         "dependencies": {
-          "CoreSystem.Cache.Rehydration": "[2.0.2, )",
+          "CoreSystem.Cache.Rehydration": "[2.1.1, )",
           "CoreSystem.Redis": "[1.0.3, )"
         }
       },
       "CoreSystem.Cache.Rehydration": {
         "type": "Project",
         "dependencies": {
-          "CoreSystem.Cache": "[2.0.2, )"
+          "CoreSystem.Cache": "[2.1.1, )"
         }
       },
       "CoreSystem.Http": {

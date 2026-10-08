@@ -307,7 +307,7 @@
       "CoreSystem.Cache.Rehydration": {
         "type": "Project",
         "dependencies": {
-          "CoreSystem.Cache": "[2.0.2, )"
+          "CoreSystem.Cache": "[2.1.1, )"
         }
       },
       "CoreSystem.Http": {
