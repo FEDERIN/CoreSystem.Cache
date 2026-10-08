@@ -12,10 +12,11 @@
 		<RestoreLockedMode Condition="'$(UseLocalProjectReferences)' != 'true'">true</RestoreLockedMode>
 
 		<!--
-			Quality gates. TreatWarningsAsErrors is intentionally NOT set here: it
-			still has to be turned on in a dedicated commit once the warnings listed
-			in MEMORY.md are fixed or suppressed.
+			Quality gates. TreatWarningsAsErrors is enabled across the repository:
+			src/ carries the XML documentation requirement, tests/ opts out of it
+			and of CA1707 through tests/Directory.Build.props.
 		-->
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<Deterministic>true</Deterministic>
 		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 		<AnalysisLevel>latest-recommended</AnalysisLevel>

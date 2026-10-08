@@ -21,8 +21,32 @@ using StackExchange.Redis;
 
 namespace Core.Cache.Redis.DependencyInjection;
 
+/// <summary>
+/// Registers Redis as the external primary cache storage.
+/// </summary>
 public static class CacheRedisRegistration
 {
+    /// <summary>
+    /// Registers the Redis connection, storage, tag index, health state and
+    /// optional resilience integration.
+    /// </summary>
+    /// <param name="services">The service collection to register into.</param>
+    /// <param name="configure">
+    /// Callback that configures the Redis options. It must assign
+    /// <see cref="RedisOptions.Configuration"/>.
+    /// </param>
+    /// <returns>The same service collection, for chaining.</returns>
+    /// <exception cref="ArgumentNullException">
+    /// <paramref name="configure"/> is <see langword="null"/>.
+    /// </exception>
+    /// <exception cref="InvalidOperationException">
+    /// <c>AddCoreCache()</c> has not been called, or the callback did not assign
+    /// <see cref="RedisOptions.Configuration"/>.
+    /// </exception>
+    /// <remarks>
+    /// When the core cache is registered but disabled, nothing is registered and
+    /// no exception is thrown.
+    /// </remarks>
     public static IServiceCollection AddCoreCacheRedis(
         this IServiceCollection services,
         Action<RedisOptions> configure)

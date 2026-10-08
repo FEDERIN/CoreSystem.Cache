@@ -9,8 +9,20 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Core.Cache.DependencyInjection;
 
+/// <summary>
+/// Registers the core cache services.
+/// </summary>
 public static class CacheRegistration
 {
+    /// <summary>
+    /// Registers the cache pipeline, storage resolution and metrics.
+    /// </summary>
+    /// <param name="services">The service collection to register into.</param>
+    /// <param name="configure">Callback that configures the cache options.</param>
+    /// <returns>The same service collection, for chaining.</returns>
+    /// <exception cref="ArgumentNullException">
+    /// <paramref name="configure"/> is <see langword="null"/>.
+    /// </exception>
     public static IServiceCollection AddCoreCache(
         this IServiceCollection services,
         Action<CacheOptions> configure)
@@ -47,6 +59,14 @@ public static class CacheRegistration
         return services;
     }
 
+    /// <summary>
+    /// Adds the cache middleware to the request pipeline.
+    /// </summary>
+    /// <param name="app">The application builder.</param>
+    /// <returns>The same application builder, for chaining.</returns>
+    /// <remarks>
+    /// Only endpoints decorated with <c>CacheableAttribute</c> are cached.
+    /// </remarks>
     public static IApplicationBuilder UseCoreCache(this IApplicationBuilder app)
     {
         var options = app.ApplicationServices.GetService<CacheOptions>()

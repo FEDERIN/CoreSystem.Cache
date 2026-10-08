@@ -10,8 +10,32 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Core.Cache.Rehydration.DependencyInjection;
 
+/// <summary>
+/// Registers the cache rehydration services.
+/// </summary>
 public static class RehydrationRegistration
 {
+    /// <summary>
+    /// Registers the rehydration source, target, coordinator, service and the
+    /// hosted background service that drives the cycles.
+    /// </summary>
+    /// <param name="services">The service collection to register into.</param>
+    /// <param name="configure">Callback that configures the rehydration options.</param>
+    /// <returns>The same service collection, for chaining.</returns>
+    /// <exception cref="ArgumentNullException">
+    /// <paramref name="services"/> or <paramref name="configure"/> is
+    /// <see langword="null"/>.
+    /// </exception>
+    /// <exception cref="InvalidOperationException">
+    /// <c>AddCoreCache()</c> has not been called, or no
+    /// <c>IExternalCacheStorage</c> is registered.
+    /// </exception>
+    /// <remarks>
+    /// Requires <c>AddHealthChecks()</c>: the rehydration service takes a
+    /// <c>HealthCheckService</c>, so the host fails to start without it. When the
+    /// core cache or rehydration is disabled, nothing is registered and no
+    /// exception is thrown.
+    /// </remarks>
     public static IServiceCollection AddCoreCacheRehydration(
         this IServiceCollection services,
         Action<RehydrationOptions> configure)
