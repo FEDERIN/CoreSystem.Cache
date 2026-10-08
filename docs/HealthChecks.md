@@ -27,7 +27,13 @@ Register the ASP.NET Core Health Checks service in the application.
 builder.Services.AddHealthChecks();
 ```
 
-The current `CoreSystem.Cache` source provided for this review does not contain a health-check registration implementation, so the automatic registration described in the previous version of this document cannot be confirmed from the available `CoreSystem.Cache` code.
+CoreSystem.Cache itself registers no health check. `AddCoreCache()` calls
+`AddCacheDiagnostics()`, which registers OpenTelemetry metrics only, so
+`AddHealthChecks()` on its own exposes an endpoint with no cache entry in it.
+
+Health checks come from the provider packages. `CoreSystem.Cache.Redis`
+contributes a check named `redis_cache`, tagged `cache` and `primary`, and it
+appears as soon as `AddCoreCacheRedis()` is called.
 
 ---
 
@@ -56,7 +62,10 @@ When a health-check implementation reports the cache provider state, the expecte
 | 🟢 Healthy | The primary cache provider is available. |
 | 🟡 Degraded | The primary provider is unavailable and the fallback provider is being used. |
 
-The current `CoreSystem.Cache` code contains `IPrimaryHealthStateWriter` and `FallbackBehavior`, which supports this model, but the health-check implementation itself was not included in the source reviewed here.
+The core package keeps track of the primary state itself, through the internal
+`IPrimaryHealthStateWriter`, which `FallbackBehavior` calls when a primary
+operation throws. The check that surfaces that state to `/health` is implemented
+by the provider package, not by the core — see [Redis Health Checks](Redis/HealthChecks.md).
 
 ---
 
@@ -83,7 +92,10 @@ CacheEntryOptions.Rehydrate
 
 the cache entry is prepared for rehydration by the recovery components.
 
-The current `CoreSystem.Cache` source defines the rehydration option and tracking support, but the complete rehydration service is provided outside the core implementation reviewed here.
+Recovery is implemented by `CoreSystem.Cache.Rehydration`. Its
+`RehydrationService` observes the health checks tagged `primary` and restores the
+tracked entries once the primary reports healthy again after having been
+observed unhealthy.
 
 ---
 
