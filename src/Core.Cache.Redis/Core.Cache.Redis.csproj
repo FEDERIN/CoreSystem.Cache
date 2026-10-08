@@ -7,10 +7,10 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 
 		<PackageId>CoreSystem.Cache.Redis</PackageId>
-		<Version>2.1.1</Version>
-		<AssemblyVersion>2.1.1</AssemblyVersion>
-		<FileVersion>2.1.1.0</FileVersion>
-		<InformationalVersion>2.1.1</InformationalVersion>
+		<Version>3.0.0</Version>
+		<AssemblyVersion>3.0.0</AssemblyVersion>
+		<FileVersion>3.0.0.0</FileVersion>
+		<InformationalVersion>3.0.0</InformationalVersion>
 
 		<Authors>Federin Pastor Gutierrez Ortiz</Authors>
 
@@ -27,7 +27,7 @@
 		<PackageTags>
 			Distributed;Cache;Redis;Caching;CacheAside;DistributedLock;HealthChecks;Resilience;.NET8;CloudNative
 		</PackageTags>
-		<PackageReleaseNotes>2.1.1: The README on this package page was a byte-identical copy of the core package README. It told Redis consumers to install CoreSystem.Cache and never mentioned AddCoreCacheRedis, the package's only public entry point. Rewritten for the Redis provider, and the AddHealthChecks() prerequisite is now documented: without it the redis_cache health check is never registered and rehydration cannot observe a recovery. The InstanceName examples no longer show a doubled colon, since the provider appends its own separator. Logging uses LoggerMessage delegates. XML documentation is now shipped. No public API was removed or renamed; the shipped XML documentation is the user-facing addition, which is why this is a minor release.</PackageReleaseNotes>
+		<PackageReleaseNotes>3.0.0: Released to move the CoreSystem.Cache dependency to 3.0.0, which removes CacheOptions.MaxCacheableSize. That property was declared but never read by any code, so nothing in this package ever enforced it and no behaviour here changes. If you set MaxCacheableSize, delete the assignment; there is no replacement and no size limit is applied. No other public API is removed, renamed, or changed, and AddCoreCacheRedis and the rest of the provider behave exactly as in 2.1.1. The AddHealthChecks() prerequisite still applies: without it the redis_cache health check is never registered and rehydration cannot observe a recovery.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>

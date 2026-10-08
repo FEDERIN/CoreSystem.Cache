@@ -1,13 +1,32 @@
 # CHANGELOG
 
-## [Unreleased]
+## [3.0.0]
 
 ### Removed
 
-- **`CacheOptions.MaxCacheableSize` is gone.** It was declared with a 1 MB default and copied by `CopyFrom`, but no storage ever read it, and it never did: it arrived dead in the standalone-repository migration and was never wired to anything since. It could not be implemented coherently either. Redis serializes first, so `payload.Length` is free, but the Memory provider stores the live object and never serializes, so measuring it would mean serializing every value purely to inspect it, on the fastest path. A limit that binds for Redis users and silently does nothing for Memory users is a worse trap than no limit. Entries of any size are cached; HTTP lifetime is configured through `DefaultExpiration` and `CacheableAttribute`. **This is a breaking API change**, so the next release is 3.0.0.
+- **`CacheOptions.MaxCacheableSize` is gone.** It was declared with a 1 MB default and copied by `CopyFrom`, but no storage ever read it, and it never did: it arrived dead in the standalone-repository migration and was never wired to anything since. It could not be implemented coherently either. Redis serializes first, so `payload.Length` is free, but the Memory provider stores the live object and never serializes, so measuring it would mean serializing every value purely to inspect it, on the fastest path. A limit that binds for Redis users and silently does nothing for Memory users is a worse trap than no limit. Entries of any size are cached; HTTP lifetime is configured through `DefaultExpiration` and `CacheableAttribute`, and memory pressure is bounded with `IMemoryCache.SizeLimit` or the Redis server's `maxmemory-policy`. **Migration: delete any assignment to `MaxCacheableSize`.** This is the only breaking change, and it is why this is a major release.
 
-The declarative caching work described here previously was shipped in 2.0.2;
-that history is kept below so it is explicit rather than silently dropped.
+### Fixed
+
+- **`docs/Configuration.md` described the disabled-cache registration incorrectly.** It claimed the no-op `ICoreCache` "cannot be resolved". It can: resolving `ICoreCache` keeps working when `Enabled` is `false`, which is deliberate. What is not possible is naming or pattern-matching the concrete type, because it is `internal`. The two facts are now separated.
+- **`site/` was not gitignored**, so running `mkdocs build` locally left an untracked directory that `git add -A` would have committed.
+
+### Changed
+
+- The NuGet vulnerability audit is now a real gate. The `dotnet list package --vulnerable` step always exits `0` even when it reports a High severity advisory, so removing `continue-on-error` alone would have changed nothing. The gate is `NuGetAudit` with `NuGetAuditMode=all` plus `TreatWarningsAsErrors`, which turns NU1902/NU1903 into a restore failure. Transitive dependencies are now covered too; the default audits direct dependencies only.
+- `dependabot.yml` shipped the GitHub template with empty `package-ecosystem` and `directory`, so it matched nothing and never ran. It now covers NuGet and GitHub Actions. A Dependabot NuGet PR arrives failing NU1004 because Dependabot does not regenerate `packages.lock.json`; run `dotnet restore CoreSystem.Cache.sln --use-lock-file --force-evaluate` and commit the lock files in the same PR.
+- Workflows moved to current action majors (`checkout@v7`, `setup-dotnet@v6`, `setup-python@v7`, `upload-pages-artifact@v5`, `deploy-pages@v5`), which also stops the Node 20 deprecation warning that every run printed.
+- `publish.yml` pushes the exact package read from `<PackageId>` instead of a `./nupkgs/*.nupkg` glob, and no longer uses `--skip-duplicate`, which downgraded a 409 Conflict to a warning and let a re-publish report success without publishing. A 409 now fails the run. A partially completed three-tag release is therefore no longer resumable by re-running the tags that succeeded.
+- The duplicated conditional `ProjectReference` groups in `Core.Cache.Redis` and `Core.Cache.Rehydration` are gone. MSBuild was silently collapsing them, so the csproj misdescribed its own reference graph.
+- The CHANGELOG no longer claims aspect-oriented caching "via reflection-based interception". No such infrastructure exists; `CacheableAttribute` is read only by the HTTP response cache middleware.
+
+## [Unreleased]
+
+Nothing pending.
+
+The declarative caching work described in earlier versions of this file was
+shipped in 2.0.2; that history is kept below so it is explicit rather than
+silently dropped.
 
 > **Historical note.** Entries claiming aspect-oriented caching "via
 > reflection-based interception" were removed from this file. No such
