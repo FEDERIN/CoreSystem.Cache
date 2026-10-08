@@ -62,9 +62,8 @@ Consequences: warnings do **not** fail the build, and missing XML docs on public
 - `ci.yml` uses `CoreSystem.Cache.sln` and `publish.yml` uses per-project paths with a per-package test mapping. Both were broken by a copy of the workflow set from another CoreSystem repo — do not reintroduce `CoreSystem.sln`.
 - `samples-smoke.yml` is **inert by design**: there is no `samples/` directory, so its path filters match only `samples/**`. It runs on `workflow_dispatch` and activates by itself if a samples project is added. Do not re-add `src/**` to its filters.
 - The NuGet audit step in `ci.yml` has `continue-on-error: true`, so it never blocks a merge. Remove that once the audit is clean.
-- Nine pages exist but are absent from the `mkdocs.yml` nav, so the site never links them: `Redis/{HttpCache,Observability,Why}.md` and `Rehydration/{Extensibility,HealthChecks,HttpCache,Observability,Why}.md`.
-- `CacheOptions.MaxCacheableSize` is declared and copied but **never read** by any code. Its docs now say it is inert; the open product decision (deprecate vs implement) is written up in `PLAN-MaxCacheableSize.md`.
-- `AddCoreCacheRehydration()` does not document that `AddHealthChecks()` must be called; omitting it throws at host start. The same applies to Redis: without `AddHealthChecks()` the `redis_cache` check never exists, so rehydration cannot observe a recovery.
+- `CacheOptions.MaxCacheableSize` is declared and copied but **never read** by any code. Its docs correctly say it is reserved and inert. Treat it as a no-op; do not document it as a working limit.
+- `docs/Configuration.md` describes `MaxCacheableSize` in the options table and its own section. If that property is ever removed, both go with it.
 
 ## Memory
 - At the start, read `MEMORY.md` for current state and past decisions.
