@@ -15,6 +15,33 @@ By the end of this guide you'll know how to:
 
 ---
 
+## Required Namespaces
+
+The examples below rely on implicit usings for readability, so they do not show
+`using` directives. In a real project the namespaces are not obvious, because
+they follow the folder layout rather than the package name:
+
+| Type | Namespace |
+|------|-----------|
+| `ICoreCache` | `Core.Cache.Abstractions` |
+| `AddCoreCache()`, `UseCoreCache()` | `Core.Cache.DependencyInjection` |
+| `CacheOptions` | `Core.Cache.Options` |
+| `CacheableAttribute` | `Core.Cache.Attributes` |
+| `CacheEntryOptions` | `Core.Cache.Storage` |
+| `CacheMetrics` | `Core.Cache.Diagnostics` |
+| `ICacheBehavior`, `ICachePipeline` | `Core.Cache.Pipeline.Abstractions` |
+| `CacheContext` and its subclasses | `Core.Cache.Pipeline.Contexts` |
+| `CacheDelegate` | `Core.Cache.Pipeline.Delegates` |
+
+The provider packages follow the same pattern:
+
+| Type | Namespace |
+|------|-----------|
+| `AddCoreCacheRedis()`, `RedisOptions` | `Core.Cache.Redis.DependencyInjection`, `Core.Cache.Redis.Options` |
+| `AddCoreCacheRehydration()`, `RehydrationOptions` | `Core.Cache.Rehydration.DependencyInjection`, `Core.Cache.Rehydration.Options` |
+
+---
+
 ## Injecting the Cache Service
 
 ```csharp

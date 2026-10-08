@@ -128,7 +128,7 @@ public async Task<IActionResult> Get(Guid id)
 }
 ```
 
-For a complete guide to HTTP response caching, see **06-http-cache.md**.
+For a complete guide to HTTP response caching, see **HTTP Cache**.
 
 ---
 

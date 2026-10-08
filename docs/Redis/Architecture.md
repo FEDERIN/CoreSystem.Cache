@@ -62,6 +62,6 @@ tags. This supports tag invalidation and cleanup when entries are removed.
 The provider registers a Redis health check that verifies connectivity through
 `PING` and maintains Redis health state.
 
-When a Redis resilience pipeline is configured through `Core.Resilience`,
+When a Redis resilience pipeline is configured through `CoreSystem.Resilience`,
 `Core.Cache.Redis` applies Redis connection and timeout exceptions to the
 configured retry and circuit-breaker strategies.
