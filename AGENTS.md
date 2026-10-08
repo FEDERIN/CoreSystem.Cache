@@ -58,7 +58,8 @@ Suppressions are inline `[SuppressMessage]` with a justification. CA1716 (`ICach
 
 ## Release
 - Tag-driven via `publish.yml`. Tag format `<src folder name>/v<version>`, e.g. `Core.Cache.Redis/v2.0.2`. The workflow derives the project from the tag prefix and validates that `src/<prefix>` exists.
-- It restores and builds **one** project with `/p:Version=<version>`, runs **all** tests, packs, then pushes to NuGet.org and GitHub Packages with `--skip-duplicate`.
+- It restores and builds **one** project with `/p:Version=<version>`, runs **all** tests, packs, then pushes to NuGet.org and GitHub Packages. **There is no `--skip-duplicate`:** it downgrades a 409 Conflict to a warning, so re-running an already published version would report success while publishing nothing. A 409 now fails the run, which is correct because published versions are immutable.
+- **Push the single expected file, never a glob.** The pack step reads `<PackageId>` out of the csproj (it does not match the folder name: `Core.Cache` → `CoreSystem.Cache`) and asserts that exactly one `.nupkg` exists in `./nupkgs` before publishing it. Do not reintroduce `./nupkgs/*.nupkg`.
 - Keep `<Version>`, `AssemblyVersion`, `FileVersion` and `InformationalVersion` in the csproj in sync with the tag.
 - Published versions are immutable — never reuse a version number.
 - When a public surface changes, update that project's `README.md` (it ships in the nupkg) and the matching `docs/` pages.
