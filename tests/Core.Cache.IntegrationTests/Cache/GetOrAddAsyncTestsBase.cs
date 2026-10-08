@@ -121,15 +121,15 @@ public abstract class GetOrAddAsyncTestsBase
         // Arrange
         var executions = 0;
 
-        async Task<CustomerDto> Factory(CancellationToken ct)
+        Task<CustomerDto> Factory(CancellationToken ct)
         {
             executions++;
 
-            return new CustomerDto
+            return Task.FromResult(new CustomerDto
             {
                 Id = executions,
                 Name = $"Customer {executions}"
-            };
+            });
         }
 
         await Cache.GetOrAddAsync(

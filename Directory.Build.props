@@ -10,5 +10,14 @@
 		<UseLocalProjectReferences Condition="'$(UseLocalProjectReferences)' == ''">false</UseLocalProjectReferences>
 		<RestorePackagesWithLockFile Condition="'$(UseLocalProjectReferences)' != 'true'">true</RestorePackagesWithLockFile>
 		<RestoreLockedMode Condition="'$(UseLocalProjectReferences)' != 'true'">true</RestoreLockedMode>
+
+		<!--
+			Quality gates. TreatWarningsAsErrors is intentionally NOT set here: it
+			still has to be turned on in a dedicated commit once the warnings listed
+			in MEMORY.md are fixed or suppressed.
+		-->
+		<Deterministic>true</Deterministic>
+		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+		<AnalysisLevel>latest-recommended</AnalysisLevel>
 	</PropertyGroup>
 </Project>

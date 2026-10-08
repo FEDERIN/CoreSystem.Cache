@@ -15,6 +15,12 @@ internal sealed class FallbackBehavior(
     private readonly ICacheStorageResolver _resolver = resolver;
     private readonly ILogger<FallbackBehavior> _logger = logger;
 
+    private static readonly Action<ILogger, Exception?> LogPrimaryFailed =
+        LoggerMessage.Define(
+            LogLevel.Warning,
+            new EventId(1, nameof(LogPrimaryFailed)),
+            "Primary storage failed. Switching to fallback.");
+
     public int Order =>
 
     (int)CacheBehaviorOrder.Fallback;
@@ -37,9 +43,7 @@ internal sealed class FallbackBehavior(
 
             primaryHealthState.MarkUnavailable();
 
-            _logger.LogWarning(
-                ex,
-                "Primary storage failed. Switching to fallback.");
+            LogPrimaryFailed(_logger, ex);
 
             context.Exception = ex;
             context.Storage = fallback;

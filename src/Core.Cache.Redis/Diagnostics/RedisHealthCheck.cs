@@ -20,6 +20,18 @@ internal sealed class RedisHealthCheck(
     private const string RedisUnavailableHealthMessage =
         "Redis is not responding. Memory fallback active.";
 
+    private static readonly Action<ILogger, Exception?> LogRecovered =
+        LoggerMessage.Define(
+            LogLevel.Information,
+            new EventId(1, nameof(LogRecovered)),
+            RedisRecoveredMessage);
+
+    private static readonly Action<ILogger, Exception?> LogUnavailable =
+        LoggerMessage.Define(
+            LogLevel.Warning,
+            new EventId(2, nameof(LogUnavailable)),
+            RedisUnavailableMessage);
+
     public async Task<HealthCheckResult> CheckHealthAsync(
         HealthCheckContext context,
         CancellationToken ct = default)
@@ -30,8 +42,7 @@ internal sealed class RedisHealthCheck(
 
             if (healthState.Update(true) == HealthTransition.BecameHealthy)
             {
-                logger.LogInformation(
-                    RedisRecoveredMessage);
+                LogRecovered(logger, null);
             }
 
             return HealthCheckResult.Healthy(
@@ -41,9 +52,7 @@ internal sealed class RedisHealthCheck(
         {
             if (healthState.Update(false) == HealthTransition.BecameUnhealthy)
             {
-                logger.LogWarning(
-                    ex,
-                    RedisUnavailableMessage);
+                LogUnavailable(logger, ex);
             }
 
             return HealthCheckResult.Degraded(

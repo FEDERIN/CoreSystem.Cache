@@ -11,6 +11,12 @@ internal sealed class CacheRehydrator(
 {
     private const int BatchSize = 100;
 
+    private static readonly Action<ILogger, string, Exception?> LogEntryFailed =
+        LoggerMessage.Define<string>(
+            LogLevel.Error,
+            new EventId(1, nameof(LogEntryFailed)),
+            "Unable to rehydrate cache key '{Key}'. It will be retried later.");
+
     public async Task RehydrateAsync(
         CancellationToken cancellationToken)
     {
@@ -36,10 +42,7 @@ internal sealed class CacheRehydrator(
                 }
                 catch (Exception ex)
                 {
-                    logger.LogError(
-                        ex,
-                        "Unable to rehydrate cache key '{Key}'. It will be retried later.",
-                        entry.Key);
+                    LogEntryFailed(logger, entry.Key, ex);
                 }
             }
 

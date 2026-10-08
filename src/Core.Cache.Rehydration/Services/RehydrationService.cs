@@ -12,6 +12,12 @@ internal sealed class RehydrationService(
 {
     private bool _wasPrimaryUnavailable;
 
+    private static readonly Action<ILogger, Exception?> LogPrimaryRecovered =
+        LoggerMessage.Define(
+            LogLevel.Information,
+            new EventId(1, nameof(LogPrimaryRecovered)),
+            "Primary cache recovered. Starting cache rehydration.");
+
     public async Task ExecuteCycleAsync(
         CancellationToken cancellationToken)
     {
@@ -33,8 +39,7 @@ internal sealed class RehydrationService(
         {
             if (_wasPrimaryUnavailable)
             {
-                logger.LogInformation(
-                    "Primary cache recovered. Starting cache rehydration.");
+                LogPrimaryRecovered(logger, null);
 
                 await rehydrator.RehydrateAsync(
                     cancellationToken);

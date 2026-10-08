@@ -1,0 +1,14 @@
+﻿<Project>
+
+  <!--
+    MSBuild stops at the nearest Directory.Build.props, so this file shadows the
+    root one and must import it explicitly to keep TargetFramework, ImplicitUsings
+    and Nullable.
+  -->
+  <Import Project="$(MSBuildThisFileDirectory)..\Directory.Build.props" />
+
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+</Project>

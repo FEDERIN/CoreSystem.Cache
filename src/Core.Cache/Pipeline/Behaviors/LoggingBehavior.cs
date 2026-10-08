@@ -9,6 +9,24 @@ internal sealed class LoggingBehavior(
     ILogger<LoggingBehavior> logger)
     : ICacheBehavior
 {
+    private static readonly Action<ILogger, string, string?, Exception?> LogExecuting =
+        LoggerMessage.Define<string, string?>(
+            LogLevel.Debug,
+            new EventId(1, nameof(LogExecuting)),
+            "Executing cache operation for key {Key} on {Storage}");
+
+    private static readonly Action<ILogger, string, Exception?> LogCompleted =
+        LoggerMessage.Define<string>(
+            LogLevel.Debug,
+            new EventId(2, nameof(LogCompleted)),
+            "Cache operation completed for key {Key}");
+
+    private static readonly Action<ILogger, string, Exception?> LogFailed =
+        LoggerMessage.Define<string>(
+            LogLevel.Error,
+            new EventId(3, nameof(LogFailed)),
+            "Cache operation failed for key {Key}");
+
     public int Order =>
         (int)CacheBehaviorOrder.Logging;
 
@@ -16,25 +34,21 @@ internal sealed class LoggingBehavior(
     {
         var sanitizedKey = SanitizeForLog(context.Key);
 
-        logger.LogDebug(
-            "Executing cache operation for key {Key} on {Storage}",
+        LogExecuting(
+            logger,
             sanitizedKey,
-            context.Storage?.GetType().Name);
+            context.Storage?.GetType().Name,
+            null);
 
         try
         {
             await next(context);
 
-            logger.LogDebug(
-                "Cache operation completed for key {Key}",
-                sanitizedKey);
+            LogCompleted(logger, sanitizedKey, null);
         }
         catch (Exception ex)
         {
-            logger.LogError(
-                ex,
-                "Cache operation failed for key {Key}",
-                sanitizedKey);
+            LogFailed(logger, sanitizedKey, ex);
 
             throw;
         }

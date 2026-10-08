@@ -1,5 +1,6 @@
 ﻿using Core.Cache.Pipeline.Contexts;
 using Core.Cache.Pipeline.Delegates;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Core.Cache.Pipeline.Abstractions;
 
@@ -18,6 +19,12 @@ public interface ICacheBehavior
     /// </summary>
     /// <param name="context">The context of the current cache operation.</param>
     /// <param name="next">The next delegate in the pipeline to be invoked.</param>
+    [SuppressMessage(
+        "Naming",
+        "CA1716",
+        Justification = "'next' is the established ASP.NET Core middleware and pipeline " +
+            "convention. Renaming it would break every existing implementer of this " +
+            "public interface for no functional gain.")]
     Task InvokeAsync(
         CacheContext context,
         CacheDelegate next);

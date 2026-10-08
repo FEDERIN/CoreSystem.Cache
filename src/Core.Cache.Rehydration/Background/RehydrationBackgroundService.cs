@@ -11,11 +11,28 @@ internal sealed class RehydrationBackgroundService(
     RehydrationOptions options)
     : BackgroundService
 {
+    private static readonly Action<ILogger, Exception?> LogStarted =
+        LoggerMessage.Define(
+            LogLevel.Information,
+            new EventId(1, nameof(LogStarted)),
+            "Cache rehydration background service started.");
+
+    private static readonly Action<ILogger, Exception?> LogCycleFailed =
+        LoggerMessage.Define(
+            LogLevel.Error,
+            new EventId(2, nameof(LogCycleFailed)),
+            "An error occurred during cache rehydration.");
+
+    private static readonly Action<ILogger, Exception?> LogStopped =
+        LoggerMessage.Define(
+            LogLevel.Information,
+            new EventId(3, nameof(LogStopped)),
+            "Cache rehydration background service stopped.");
+
     protected override async Task ExecuteAsync(
         CancellationToken stoppingToken)
     {
-        logger.LogInformation(
-            "Cache rehydration background service started.");
+        LogStarted(logger, null);
 
         while (!stoppingToken.IsCancellationRequested)
         {
@@ -31,9 +48,7 @@ internal sealed class RehydrationBackgroundService(
             }
             catch (Exception ex)
             {
-                logger.LogError(
-                    ex,
-                    "An error occurred during cache rehydration.");
+                LogCycleFailed(logger, ex);
             }
 
             await Task.Delay(
@@ -41,7 +56,6 @@ internal sealed class RehydrationBackgroundService(
                 stoppingToken);
         }
 
-        logger.LogInformation(
-            "Cache rehydration background service stopped.");
+        LogStopped(logger, null);
     }
 }
