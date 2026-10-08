@@ -49,7 +49,9 @@ builder.Services.AddCoreCache(options =>
 });
 ```
 
-When disabled, `NoOpCoreCache` is registered.
+When disabled, `AddCoreCache()` registers a no-op `ICoreCache` implementation
+instead of the pipeline-backed one. That implementation is an internal detail,
+so it cannot be resolved or replaced by name.
 
 `GetOrAddAsync()` continues to execute the factory, while cache read, write, remove, and invalidation operations become no-ops.
 
@@ -57,13 +59,17 @@ When disabled, `NoOpCoreCache` is registered.
 
 ## Instance Name
 
-Prefixes cache keys with an application or environment identifier.
+Prefixes cache keys with an application or environment identifier, when an
+external provider is registered.
 
 ```csharp
 options.InstanceName = "CatalogApi";
 ```
 
 The option is intended to help avoid key collisions when multiple applications share the same cache infrastructure.
+
+The Memory provider does not apply this prefix, so the option has no effect when
+no external provider is registered.
 
 ---
 
