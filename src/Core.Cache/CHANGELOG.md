@@ -2,9 +2,12 @@
 
 ## [Unreleased]
 
-Nothing pending. The declarative caching work described here previously was
-shipped in 2.0.2; the section is kept so that it is explicit rather than
-silently dropped.
+### Removed
+
+- **`CacheOptions.MaxCacheableSize` is gone.** It was declared with a 1 MB default and copied by `CopyFrom`, but no storage ever read it, and it never did: it arrived dead in the standalone-repository migration and was never wired to anything since. It could not be implemented coherently either. Redis serializes first, so `payload.Length` is free, but the Memory provider stores the live object and never serializes, so measuring it would mean serializing every value purely to inspect it, on the fastest path. A limit that binds for Redis users and silently does nothing for Memory users is a worse trap than no limit. Entries of any size are cached; HTTP lifetime is configured through `DefaultExpiration` and `CacheableAttribute`. **This is a breaking API change**, so the next release is 3.0.0.
+
+The declarative caching work described here previously was shipped in 2.0.2;
+that history is kept below so it is explicit rather than silently dropped.
 
 > **Historical note.** Entries claiming aspect-oriented caching "via
 > reflection-based interception" were removed from this file. No such

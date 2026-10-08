@@ -8,7 +8,7 @@ namespace Core.Cache.Options;
 /// <remarks>
 /// These options control cache behavior shared across the core cache
 /// orchestration, including key naming, serialization, expiration,
-/// entry size limits, and rehydration settings.
+/// and rehydration settings.
 /// </remarks>
 public class CacheOptions
 {
@@ -40,16 +40,6 @@ public class CacheOptions
     public TimeSpan DefaultExpiration { get; set; } = TimeSpan.FromMinutes(30);
 
     /// <summary>
-    /// Gets or sets the maximum allowed size, in bytes, for a cache entry.
-    /// </summary>
-    /// <remarks>
-    /// Reserved for a future entry-size limit. No cache storage or HTTP
-    /// handler currently reads this value, so entries of any size are cached.
-    /// Setting it has no effect today.
-    /// </remarks>
-    public long MaxCacheableSize { get; set; } = 1024 * 1024;
-
-    /// <summary>
     /// Gets or sets the serializer used to store cache entries.
     /// </summary>
     /// <remarks>
@@ -67,7 +57,6 @@ public class CacheOptions
         Enabled = source.Enabled;
         InstanceName = source.InstanceName;
         DefaultExpiration = source.DefaultExpiration;
-        MaxCacheableSize = source.MaxCacheableSize;
         SerializerType = source.SerializerType;
     }
 }
