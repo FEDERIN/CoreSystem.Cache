@@ -38,7 +38,7 @@ Register `CoreSystem.Cache` and an external primary cache provider first.
 ```csharp
 services.AddCoreCache(options =>
 {
-    options.InstanceName = "my-app:";
+    options.InstanceName = "my-app";
 });
 
 services.AddCoreCacheRedis(options =>
@@ -59,6 +59,10 @@ services.AddCoreCacheRehydration(options =>
     options.Interval = TimeSpan.FromSeconds(30);
 });
 ```
+
+`InstanceName` is used as a Redis key prefix. The provider appends its own `:`
+separator, so do not add a trailing colon: `"my-app"` produces
+`my-app:products:1`, while `"my-app:"` would produce `my-app::products:1`.
 
 Rehydration registration requires:
 

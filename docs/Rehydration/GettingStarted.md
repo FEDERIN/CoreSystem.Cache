@@ -11,7 +11,7 @@ enabling rehydration.
 ```csharp
 services.AddCoreCache(options =>
 {
-    options.InstanceName = "my-app:";
+    options.InstanceName = "my-app";
 });
 
 services.AddCoreCacheRedis(options =>
@@ -21,6 +21,11 @@ services.AddCoreCacheRedis(options =>
         redis.EndPoints.Add("localhost", 6379);
     };
 });
+```
+
+`InstanceName` is used as a Redis key prefix. The provider appends its own `:`
+separator, so do not add a trailing colon: `"my-app"` produces
+`my-app:products:1`, while `"my-app:"` would produce `my-app::products:1`.
 ```
 
 Then register rehydration:
