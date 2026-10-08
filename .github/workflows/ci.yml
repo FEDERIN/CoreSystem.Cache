@@ -34,6 +34,10 @@ jobs:
       - name: Test solution
         run: dotnet test CoreSystem.Cache.sln --configuration Release --no-build
 
-      - name: Audit vulnerable packages
-        continue-on-error: true
+      # Informational only. `dotnet list package --vulnerable` always exits 0,
+      # even when it reports a High severity advisory, so this step cannot fail
+      # the build and has no continue-on-error. The gate is the restore step
+      # above: NuGetAudit raises NU1902/NU1903, and Directory.Build.props sets
+      # TreatWarningsAsErrors, which turns those warnings into a hard failure.
+      - name: Report vulnerable packages
         run: dotnet list CoreSystem.Cache.sln package --vulnerable --include-transitive

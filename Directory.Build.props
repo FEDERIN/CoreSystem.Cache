@@ -18,6 +18,15 @@
 		-->
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<Deterministic>true</Deterministic>
+
+		<!--
+			Audit direct AND transitive dependencies. The default is Direct only,
+			so without this a transitive advisory never becomes an NU1902/NU1903
+			warning and TreatWarningsAsErrors cannot fail the build on it.
+			Together with TreatWarningsAsErrors this makes restore the audit gate.
+		-->
+		<NuGetAudit>true</NuGetAudit>
+		<NuGetAuditMode>all</NuGetAuditMode>
 		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 		<AnalysisLevel>latest-recommended</AnalysisLevel>
 	</PropertyGroup>

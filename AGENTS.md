@@ -47,7 +47,7 @@ Suppressions are inline `[SuppressMessage]` with a justification. CA1716 (`ICach
 - Docs: use `.venv\Scripts\mkdocs.exe build` (CI runs `mkdocs build --strict`). Do not use system Python. `serve-docs.bat` is a local-only convenience.
 
 ## CI / branches
-- `ci.yml`: restore → build (Release) → `dotnet format --verify-no-changes` → test (Release) → NuGet vulnerability audit (`continue-on-error: true`) on push/PR to `main`.
+- `ci.yml`: restore → build (Release) → `dotnet format --verify-no-changes` → test (Release) → NuGet vulnerability report on push/PR to `main`. **The vulnerability gate is the restore step, not the last one.** `dotnet list package --vulnerable` always exits 0 even when it reports a High advisory, so that step is informational; the real gate is `NuGetAudit` + `NuGetAuditMode=all` in the root `Directory.Build.props` combined with `TreatWarningsAsErrors`, which turns NU1902/NU1903 into a hard restore failure.
 - `documentation.yml`: `mkdocs build --strict` → GitHub Pages, gated on `docs/**` + `mkdocs.yml`.
 - `publish.yml`: tag-driven, see Release below. `codeql.yml` and `dependabot.yml` also exist.
 - `samples-smoke.yml` is **inert**: there is no `samples/` directory here, and its path filters match only `samples/**`, so it only runs on `workflow_dispatch`. Do not re-add `src/**` to its filters.
@@ -65,7 +65,7 @@ Suppressions are inline `[SuppressMessage]` with a justification. CA1716 (`ICach
 ## Known repo defects (fix when convenient)
 - `ci.yml` uses `CoreSystem.Cache.sln` and `publish.yml` uses per-project paths with a per-package test mapping. Both were broken by a copy of the workflow set from another CoreSystem repo — do not reintroduce `CoreSystem.sln`.
 - `samples-smoke.yml` is **inert by design**: there is no `samples/` directory, so its path filters match only `samples/**`. It runs on `workflow_dispatch` and activates by itself if a samples project is added. Do not re-add `src/**` to its filters.
-- The NuGet audit step in `ci.yml` has `continue-on-error: true`, so it never blocks a merge. Remove that once the audit is clean.
+- ~~The NuGet audit step in `ci.yml` has `continue-on-error: true`~~ **Fixed.** Removing that flag alone would have changed nothing: `dotnet list package --vulnerable` exits 0 even when it reports a High advisory, in both text and `--format json`. The gate is now `NuGetAudit` + `NuGetAuditMode=all` in the root `Directory.Build.props`, which makes restore fail on NU1902/NU1903 via `TreatWarningsAsErrors`. Verified by temporarily adding a vulnerable package: restore fails across all seven projects. The repo audits clean at the time of writing.
 - `CacheOptions.MaxCacheableSize` is declared and copied but **never read** by any code. Its docs correctly say it is reserved and inert. Treat it as a no-op; do not document it as a working limit.
 - `docs/Configuration.md` describes `MaxCacheableSize` in the options table and its own section. If that property is ever removed, both go with it.
 
