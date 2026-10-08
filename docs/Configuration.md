@@ -48,11 +48,16 @@ builder.Services.AddCoreCache(options =>
 });
 ```
 
-When disabled, `AddCoreCache()` registers a no-op `ICoreCache` implementation
-instead of the pipeline-backed one. That implementation is an internal detail,
-so it cannot be resolved or replaced by name.
+When disabled, `AddCoreCache()` still registers an `ICoreCache`, but it is a
+no-op implementation rather than the pipeline-backed one. The registration is
+there on purpose: resolving `ICoreCache` keeps working, so application code does
+not need to change when the cache is switched off. The concrete type is
+`internal`, so it cannot be named, substituted, or pattern-matched from another
+assembly.
 
-`GetOrAddAsync()` continues to execute the factory, while cache read, write, remove, and invalidation operations become no-ops.
+Every call to `GetOrAddAsync()` runs the factory and returns its result, since
+nothing is ever stored. Each read, write, remove, and tag invalidation is a
+no-op that returns the empty value for its type instead of throwing.
 
 ---
 
