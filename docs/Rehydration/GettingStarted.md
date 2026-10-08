@@ -11,7 +11,7 @@ enabling rehydration.
 ```csharp
 services.AddCoreCache(options =>
 {
-    options.InstanceName = "my-app:";
+    options.InstanceName = "my-app";
 });
 
 services.AddCoreCacheRedis(options =>
@@ -21,7 +21,18 @@ services.AddCoreCacheRedis(options =>
         redis.EndPoints.Add("localhost", 6379);
     };
 });
+
+services.AddHealthChecks();
 ```
+
+`InstanceName` is used as a Redis key prefix. The provider appends its own `:`
+separator, so do not add a trailing colon: `"my-app"` produces
+`my-app:products:1`, while `"my-app:"` would produce `my-app::products:1`.
+
+`AddHealthChecks()` is **required**. `RehydrationService` takes a
+`HealthCheckService` in its constructor, and the background service is resolved
+when the host starts. Without it the host fails to start with an
+`InvalidOperationException`.
 
 Then register rehydration:
 
@@ -33,12 +44,17 @@ services.AddCoreCacheRehydration(options =>
 });
 ```
 
-The registration requires:
+Registration behaves as follows:
 
-- `Core.Cache` to be registered and enabled;
-- an `IExternalCacheStorage` to be registered.
+| Situation | Result |
+|---|---|
+| `AddCoreCache()` was never called | throws `InvalidOperationException` |
+| No `IExternalCacheStorage` is registered | throws `InvalidOperationException` |
+| The core cache is registered but disabled | services are not registered, **no exception** |
+| `RehydrationOptions.Enabled` is `false` | services are not registered, **no exception** |
 
-Otherwise, registration throws an `InvalidOperationException`.
+In the last two cases the options instance stays registered, but the rehydration
+source, target, rehydrator, service and hosted background service are not.
 
 ## Recovery Flow
 

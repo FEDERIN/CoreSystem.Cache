@@ -38,7 +38,7 @@ Register `CoreSystem.Cache` and an external primary cache provider first.
 ```csharp
 services.AddCoreCache(options =>
 {
-    options.InstanceName = "my-app:";
+    options.InstanceName = "my-app";
 });
 
 services.AddCoreCacheRedis(options =>
@@ -48,6 +48,8 @@ services.AddCoreCacheRedis(options =>
         redis.EndPoints.Add("localhost", 6379);
     };
 });
+
+services.AddHealthChecks();
 ```
 
 Then register rehydration:
@@ -59,6 +61,15 @@ services.AddCoreCacheRehydration(options =>
     options.Interval = TimeSpan.FromSeconds(30);
 });
 ```
+
+`InstanceName` is used as a Redis key prefix. The provider appends its own `:`
+separator, so do not add a trailing colon: `"my-app"` produces
+`my-app:products:1`, while `"my-app:"` would produce `my-app::products:1`.
+
+`AddHealthChecks()` is **required**. `RehydrationService` takes a
+`HealthCheckService` in its constructor, and the rehydration background service
+is resolved when the host starts. If health checks were never registered, the
+host fails to start with an `InvalidOperationException`.
 
 Rehydration registration requires:
 
@@ -122,6 +133,17 @@ A recovery is detected only after the service has observed the primary as
 unhealthy and subsequently observes it as healthy.
 
 If no health check tagged `primary` exists, rehydration is not triggered.
+
+There are two distinct failure modes worth separating:
+
+| Situation | Behaviour |
+|---|---|
+| `AddHealthChecks()` was never called | the host fails to start with an `InvalidOperationException` |
+| `AddHealthChecks()` was called but nothing is tagged `primary` | no exception; the primary is treated as permanently unavailable and rehydration silently never runs |
+
+With `CoreSystem.Cache.Redis` registered, the `redis_cache` check carries the
+`primary` tag, so the second case only appears when rehydration is combined with
+a provider that contributes no `primary`-tagged check.
 
 After a successful recovery cycle, the component does not repeatedly
 rehydrate while the primary remains healthy. A new rehydration requires another
