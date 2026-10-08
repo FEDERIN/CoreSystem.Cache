@@ -1,4 +1,4 @@
-﻿---
+---
 name: Readme Structure
 description: Use when creating or editing a package README.md that ships to a package registry (NuGet/npm/PyPI). Defines the mandatory section layout, badge style, emoji headings and code-block conventions so all package docs in one ecosystem stay consistent.
 ---
@@ -11,10 +11,10 @@ repository as the canonical pattern and mirror its section order.
 
 ## Layout
 
-1. **Title**: `# ÔÜí <PackageId>` ÔÇö one leading emoji.
+1. **Title**: `# ⚡ <PackageId>` — one leading emoji.
 2. **Tagline**: a single `> **one-line summary in English.**`
-3. **Intro paragraph**: 1ÔÇô3 sentences on what problem it solves and why it exists.
-4. **Badges block** ÔÇö one badge per line, `style=for-the-badge` so they render
+3. **Intro paragraph**: 1–3 sentences on what problem it solves and why it exists.
+4. **Badges block** — one badge per line, `style=for-the-badge` so they render
    compactly in Rider:
 
    ```markdown
@@ -25,16 +25,16 @@ repository as the canonical pattern and mirror its section order.
    ```
 
 5. `---` horizontal rule between major sections.
-6. **`## Ô£¿ Features`** ÔÇö bullet list, `- Ô£à <feature>` on every item.
-7. **`## ­ƒôª Installation`** ÔÇö install command in a fenced bash block.
-8. **`## ­ƒÜÇ Quick Start`** ÔÇö minimal runnable example, one short prose line before
+6. **`## ✨ Features`** — bullet list, `- ✅ <feature>` on every item.
+7. **`## 📦 Installation`** — install command in a fenced bash block.
+8. **`## 🚀 Quick Start`** — minimal runnable example, one short prose line before
    each block so the reader knows what it does.
-9. **Concept sections** ÔÇö one or more `##` covering the package's substance: tables,
+9. **Concept sections** — one or more `##` covering the package's substance: tables,
    ASCII diagrams in ```text blocks, per-API notes.
-10. **`## ­ƒÅù Architecture`** ÔÇö ASCII diagram, then a short paragraph.
-11. **`## ­ƒôû Documentation`** ÔÇö bullets of what the full docs cover.
-12. **`## ­ƒñØ Contributing`** ÔÇö short.
-13. **`## ­ƒôä License`** ÔÇö `Released under the MIT License.` exactly.
+10. **`## 🏗 Architecture`** — ASCII diagram, then a short paragraph.
+11. **`## 📚 Documentation`** — bullets of what the full docs cover.
+12. **`## 🤝 Contributing`** — short.
+13. **`## 📄 License`** — `Released under the MIT License.` exactly.
 
 If a section does not apply, keep the heading with a one-line note or drop it
 deliberately. Do not invent new top-level sections.
@@ -44,17 +44,19 @@ deliberately. Do not invent new top-level sections.
 - Content in **English** for registry-facing material.
 - No HTML `<p>`/`<br>` in package READMEs (they may appear in a root repo README).
 - Fenced code blocks always carry a language tag: ```` ```csharp ````,
-  ```` ```bash ````, ```` ```text ````.
-- Emoji vocabulary: `ÔÜí` package ┬À `Ô£¿` features ┬À `­ƒôª` install ┬À `­ƒÜÇ` quick start ┬À
-  `­ƒÅù` architecture ┬À `­ƒôû` docs ┬À `­ƒñØ` contributing ┬À `­ƒôä` license ┬À `­ƒº®` components ┬À
-  `ÔÜÖ´©Å` configuration ┬À `Ô£à` feature bullets.
+  ```` ```bash ````, ```` ```text ````. No space after the backticks:
+  ```` ``` csharp ```` renders the same, but breaks the consistency of the
+  ecosystem and is rejected in review.
+- Emoji vocabulary: `⚡` package → `✨` features → `📦` install → `🚀` quick start →
+  `🏗` architecture → `📚` docs → `🤝` contributing → `📄` license → `🏪` components →
+  `⚙️` configuration → `✅` feature bullets.
 - Headings: exactly one `#`, then `##`, and `###` only inside a section.
 - Keep under ~200 lines; push depth into the docs site.
 
 ## One README per package
 
 Keep exactly one `README.md` per project and pack that file. Do not maintain a
-second `README_NUGET.md` / `README_PACKAGE.md` alongside it ÔÇö the packed file is the
+second `README_NUGET.md` / `README_PACKAGE.md` alongside it — the packed file is the
 one consumers see, and two files drift apart. See the `nuget-release` skill for the
 csproj wiring.
 
@@ -63,6 +65,17 @@ csproj wiring.
 Before shipping, verify every type name, signature and package name in the README
 against the source. A well-structured README that does not compile is still broken.
 See the `docs-accuracy` skill.
+
+## Encoding
+
+Write the file as UTF-8 without a BOM. A package README is packed verbatim into
+the `.nupkg`, so a corrupted emoji ships to the registry and cannot be corrected
+without a new version. See the `file-encoding` skill.
+
+If non-ASCII characters come back as sequences such as `ÔÜí` or `ÔÇö`, the file
+passed through a DOS OEM codepage such as CP850 and was re-encoded as UTF-8. That
+corruption is lossy for anything outside the Basic Multilingual Plane, so the
+emoji cannot be recovered and the file has to be rewritten.
 
 ## Adaptation template
 

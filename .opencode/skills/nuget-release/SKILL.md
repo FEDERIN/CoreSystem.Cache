@@ -39,7 +39,7 @@ Checklist before tagging:
 ## Tag-driven automation
 
 Publish via tags, not by pushing to a release branch. Format:
-`<src folder name>/v<version>` — e.g. `Core.Http.ProblemDetails/v1.0.2`.
+`<src folder name>/v<version>` — e.g. `Core.Cache.Redis/v2.0.3`.
 
 The workflow should:
 1. Extract project name and version from the tag (`cut -d'/' -f1` / `-f2`, strip `v`)

@@ -50,8 +50,8 @@ must tag from a feature branch to save time, verify the full test suite passes o
 that exact commit — CI on the PR already proves it.
 
 ```powershell
-git tag Core.Http/v1.1.0
-git push origin Core.Http/v1.1.0
+git tag Core.Cache.Redis/v2.0.3
+git push origin Core.Cache.Redis/v2.0.3
 ```
 
 ## Transient push failures
