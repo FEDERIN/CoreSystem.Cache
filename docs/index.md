@@ -10,7 +10,7 @@
 
 CoreSystem.Cache is a distributed caching framework for .NET 8.
 
-It provides a unified cache API with Cache-Aside support, HTTP response caching, resilience, fallback storage, health checks, and OpenTelemetry metrics.
+It provides a unified cache API with Cache-Aside support, HTTP response caching, resilience, fallback storage, and OpenTelemetry metrics. Health checks are supplied by the provider packages rather than by the core.
 
 The framework is built around a pipeline architecture that separates cache operations from storage providers and cross-cutting behaviors.
 
@@ -18,16 +18,20 @@ The framework is built around a pipeline architecture that separates cache opera
 
 | Package | Responsibility |
 |----------|----------------|
-| **CoreSystem.Memory** | In-memory cache provider |
 | **CoreSystem.Serialization** | JSON, MessagePack, and Protocol Buffers serialization |
 | **CoreSystem.Http** | HTTP abstractions used by the middleware |
-| **CoreSystem.Observability** *(Optional)* | Ready-to-use OpenTelemetry instrumentation, metrics, tracing, and diagnostics for compatible packages |
+| **CoreSystem.Resilience** | Resilience pipelines used by the fallback behavior |
+| **CoreSystem.Memory** | In-memory locking support (`AddCoreMemory()`), not the cache provider itself |
+| **CoreSystem.Observability** *(Optional)* | Exporter and pipeline wiring for the metrics the core already emits |
 | **CoreSystem.Observability.Abstractions** | Shared observability contracts for implementing custom instrumentation and integrations |
 
+The in-memory cache **provider** ships inside `CoreSystem.Cache` itself, so no
+extra package is required to use it.
 
-> Installing **CoreSystem.Cache** automatically installs the required provider and serialization packages through NuGet dependencies.
 
-> **Optional:** Install **CoreSystem.Observability** to enable built-in OpenTelemetry metrics and tracing. Install **CoreSystem.Observability.Abstractions** only if you need to build custom observability components or integrations.
+> Installing **CoreSystem.Cache** pulls in `CoreSystem.Http`, `CoreSystem.Memory`, `CoreSystem.Resilience` and `CoreSystem.Serialization` as NuGet dependencies.
+
+> **Optional:** Install **CoreSystem.Observability** to export the OpenTelemetry metrics that the core already creates and enables — the `cache.distributed.hits` and `cache.distributed.misses` counters are registered by `AddCoreCache()` itself. Install **CoreSystem.Observability.Abstractions** only if you need to build custom observability components or integrations.
 
 > **CoreSystem.Cache** can operate with the in-memory provider without requiring an external cache provider.
 
