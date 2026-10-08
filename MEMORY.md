@@ -20,12 +20,11 @@ Facts and current repo state NOT covered by AGENTS.md. Read this after AGENTS.md
 - **The vulnerability gate is `restore`, not a `dotnet list` step.** `dotnet list package --vulnerable` exits 0 even when it prints a High advisory, in both text and `--format json` — so `continue-on-error: true` on that step was removing nothing. What actually blocks is `NuGetAudit` raising NU1902/NU1903, which `TreatWarningsAsErrors` (already on) turns into a restore failure. `NuGetAuditMode=all` is needed because the default audits **direct dependencies only**, so a transitive advisory never becomes a warning. Verified by adding a vulnerable package: NU1004 masks it until you run `--force-evaluate`, then all seven projects fail.
 - `InternalsVisibleTo` from `Core.Cache` to the sibling providers and all four test projects is intentional — that is how the tests reach `internal` members.
 - Integration tests use Testcontainers, so they need a running Docker daemon. Unit tests do not.
+- **`dependabot.yml` is configured for two ecosystems** (`nuget` and `github-actions`, both at `/`). Every NuGet PR it opens arrives failing restore with NU1004, because it edits `Directory.Packages.props` without regenerating the lock files. Verified by simulating a bump. Fix: `dotnet restore CoreSystem.Cache.sln --use-lock-file --force-evaluate`, commit lock files with the bump.
+- **Action majors verified against the GitHub releases API (Oct 2026):** `checkout@v7`, `setup-dotnet@v6`, `setup-python@v7`, `upload-pages-artifact@v5`, `deploy-pages@v5`, `NuGet/login@v1`, `codeql-action@v4`. `checkout@v5`+ moved to node24, which is what silenced the Node 20 deprecation warning `@v4` printed on every run. Do not guess these; query the releases API.
 - `CacheOptions.MaxCacheableSize` is **dead and treated as a no-op**: declared, copied by `CopyFrom`, never read. Docs say so. Do not describe it as a working limit.
 - `codeql.yml` uses `build-mode: none` for C#, which is officially supported and verified working here. The `Run manual build steps` step never executes and is the documented fallback.
 
-## Open items
-
-- None blocking. The audit is closed and 2.1.1 is live.
 - Consider making `publish.yml` push only the packed project instead of `./nupkgs/*.nupkg`. It happens to be correct today because `Pack --output ./nupkgs` writes one file, but the glob is an accident waiting for a csproj that packs twice.
 - Consider dropping `--skip-duplicate` from the nuget.org push so a re-run fails loudly instead of reporting success without publishing.
 

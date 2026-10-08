@@ -1,11 +1,53 @@
-# To get started with Dependabot version updates, you'll need to specify which
-# package ecosystems to update and where the package manifests are located.
-# Please see the documentation for all configuration options:
-# https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
-
+# Dependabot version updates.
+#
+# The previous file shipped the GitHub template verbatim, with
+# package-ecosystem and directory both set to "", so Dependabot matched no
+# ecosystem and did nothing. Both ecosystems below are real.
+#
+# NuGet:
+#   Versions live in Directory.Packages.props (ManagePackageVersionsCentrally),
+#   and the csproj files carry no Version attributes by policy. Dependabot reads
+#   the central props file, so this entry is what keeps package versions current.
+#
+#   Dependabot edits Directory.Packages.props but does not regenerate
+#   packages.lock.json, and this repo sets RestoreLockedMode. A Dependabot PR
+#   therefore fails restore with NU1004 until the lock files are regenerated and
+#   committed in the same PR. Expect to run:
+#     dotnet restore CoreSystem.Cache.sln --use-lock-file --force-evaluate
+#   See MEMORY.md; a failed restore under locked mode also guts the lock files.
 version: 2
 updates:
-  - package-ecosystem: "" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  - package-ecosystem: "nuget"
+    directory: "/"
     schedule:
       interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Etc/UTC"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "nuget"
+    commit-message:
+      prefix: "nuget"
+    # Do not let Dependabot open a PR for a version that does not exist yet.
+    versioning-strategy: "increase"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Etc/UTC"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "github-actions"
+    commit-message:
+      prefix: "ci"
+    groups:
+      # One PR for all GitHub Actions major bumps instead of one per action.
+      github-actions:
+        patterns:
+          - "*"
