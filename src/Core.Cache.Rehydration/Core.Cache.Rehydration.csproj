@@ -5,10 +5,10 @@
 		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageId>CoreSystem.Cache.Rehydration</PackageId>
-		<Version>2.1.1</Version>
-		<AssemblyVersion>2.1.1</AssemblyVersion>
-		<FileVersion>2.1.1.0</FileVersion>
-		<InformationalVersion>2.1.1</InformationalVersion>
+		<Version>3.0.0</Version>
+		<AssemblyVersion>3.0.0</AssemblyVersion>
+		<FileVersion>3.0.0.0</FileVersion>
+		<InformationalVersion>3.0.0</InformationalVersion>
 		<Authors>Federin Pastor Gutierrez Ortiz</Authors>
 		<Description>
 			Cache recovery component for CoreSystem.Cache on .NET 8 that restores
@@ -24,7 +24,7 @@
 		<PackageTags>
 			Cache;Caching;Rehydration;Recovery;Fallback;DistributedCache;.NET8
 		</PackageTags>
-		<PackageReleaseNotes>2.1.1: The AddHealthChecks() prerequisite is now documented. RehydrationService takes a HealthCheckService, so without it the host fails to start, and without a primary-tagged check rehydration silently never runs. The README's eight documentation links pointed at .md files that are not part of the package and were dead for every consumer; it now links the published site. The InstanceName examples no longer show a doubled colon. The registration failure semantics are documented accurately: a disabled core cache registers nothing and does not throw. Logging uses LoggerMessage delegates. XML documentation is now shipped. No public API was removed or renamed; the shipped XML documentation is the user-facing addition, which is why this is a minor release.</PackageReleaseNotes>
+		<PackageReleaseNotes>3.0.0: Released to move the CoreSystem.Cache dependency to 3.0.0, which removes CacheOptions.MaxCacheableSize. That property was declared but never read by any code, so nothing in this package ever enforced it and no behaviour here changes. If you set MaxCacheableSize, delete the assignment; there is no replacement and no size limit is applied. No other public API is removed, renamed, or changed, and RehydrationService behaves exactly as in 2.1.1. The AddHealthChecks() prerequisite still applies: RehydrationService takes a HealthCheckService, so without it the host fails to start, and without a primary-tagged check rehydration silently never runs.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>
