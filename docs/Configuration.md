@@ -34,7 +34,6 @@ builder.Services.AddCoreCache(options =>
 | InstanceName | Optional prefix for cache keys | `null` |
 | DefaultExpiration | HTTP response cache lifetime, used when `[Cacheable]` omits `expirationSeconds` | 30 minutes |
 | SerializerType | Serialization format | JSON |
-| MaxCacheableSize | Reserved; not enforced by any cache storage | 1 MB |
 
 ---
 
@@ -95,6 +94,10 @@ await cache.SetAsync(
     TimeSpan.FromMinutes(5));
 ```
 
+There is no entry-size limit. Entries of any size are cached; use
+`DefaultExpiration` and the `CacheableAttribute` to control how long an HTTP
+response stays cached.
+
 ---
 
 ## Serialization
@@ -129,29 +132,6 @@ options.SerializerType =
 options.SerializerType =
     SerializerType.Protobuf;
 ```
-
----
-
-## Maximum Cacheable Size
-
-```csharp
-options.MaxCacheableSize =
-    1024 * 1024;
-```
-
-Default:
-
-```text
-1 MB
-```
-
-!!! warning
-    This option is **reserved and currently has no effect**. No cache storage and
-    no HTTP handler reads it, so entries of any size are cached. It is accepted
-    for forward compatibility only.
-
-HTTP cache behavior is configured through `DefaultExpiration` and the
-`CacheableAttribute`, not through this option.
 
 ---
 

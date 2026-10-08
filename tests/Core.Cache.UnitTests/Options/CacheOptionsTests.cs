@@ -13,7 +13,6 @@ public sealed class CacheOptionsTests
             Enabled = false,
             InstanceName = "my-app",
             DefaultExpiration = TimeSpan.FromMinutes(10),
-            MaxCacheableSize = 1024,
             SerializerType = SerializerType.Json
         };
 
@@ -24,7 +23,6 @@ public sealed class CacheOptionsTests
         Assert.Equal(source.Enabled, target.Enabled);
         Assert.Equal(source.InstanceName, target.InstanceName);
         Assert.Equal(source.DefaultExpiration, target.DefaultExpiration);
-        Assert.Equal(source.MaxCacheableSize, target.MaxCacheableSize);
         Assert.Equal(source.SerializerType, target.SerializerType);
     }
 }
