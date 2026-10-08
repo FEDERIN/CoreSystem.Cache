@@ -14,14 +14,14 @@ public sealed class RehydrationOptions
     /// </remarks>
     public bool Enabled { get; set; } = true;
 
-    ///// <summary>
-    ///// Gets or sets the interval between cache rehydration cycles.
-    ///// </summary>
-    ///// <remarks>
-    ///// Cache rehydration attempts to restore entries that were temporarily
-    ///// stored in the fallback provider after the primary provider becomes
-    ///// available again.
-    ///// </remarks>
+    /// <summary>
+    /// Gets or sets the interval between cache rehydration cycles.
+    /// </summary>
+    /// <remarks>
+    /// Cache rehydration attempts to restore entries that were temporarily
+    /// stored in the fallback provider after the primary provider becomes
+    /// available again.
+    /// </remarks>
     public TimeSpan Interval { get; set; } =
         TimeSpan.FromSeconds(30);
 

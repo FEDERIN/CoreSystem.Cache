@@ -23,6 +23,12 @@ internal sealed class RedisCacheStorage(
     private readonly IPayloadSerializer _payloadSerializer = payloadSerializer;
     private readonly IDistributedLockProvider _distributedLockProvider = distributedLockProvider;
 
+    private static readonly Action<ILogger, string, Exception?> LogCorruptedEntry =
+        LoggerMessage.Define<string>(
+            LogLevel.Warning,
+            new EventId(1, nameof(LogCorruptedEntry)),
+            "Corrupted cache entry detected for key '{Key}'. Removing it from Redis.");
+
     private static string SanitizeForLog(string value)
         => value
             .Replace("\r", string.Empty)
@@ -47,10 +53,10 @@ internal sealed class RedisCacheStorage(
         }
         catch (CacheDeserializationException ex)
         {
-            logger.LogWarning(
-                ex,
-                "Corrupted cache entry detected for key '{Key}'. Removing it from Redis.",
-                SanitizeForLog(fullKey));
+            LogCorruptedEntry(
+                logger,
+                SanitizeForLog(fullKey),
+                ex);
 
             await _database.KeyDeleteAsync(fullKey);
 

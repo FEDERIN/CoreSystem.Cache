@@ -10,5 +10,15 @@
 		<UseLocalProjectReferences Condition="'$(UseLocalProjectReferences)' == ''">false</UseLocalProjectReferences>
 		<RestorePackagesWithLockFile Condition="'$(UseLocalProjectReferences)' != 'true'">true</RestorePackagesWithLockFile>
 		<RestoreLockedMode Condition="'$(UseLocalProjectReferences)' != 'true'">true</RestoreLockedMode>
+
+		<!--
+			Quality gates. TreatWarningsAsErrors is enabled across the repository:
+			src/ carries the XML documentation requirement, tests/ opts out of it
+			and of CA1707 through tests/Directory.Build.props.
+		-->
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<Deterministic>true</Deterministic>
+		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+		<AnalysisLevel>latest-recommended</AnalysisLevel>
 	</PropertyGroup>
 </Project>

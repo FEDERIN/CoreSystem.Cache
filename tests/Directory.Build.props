@@ -1,0 +1,22 @@
+<Project>
+
+  <Import Project="$(MSBuildThisFileDirectory)..\Directory.Build.props" />
+
+  <!--
+    Test projects are not shipped, so they carry no XML documentation
+    requirement. The root file is imported for the shared settings.
+  -->
+  <PropertyGroup>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!--
+      CA1707: xUnit convention is Method_Scenario. The entire point of the
+      naming is the double underscore, so renaming thousands of tests to satisfy
+      the rule would work against the convention.
+    -->
+    <NoWarn>$(NoWarn);CA1707</NoWarn>
+  </PropertyGroup>
+
+</Project>
