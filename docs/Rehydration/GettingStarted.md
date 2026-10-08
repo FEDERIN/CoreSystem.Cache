@@ -21,12 +21,18 @@ services.AddCoreCacheRedis(options =>
         redis.EndPoints.Add("localhost", 6379);
     };
 });
+
+services.AddHealthChecks();
 ```
 
 `InstanceName` is used as a Redis key prefix. The provider appends its own `:`
 separator, so do not add a trailing colon: `"my-app"` produces
 `my-app:products:1`, while `"my-app:"` would produce `my-app::products:1`.
-```
+
+`AddHealthChecks()` is **required**. `RehydrationService` takes a
+`HealthCheckService` in its constructor, and the background service is resolved
+when the host starts. Without it the host fails to start with an
+`InvalidOperationException`.
 
 Then register rehydration:
 
