@@ -97,7 +97,7 @@ await cache.SetAsync(
 
 ---
 
-# Serialization
+## Serialization
 
 Choose the serializer used by the cache.
 
@@ -185,7 +185,7 @@ The external provider configuration is handled by the corresponding provider pac
 
 ## Recommended Configurations
 
-## Development
+### Development
 
 ```csharp
 builder.Services.AddCoreCache(options =>
@@ -197,7 +197,7 @@ builder.Services.AddCoreCache(options =>
 
 ---
 
-## Production
+### Production
 
 The core package does not define a production provider configuration inside `CacheOptions`.
 

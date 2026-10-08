@@ -3,6 +3,15 @@
 This guide shows how to register Redis as the external cache provider for
 `CoreSystem.Cache`.
 
+## Installation
+
+Install the core package first, then the Redis provider:
+
+```bash
+dotnet add package CoreSystem.Cache
+dotnet add package CoreSystem.Cache.Redis
+```
+
 ## Prerequisites
 
 Register `CoreSystem.Cache` before registering the Redis provider.

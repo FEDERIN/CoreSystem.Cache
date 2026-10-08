@@ -73,7 +73,7 @@ public sealed class CustomBehavior
 }
 ```
 
-However, the current `AddCachePipeline()` implementation explicitly builds the pipeline from the framework's registered behaviors.
+However, the current internal `AddCachePipeline()` implementation explicitly builds the pipeline from the framework's registered behaviors.
 
 Therefore, registering:
 

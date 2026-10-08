@@ -33,13 +33,13 @@ fallback storage.
 
 ## 📦 Installation
 
-``` bash
+```bash
 dotnet add package CoreSystem.Cache
 ```
 
 For Redis support, add the Redis provider package separately:
 
-``` bash
+```bash
 dotnet add package CoreSystem.Cache.Redis
 ```
 
@@ -49,7 +49,7 @@ dotnet add package CoreSystem.Cache.Redis
 
 Register the framework:
 
-``` csharp
+```csharp
 builder.Services.AddCoreCache(options =>
 {
     options.InstanceName = "my-app";
@@ -58,7 +58,7 @@ builder.Services.AddCoreCache(options =>
 
 Inject the cache service:
 
-``` csharp
+```csharp
 public sealed class ProductService(ICoreCache cache)
 {
 }
@@ -66,7 +66,7 @@ public sealed class ProductService(ICoreCache cache)
 
 Store data:
 
-``` csharp
+```csharp
 await cache.SetAsync(
     "products:1",
     product,
@@ -75,13 +75,13 @@ await cache.SetAsync(
 
 Retrieve data:
 
-``` csharp
+```csharp
 var product = await cache.GetAsync<Product>("products:1");
 ```
 
 Recommended Cache-Aside pattern:
 
-``` csharp
+```csharp
 var product = await cache.GetOrAddAsync(
     $"products:{id}",
     async ct => await repository.GetByIdAsync(id, ct),
@@ -95,13 +95,13 @@ var product = await cache.GetOrAddAsync(
 
 Enable the middleware:
 
-``` csharp
+```csharp
 app.UseCoreCache();
 ```
 
 Decorate your endpoint:
 
-``` csharp
+```csharp
 [Cacheable(expirationSeconds: 300)]
 public async Task<IActionResult> Get(Guid id)
 {
@@ -141,7 +141,7 @@ registered and configured.
 
 ## 🏗 Architecture
 
-``` text
+```text
 Application
       │
       ▼
