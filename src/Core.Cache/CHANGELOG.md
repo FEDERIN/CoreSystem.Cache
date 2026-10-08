@@ -2,15 +2,17 @@
 
 ## [Unreleased]
 
-### Added
+Nothing pending. The declarative caching work described here previously was
+shipped in 2.0.2; the section is kept so that it is explicit rather than
+silently dropped.
 
-- **Declarative Caching Support**: Introduced `[Cacheable]` attribute in `Core.Cache.Attributes` for declarative caching at the method level.
-- **Aspect-Oriented Caching**: Implemented infrastructure to support automatic caching via reflection-based interception, enabling seamless integration with services and repositories beyond just API controllers.
-
-### Changed
-
-- **Architectural Refinement**: Enhanced the caching strategy to allow universal usage across service and repository layers using attribute-based resolution.
-- **Documentation**: Updated README.md to include the new Declarative Caching feature and configuration guidelines.
+> **Historical note.** Entries claiming aspect-oriented caching "via
+> reflection-based interception" were removed from this file. No such
+> infrastructure exists. `CacheableAttribute` is read only by the ASP.NET Core
+> response-cache middleware (`HttpCacheHandler`), which applies it to HTTP
+> endpoint results. It does not intercept service or repository method calls,
+> because there is no interceptor, no `DispatchProxy` and no reflection-based
+> method invocation anywhere in this package.
 
 ## [2.1.1]
 
