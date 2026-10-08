@@ -36,7 +36,7 @@ Facts and current repo state NOT covered by AGENTS.md. Read this after AGENTS.md
 - Scans for U+FFFD will not find CP850 mojibake. `ÔÜí` in place of `⚡` means UTF-8 content passed through a DOS OEM codepage; look for `[À-ÿ]` clusters. That corruption is **lossy** for emoji outside the Basic Multilingual Plane, so those files must be rewritten, not repaired.
 - All `.cs` files carry a UTF-8 BOM and `dotnet format` preserves it. Do not strip it or churn line endings; `core.autocrlf=true` and there is no `.gitattributes`, so match whatever the file already does.
 - `docs/` nav must list a page for it to be reachable, and a nav entry pointing at a missing file aborts the deploy.
-- `Core.Cache.UnitTests.csproj` excludes `Behaviors\**` from compilation — reference material, not tests.
+- There is no `Behaviors\` folder anywhere and never was on this branch (`git log` over that path is empty). The `<Compile Remove="Behaviors\**" />` exclusion in `Core.Cache.UnitTests.csproj` was scaffolding for an aspect-oriented caching design that was never implemented; it was removed rather than left to rot.
 - **Do not trust a nuget.org 404 as proof a package is missing.** In this sandbox, `/v3-flatcontainer/<id>/<version>/<id>.nuspec` and `.nupkg` return 404 for packages that demonstrably exist, including the repo's own long-published 2.0.2. Only `/v3-flatcontainer/<id>/index.json` was reliable, and it lags by several minutes after a publish. The authoritative check is a throwaway `dotnet restore` of a project referencing the package, then read the resolved graph out of `obj/project.assets.json` and the nuspec/XML out of `~/.nuget/packages`.
 - `main` is protected: branch, then `gh pr create`.
 
