@@ -27,12 +27,16 @@ All three projects set `GeneratePackageOnBuild=true`, so every build also produc
 - `Directory.Build.props` sets `RestorePackagesWithLockFile` + `RestoreLockedMode`; `packages.lock.json` files are committed. After changing a package run `dotnet restore CoreSystem.Cache.sln --use-lock-file --force-evaluate` and commit the lock files, or restore fails.
 - `Directory.Build.props` imports `Directory.Build.local.props` if present (gitignored). See `Directory.Build.local.props.example`. Note: the `UseLocalProjectReferences=true` switch it demonstrates is currently **inert** — the two conditional `ProjectReference` groups in `Core.Cache.Redis.csproj` and `Core.Cache.Rehydration.csproj` duplicate unconditional ones. It only becomes meaningful if a conditional project reference is ever made genuinely exclusive.
 
-## Build properties — read this before assuming strict gates
-`Directory.Build.props` sets only `TargetFramework`, `ImplicitUsings`, `Nullable`, `RestorePackagesWithLockFile`, `RestoreLockedMode`.
+## Build properties
+Root `Directory.Build.props`: `TargetFramework`, `ImplicitUsings`, `Nullable`, `RestorePackagesWithLockFile`, `RestoreLockedMode`, plus the quality gates `TreatWarningsAsErrors`, `EnforceCodeStyleInBuild`, `AnalysisLevel=latest-recommended`, `Deterministic`.
 
-**Not set here:** `TreatWarningsAsErrors`, `EnforceCodeStyleInBuild`, `AnalysisLevel`, `Deterministic`, `GenerateDocumentationFile`, SourceLink. There are no `src/Directory.Build.props` or `tests/Directory.Build.props` files, so no per-package metadata and no CA1707/CA1848 suppressions.
+`src/Directory.Build.props` adds `GenerateDocumentationFile=true`, so **every public member in `src/` needs an XML doc** (CS1591) and the generated file is packed into the `.nupkg`. Write real summaries, not filler.
 
-Consequences: warnings do **not** fail the build, and missing XML docs on public APIs are **not** a build error. XML docs are still expected by convention and by the package consumers. If you need hard gates, add them explicitly and say so — do not assume the strict setup of the other CoreSystem repos.
+`tests/Directory.Build.props` sets `GenerateDocumentationFile=false` and `NoWarn=CA1707`, since tests ship nothing and the xUnit `Method_Scenario` convention is the point of the double underscore.
+
+**Both subdirectory files import the root explicitly.** MSBuild stops at the nearest `Directory.Build.props`, so without that import they shadow the root and `TargetFramework` is never set — restore then fails NU1004 and **rewrites the committed lock files with empty ones** instead of leaving them alone.
+
+Suppressions are inline `[SuppressMessage]` with a justification. CA1716 (`ICacheBehavior.InvokeAsync`'s `next`) and CA1711 (`CacheDelegate`) are suppressed because renaming either breaks a published 2.x contract; do not "fix" them.
 
 ## Commands
 - Build: `dotnet build CoreSystem.Cache.sln -c Release`
