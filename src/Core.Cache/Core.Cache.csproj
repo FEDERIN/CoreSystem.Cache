@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
@@ -6,10 +6,10 @@
 
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageId>CoreSystem.Cache</PackageId>
-		<Version>2.0.2</Version>
-		<AssemblyVersion>2.0.2</AssemblyVersion>
-		<FileVersion>2.0.2.0</FileVersion>
-		<InformationalVersion>2.0.2</InformationalVersion>
+		<Version>2.1.1</Version>
+		<AssemblyVersion>2.1.1</AssemblyVersion>
+		<FileVersion>2.1.1.0</FileVersion>
+		<InformationalVersion>2.1.1</InformationalVersion>
 		<Authors>Federin Pastor Gutierrez Ortiz</Authors>
 		<Description>Production-ready cache abstraction for .NET 8 with In-Memory caching, extensible external storage, tag-based invalidation, HTTP response caching, and OpenTelemetry metrics.</Description>
 		<RepositoryUrl>https://github.com/FEDERIN/CoreSystem.Cache</RepositoryUrl>
@@ -17,6 +17,7 @@
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageTags>Cache;Caching;DistributedCache;MemoryCache;HTTP;OpenTelemetry;Observability;.NET8</PackageTags>
+		<PackageReleaseNotes>2.1.1: Ships XML documentation for the whole public API, so IntelliSense now works from the package. Corrects documentation that misstated the public API: DefaultExpiration applies only to HTTP response caching and is not a fallback for SetAsync or GetOrAddAsync, AddHealthChecks() is a required prerequisite, and MaxCacheableSize is reserved and not enforced. Logging paths use LoggerMessage delegates instead of ILogger extension calls. Quality gates enabled (TreatWarningsAsErrors, EnforceCodeStyleInBuild, latest-recommended). No public API was removed or renamed: every modified type is internal, and the shipped XML documentation is the user-facing addition, which is why this is a minor release.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>
