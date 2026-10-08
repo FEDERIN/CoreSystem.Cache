@@ -65,4 +65,6 @@ nav:
       - Architecture: Rehydration/Architecture.md
       - Configuration: Rehydration/Configuration.md
       - Basic Usage: Rehydration/BasicUsage.md
+      - Health Checks: Rehydration/HealthChecks.md
+      - Extensibility: Rehydration/Extensibility.md
       - Roadmap: Rehydration/Roadmap.md
