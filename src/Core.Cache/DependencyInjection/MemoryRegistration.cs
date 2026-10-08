@@ -19,9 +19,11 @@ internal static class MemoryRegistration
         // Tags
         services.AddSingleton<ICacheTagIndex<MemoryStorage>, MemoryTagIndex>();
 
-        // Rehydration
+        // Key tracking. This is the seam CoreSystem.Cache.Rehydration reads to
+        // enumerate the entries the Memory storage holds, so it is required by
+        // MemoryRehydrationSource in that package. Rehydration itself registers
+        // its own source, target and service and belongs to that package.
         services.AddSingleton<ICacheKeyTracker, MemoryKeyTracker>();
-        //services.AddSingleton<IRehydrationTracker, RehydrationTracker>();
 
         services.AddCoreMemory();
 

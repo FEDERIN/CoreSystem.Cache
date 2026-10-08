@@ -22,7 +22,6 @@ Facts and current repo state NOT covered by AGENTS.md. Read this after AGENTS.md
 
 ## Open items
 
-- `src/Core.Cache/DependencyInjection/MemoryRegistration.cs:24` has dead commented code referencing `IRehydrationTracker`, a type that never existed post-split.
 - Every documentation fix from the audit needs **a new package version** to reach consumers, because published versions are immutable.
 
 ## Gotchas
