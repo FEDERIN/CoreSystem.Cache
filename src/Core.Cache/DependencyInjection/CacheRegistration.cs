@@ -69,6 +69,8 @@ public static class CacheRegistration
     /// </remarks>
     public static IApplicationBuilder UseCoreCache(this IApplicationBuilder app)
     {
+        ArgumentNullException.ThrowIfNull(app);
+
         var options = app.ApplicationServices.GetService<CacheOptions>()
             ?? throw new InvalidOperationException(
                 CacheMessages.MissingRegistration);
