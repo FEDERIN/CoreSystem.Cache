@@ -77,4 +77,4 @@ CoreSystem.Cache is designed for applications that need a unified caching API an
 
 ## Next Steps
 
-Continue with the **Architecture** section to understand how the execution pipeline is composed, how storage providers are selected, and how CoreSystem.Cache coordinates the different components of the caching framework.
+Continue with the **[Architecture](./Architecture.md)** section to understand how the execution pipeline is composed, how storage providers are selected, and how CoreSystem.Cache coordinates the different components of the caching framework.
