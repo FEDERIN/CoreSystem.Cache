@@ -52,8 +52,9 @@ registering the rehydration services.
 
 ## Primary Provider Requirement
 
-An external cache provider implementing `IExternalCacheStorage` must already be
-registered.
+An external cache provider must already be registered. It is picked up through
+the internal `IExternalCacheStorage` contract, which a provider package
+registers rather than a consumer implementing.
 
 The rehydration target writes to `ICacheStorageResolver.Primary`, so the
 rehydration package does not contain provider-specific configuration.
