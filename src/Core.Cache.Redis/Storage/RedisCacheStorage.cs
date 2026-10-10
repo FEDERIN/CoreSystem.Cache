@@ -31,8 +31,8 @@ internal sealed class RedisCacheStorage(
 
     private static string SanitizeForLog(string value)
         => value
-            .Replace("\r", string.Empty)
-            .Replace("\n", string.Empty);
+            .Replace("\r", string.Empty, StringComparison.Ordinal)
+            .Replace("\n", string.Empty, StringComparison.Ordinal);
 
     private string GetFullKey(string key) => _keyBuilder.BuildCacheKey(key);
 
