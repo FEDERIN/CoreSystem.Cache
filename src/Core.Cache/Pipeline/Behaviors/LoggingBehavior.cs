@@ -60,7 +60,7 @@ internal sealed class LoggingBehavior(
             return string.Empty;
 
         return value
-            .Replace("\r", string.Empty)
-            .Replace("\n", string.Empty);
+            .Replace("\r", string.Empty, StringComparison.Ordinal)
+            .Replace("\n", string.Empty, StringComparison.Ordinal);
     }
 }
