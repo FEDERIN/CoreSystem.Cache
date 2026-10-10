@@ -129,3 +129,115 @@ Select-String -Path docs/**/*.md,src/**/*.md -Pattern "OldTypeName"
 ```
 
 A rename that leaves the docs behind is a regression even though CI is green.
+
+## One H1 per page, and an icon on every H2
+
+Two rules the ecosystem follows on every docs page.
+
+**Exactly one H1.** It is the page title. A second H1 makes the rendered site
+emit several `<h1>`, which competes in the page title and breaks the sidebar
+position. Sections below the title are `##`, and `###` only where a section
+genuinely nests:
+
+```markdown
+# 🩺 Health Checks
+
+## 💚 Health States
+
+### ⚠️ Degraded
+```
+
+Verify, and check the HTML rather than trusting the markdown:
+
+```powershell
+(Get-Content site\HealthChecks\index.html -Raw) -match '<h1'
+```
+
+**An icon on every H1, H2 and H3**, semantically consistent across pages. Pick
+the vocabulary from the page that already does it completely rather than
+inventing one, and reuse it:
+
+| Icon | Use for |
+|---|---|
+| ⚙️ | configuration, options |
+| 🧩 | components, minimal API |
+| 💾 / 📖 | store / retrieve |
+| 🔄 / 🔁 | lifecycle / rehydration |
+| ⚡ | cache-aside |
+| 🏷️ | tags, instance name |
+| ⏳ / ⏱️ | expiration / interval |
+| 📊 | metrics |
+| 🩺 | health checks |
+| 🔌 | enabling, endpoints |
+| 📦 / 🚀 | installation / quick start |
+| ✅ / ⚠️ / ❌ | best practices / degraded / failure |
+| 🧭 | roadmap, next steps |
+| 🔍 | technical assessment |
+
+Two habits worth keeping:
+
+- **Do not re-decorate a heading that already has an icon.** A bulk edit that
+  prepends to every `## ` produces doubled icons.
+- **Match the separator you are replacing.** A heading may use an em dash
+  (U+2014) where you typed an ASCII hyphen; a bulk replace keyed on `## Step 1
+  - ...` silently misses all of them. Grep the codepoint before assuming the
+  map applied.
+
+## Detecting emoji needs a decoder, not \p{So}
+
+`\p{So}` misses most of the vocabulary. 🏗️ (U+1F3D7) is above the Basic
+Multilingual Plane, so it arrives as a surrogate pair (U+D83D U+DED7) and
+`[int]$c` never sees it; ⏳ (U+23F3) and ⏱️ (U+23F1) sit outside the usual
+symbol blocks entirely. A scan built only on `\p{So}` reports zero icons on a
+page that is fully decorated.
+
+Decode the pair, and widen the ranges:
+
+```powershell
+function Has-Emoji([string]$s) {
+  for ($i = 0; $i -lt $s.Length; $i++) {
+    $c = [int]$s[$i]
+    if ($c -ge 0xD800 -and $c -le 0xDBFF -and ($i + 1) -lt $s.Length) {
+      $lo = [int]$s[$i + 1]
+      if ($lo -ge 0xDC00 -and $lo -le 0xDFFF) {
+        $full = 0x10000 + (($c - 0xD800) * 0x400) + ($lo - 0xDC00)
+        if ($full -ge 0x1F000 -and $full -le 0x1FAFF) { return $true }
+        $i++; continue
+      }
+    }
+    if (($c -ge 0x2190 -and $c -le 0x2BFF) -or ($c -ge 0x1F000 -and $c -le 0x1F0FF) -or
+        $c -eq 0xFE0F) { return $true }
+  }
+  return $false
+}
+```
+
+Confirm a finding by printing the codepoints before acting on it. A count of
+zero is far more often a broken detector than a clean page.
+
+## Editing many files: put the script in a file, and give it a BOM
+
+Bulk heading edits go in a `.ps1` file, never inline in the shell. Inline
+`-replace` with emoji breaks on quoting, and a script written as UTF-8
+**without** a BOM is parsed as ANSI by Windows PowerShell 5.1, which corrupts
+every emoji before your logic runs. The failure looks like a parse error
+about a stray token, not an encoding error, so it is easy to misdiagnose.
+
+```powershell
+# Windows PowerShell 5.1 needs the BOM to read the script as UTF-8.
+$t = [System.IO.File]::ReadAllText($p, [System.Text.Encoding]::UTF8)
+[System.IO.File]::WriteAllText($p, $t, (New-Object System.Text.UTF8Encoding $true))
+```
+
+Keep a per-file map of exact heading to new heading rather than one global
+regex: headings repeat across pages (`## Tags`, `## Recovery`, `## Storage
+Integration`) and a global rule would rewrite the wrong one. Skip any heading
+that already carries an icon, and report how many headings each file changed
+so a silent zero is visible.
+
+Verify afterwards that the diff is balanced — the same count on each side —
+which proves only heading lines moved:
+
+```powershell
+git diff --stat   # e.g. "162 insertions(+), 162 deletions(-)"
+```
