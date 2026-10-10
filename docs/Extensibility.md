@@ -14,7 +14,7 @@ The current implementation provides these relevant extension points:
 |-----------------|-----------------|
 | Cache Pipeline | Pipeline behaviors are defined through `ICacheBehavior`. |
 | Storage Providers | Storage is abstracted through `ICacheStorage`, but the interface is internal. |
-| Serialization | Serialization is delegated to `CoreSystem.Serialization`. |
+| Serialization | Serialization is delegated to [**CoreSystem.Serialization**](https://www.nuget.org/packages/CoreSystem.Serialization). |
 | HTTP Policies | Request and response cache policies are represented by internal abstractions. |
 | Cache Key Generation | HTTP key generation is represented by an internal abstraction. |
 | Dependency Injection | Framework services are registered through the built-in registration methods. |

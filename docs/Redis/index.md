@@ -20,9 +20,9 @@ the resilience and rehydration components of the CoreSystem cache ecosystem.
 
 | Package | Responsibility |
 |----------|----------------|
-| **CoreSystem.Redis** | Redis connectivity infrastructure used by the Redis provider |
-| **CoreSystem.Cache** | Cache orchestration and in-memory fallback |
-| **CoreSystem.Cache.Rehydration** | Fallback entry restoration |
+| [**CoreSystem.Redis**](https://www.nuget.org/packages/CoreSystem.Redis) | Redis connectivity infrastructure used by the Redis provider |
+| [**CoreSystem.Cache**](https://www.nuget.org/packages/CoreSystem.Cache) | Cache orchestration and in-memory fallback |
+| [**CoreSystem.Cache.Rehydration**](https://www.nuget.org/packages/CoreSystem.Cache.Rehydration) | Fallback entry restoration |
 
 ---
 

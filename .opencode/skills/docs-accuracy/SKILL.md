@@ -44,6 +44,42 @@ Same for constructors, extension methods, and namespaces that moved.
 The package name in `dotnet add package` must equal the `<PackageId>` in the
 csproj — not the project folder name, not the class namespace.
 
+## Link package names to their NuGet page
+
+A package name in prose is a dead end: the reader has to go and search for it.
+Where a table already lists packages by name, make each one a link to
+nuget.org.
+
+| Package | Responsibility |
+|----------|----------------|
+| [**CoreSystem.Serialization**](https://www.nuget.org/packages/CoreSystem.Serialization) | JSON, MessagePack, and Protocol Buffers |
+| [**CoreSystem.Http**](https://www.nuget.org/packages/CoreSystem.Http) | HTTP abstractions |
+
+Scope the rule deliberately, because unbounded linking produces noise:
+
+- **Link inside tables.** A "Companion packages" or "Ecosystem" table is exactly
+  the place a reader looks up a package, and one link per row reads as
+  deliberate.
+- **Do not link every prose mention.** A page that mentions the same package
+  eight times should carry one link, not eight. Repeated links on a single page
+  read as an editing accident.
+- **Do not link inside code blocks.** `dotnet add package CoreSystem.Cache`
+  must stay copy-pasteable.
+- **Do not link a table column header.** In a comparison table such as
+  `| Capability | IDistributedCache | CoreSystem.Cache |`, the name is the
+  subject of the comparison, not a reference, and the header is centred.
+- Keep the bold markers: `[**Name**](url)`, not `[Name](url)`.
+
+Verify the target exists before linking. `index.json` is the reliable check; a
+404 from a flat-container path is not proof the package is missing:
+
+```powershell
+Invoke-RestMethod "https://api.nuget.org/v3-flatcontainer/<id-lowercased>/index.json"
+```
+
+Link the package page without a version. A versioned link rots on the next
+release, and the page's latest-version tab is what the reader wants.
+
 ## Verify method signatures, not just names
 
 When a doc calls `AcquireAsync(key, ct)` or `Serialize(value)`, confirm the actual

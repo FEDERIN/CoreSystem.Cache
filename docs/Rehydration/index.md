@@ -20,7 +20,7 @@ cache provider.
 
 | Package | Responsibility |
 |----------|----------------|
-| **CoreSystem.Cache** | Cache orchestration and in-memory fallback |
+| [**CoreSystem.Cache**](https://www.nuget.org/packages/CoreSystem.Cache) | Cache orchestration and in-memory fallback |
 
 `CoreSystem.Cache.Rehydration` does not implement a cache provider.
 

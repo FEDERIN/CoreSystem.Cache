@@ -18,12 +18,12 @@ The framework is built around a pipeline architecture that separates cache opera
 
 | Package | Responsibility |
 |----------|----------------|
-| **CoreSystem.Serialization** | JSON, MessagePack, and Protocol Buffers serialization |
-| **CoreSystem.Http** | HTTP abstractions used by the middleware |
-| **CoreSystem.Resilience** | Resilience pipelines used by the fallback behavior |
-| **CoreSystem.Memory** | In-memory locking support (`AddCoreMemory()`), not the cache provider itself |
-| **CoreSystem.Observability** *(Optional)* | Exporter and pipeline wiring for the metrics the core already emits |
-| **CoreSystem.Observability.Abstractions** | Shared observability contracts for implementing custom instrumentation and integrations |
+| [**CoreSystem.Serialization**](https://www.nuget.org/packages/CoreSystem.Serialization) | JSON, MessagePack, and Protocol Buffers serialization |
+| [**CoreSystem.Http**](https://www.nuget.org/packages/CoreSystem.Http) | HTTP abstractions used by the middleware |
+| [**CoreSystem.Resilience**](https://www.nuget.org/packages/CoreSystem.Resilience) | Resilience pipelines used by the fallback behavior |
+| [**CoreSystem.Memory**](https://www.nuget.org/packages/CoreSystem.Memory) | In-memory locking support (`AddCoreMemory()`), not the cache provider itself |
+| [**CoreSystem.Observability**](https://www.nuget.org/packages/CoreSystem.Observability) *(Optional)* | Exporter and pipeline wiring for the metrics the core already emits |
+| [**CoreSystem.Observability.Abstractions**](https://www.nuget.org/packages/CoreSystem.Observability.Abstractions) | Shared observability contracts for implementing custom instrumentation and integrations |
 
 The in-memory cache **provider** ships inside `CoreSystem.Cache` itself, so no
 extra package is required to use it.

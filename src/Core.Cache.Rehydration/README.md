@@ -40,8 +40,8 @@ dotnet add package CoreSystem.Cache.Redis
 
 | Package | Responsibility |
 |----------|----------------|
-| **CoreSystem.Cache** | Cache orchestration, storage resolution and fallback support |
-| **CoreSystem.Cache.Rehydration** | Recovery of tracked fallback entries into the primary storage |
+| [**CoreSystem.Cache**](https://www.nuget.org/packages/CoreSystem.Cache) | Cache orchestration, storage resolution and fallback support |
+| [**CoreSystem.Cache.Rehydration**](https://www.nuget.org/packages/CoreSystem.Cache.Rehydration) | Recovery of tracked fallback entries into the primary storage |
 
 ------------------------------------------------------------------------
 
