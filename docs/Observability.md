@@ -102,17 +102,18 @@ Miss
 
 ## Observability Integration
 
-`CacheObservabilityContributor` implements the observability contract:
-
-```csharp
-IObservabilityContributor
-```
+`CacheObservabilityContributor` implements `IObservabilityContributor`. It is an
+internal type, so this is a description of what the framework does rather than
+an extension point you can implement.
 
 It exposes the cache meter:
 
 ```csharp
-public IEnumerable<string> GetActivitySources()
-    => ["Core.Cache"];
+internal sealed class CacheObservabilityContributor : IObservabilityContributor
+{
+    public IEnumerable<string> GetActivitySources()
+        => ["Core.Cache"];
+}
 ```
 
 and configures OpenTelemetry metrics for the meter.
