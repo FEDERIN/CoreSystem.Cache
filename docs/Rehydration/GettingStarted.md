@@ -3,7 +3,7 @@
 `CoreSystem.Cache.Rehydration` is an optional component used with
 `CoreSystem.Cache` and an external cache provider.
 
-## Installation
+## 📦 Installation
 
 ```bash
 dotnet add package CoreSystem.Cache.Rehydration
@@ -13,7 +13,7 @@ This pulls in `CoreSystem.Cache` as a dependency. Rehydration also requires an
 external cache provider, so add the provider package as well when using one, for
 example `CoreSystem.Cache.Redis`.
 
-## Prerequisites
+## 📋 Prerequisites
 
 Register `CoreSystem.Cache` first and register an external cache provider before
 enabling rehydration.
@@ -66,7 +66,7 @@ Registration behaves as follows:
 In the last two cases the options instance stays registered, but the rehydration
 source, target, rehydrator, service and hosted background service are not.
 
-## Recovery Flow
+## 🔁 Recovery Flow
 
 When the core fallback stores an entry with `CacheEntryOptions.Rehydrate`,
 the memory storage tracks that entry.

@@ -6,7 +6,7 @@ The current implementation provides extensibility through its pipeline and depen
 
 ---
 
-## Extension Points
+## 🧩 Extension Points
 
 The current implementation provides these relevant extension points:
 
@@ -14,14 +14,14 @@ The current implementation provides these relevant extension points:
 |-----------------|-----------------|
 | Cache Pipeline | Pipeline behaviors are defined through `ICacheBehavior`. |
 | Storage Providers | Storage is abstracted through `ICacheStorage`, but the interface is internal. |
-| Serialization | Serialization is delegated to `CoreSystem.Serialization`. |
+| Serialization | Serialization is delegated to [**CoreSystem.Serialization**](https://www.nuget.org/packages/CoreSystem.Serialization). |
 | HTTP Policies | Request and response cache policies are represented by internal abstractions. |
 | Cache Key Generation | HTTP key generation is represented by an internal abstraction. |
 | Dependency Injection | Framework services are registered through the built-in registration methods. |
 
 ---
 
-## Extending the Cache Pipeline
+## 🔧 Extending the Cache Pipeline
 
 Every cache operation is executed through `CachePipeline`.
 
@@ -54,7 +54,7 @@ The current framework includes behaviors for logging, metrics, resilience, and f
 
 ---
 
-## Custom Pipeline Behaviors
+## 🧱 Custom Pipeline Behaviors
 
 `ICacheBehavior` is public and can be implemented by another component.
 
@@ -87,7 +87,7 @@ Custom behaviors require an extension or replacement of the pipeline registratio
 
 ---
 
-## Creating a Custom Storage Provider
+## 🏗️ Creating a Custom Storage Provider
 
 The cache operations use the internal `ICacheStorage` abstraction.
 
@@ -136,7 +136,7 @@ External providers are integrated through the cache provider architecture.
 
 ---
 
-## Storage Resolution
+## 🗂️ Storage Resolution
 
 `ICacheStorageResolver` determines the primary and fallback storage.
 
@@ -167,7 +167,7 @@ This keeps provider selection outside `ICoreCache`.
 
 ---
 
-## Serialization
+## 🔢 Serialization
 
 Serialization is delegated to the configured serialization package.
 
@@ -184,7 +184,7 @@ Custom serialization strategies therefore belong to the serialization component 
 
 ---
 
-## HTTP Extension Points
+## 🌐 HTTP Extension Points
 
 HTTP caching uses separate abstractions for request and response policies:
 
@@ -201,7 +201,7 @@ The default implementations define the current HTTP caching behavior without exp
 
 ---
 
-## Dependency Injection
+## 💉 Dependency Injection
 
 `CoreSystem.Cache` registers its internal services through `AddCoreCache()`.
 
@@ -217,7 +217,7 @@ Because several of the underlying interfaces are internal, dependency injection 
 
 ---
 
-## Adding Custom Metrics
+## 📊 Adding Custom Metrics
 
 The framework exposes `CacheMetrics` and integrates it with OpenTelemetry.
 
@@ -234,7 +234,7 @@ The current cache pipeline does not automatically discover arbitrary `ICacheBeha
 
 ---
 
-## Future Extension Points
+## 🔮 Future Extension Points
 
 The architecture can support additional capabilities in future versions.
 
@@ -254,7 +254,7 @@ These should be treated as future capabilities rather than current public extens
 
 ---
 
-## Design Principles
+## 📏 Design Principles
 
 When extending the framework:
 
@@ -267,7 +267,7 @@ When extending the framework:
 
 ---
 
-## Technical Assessment
+## 🔍 Technical Assessment
 
 The current architecture has a good internal foundation for extensibility, particularly around `ICacheBehavior`, `ICacheStorage`, and `ICacheStorageResolver`.
 

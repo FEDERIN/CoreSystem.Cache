@@ -6,7 +6,7 @@ The health check can be used to expose the operational state of the cache layer,
 
 ---
 
-## Why It Matters
+## ❓ Why It Matters
 
 In production environments, an external cache provider can become temporarily unavailable.
 
@@ -19,7 +19,7 @@ A health check can expose this state so monitoring systems can distinguish betwe
 
 ---
 
-## Registering Health Checks
+## 🩺 Registering Health Checks
 
 Register the ASP.NET Core Health Checks service in the application.
 
@@ -37,7 +37,7 @@ appears as soon as `AddCoreCacheRedis()` is called.
 
 ---
 
-## Expose the Health Endpoint
+## 🔌 Expose the Health Endpoint
 
 Expose the ASP.NET Core health endpoint as usual.
 
@@ -53,7 +53,7 @@ GET /health
 
 ---
 
-## Health States
+## 💚 Health States
 
 When a health-check implementation reports the cache provider state, the expected operational distinction is:
 
@@ -69,7 +69,7 @@ by the provider package, not by the core — see [Redis Health Checks](Redis/Hea
 
 ---
 
-## Fallback State
+## 🔄 Fallback State
 
 When the primary storage fails and a fallback provider exists, `FallbackBehavior`:
 
@@ -82,7 +82,7 @@ This state can be used by a health-check implementation to report a degraded cac
 
 ---
 
-## Cache Rehydration
+## 🔁 Cache Rehydration
 
 When fallback operations are marked with:
 
@@ -99,7 +99,7 @@ observed unhealthy.
 
 ---
 
-## Monitoring
+## 📈 Monitoring
 
 The ASP.NET Core health endpoint can be consumed by monitoring and orchestration systems that support Health Checks.
 
@@ -107,15 +107,15 @@ The exact health-check response and provider-state reporting depend on the healt
 
 ---
 
-## Operational Recommendations
+## 🧭 Operational Recommendations
 
-### Healthy
+### 💚 Healthy
 
 The primary cache provider is operating normally.
 
 ---
 
-### Degraded
+### ⚠️ Degraded
 
 The primary provider is unavailable and cache operations are using the configured fallback provider.
 
@@ -130,7 +130,7 @@ Once the primary provider becomes available again, the recovery components can r
 
 ---
 
-## Best Practices
+## ✅ Best Practices
 
 - Expose a health endpoint for production applications.
 - Monitor degraded states instead of only failures.

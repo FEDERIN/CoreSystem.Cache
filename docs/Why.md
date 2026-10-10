@@ -1,4 +1,4 @@
-# Why CoreSystem.Cache?
+# ❓ Why CoreSystem.Cache?
 
 `IDistributedCache` is an excellent abstraction for storing and retrieving data from distributed cache providers. It provides a simple, provider-agnostic API that works well for many applications.
 
@@ -10,7 +10,7 @@ CoreSystem.Cache provides a unified caching platform that orchestrates these con
 
 ---
 
-## The Problem
+## ❗ The Problem
 
 Modern distributed applications may require capabilities such as:
 
@@ -28,7 +28,7 @@ These capabilities are not provided by a single basic cache abstraction. Teams c
 
 ---
 
-## The Solution
+## 💡 The Solution
 
 CoreSystem.Cache acts as the orchestration layer of the CoreSystem caching ecosystem.
 
@@ -38,7 +38,7 @@ The framework can operate with its in-memory provider without requiring an exter
 
 ---
 
-## Benefits
+## ✨ Benefits
 
 Using CoreSystem.Cache provides several advantages:
 
@@ -54,7 +54,7 @@ Using CoreSystem.Cache provides several advantages:
 
 ---
 
-## When Should You Use CoreSystem.Cache?
+## 🤔 When Should You Use CoreSystem.Cache?
 
 CoreSystem.Cache is useful for applications that require more than basic key/value caching, including:
 
@@ -75,6 +75,6 @@ CoreSystem.Cache is designed for applications that need a unified caching API an
 
 ---
 
-## Next Steps
+## 🧭 Next Steps
 
-Continue with the **Architecture** section to understand how the execution pipeline is composed, how storage providers are selected, and how CoreSystem.Cache coordinates the different components of the caching framework.
+Continue with the **[Architecture](./Architecture.md)** section to understand how the execution pipeline is composed, how storage providers are selected, and how CoreSystem.Cache coordinates the different components of the caching framework.

@@ -3,7 +3,7 @@
 This guide describes the configuration options exposed by
 `CoreSystem.Cache.Redis`.
 
-## Redis Options
+## 🔌 Redis Options
 
 The provider exposes `RedisOptions` with one configuration property:
 
@@ -27,7 +27,7 @@ services.AddCoreCacheRedis(options =>
 The provider requires `Configuration` to be assigned. Registration fails when
 the configuration delegate does not assign it.
 
-## Core Cache Options
+## ⚙️ Core Cache Options
 
 Redis also uses the `CacheOptions` registered by `AddCoreCache()`.
 
@@ -45,7 +45,7 @@ orders:customer:1
 
 If no instance name is configured, no prefix is added.
 
-## Resilience
+## 🛡️ Resilience
 
 `CoreSystem.Resilience` defines a dedicated `PipelineType.Redis`.
 
@@ -59,7 +59,7 @@ the following exceptions to its Retry and Circuit Breaker handling:
 The resilience strategies and their options belong to
 `CoreSystem.Resilience`, not to `RedisOptions`.
 
-## Rehydration
+## 🔁 Rehydration
 
 `CoreSystem.Cache.Rehydration` is configured separately through
 `RehydrationOptions`.

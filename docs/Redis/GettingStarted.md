@@ -3,7 +3,7 @@
 This guide shows how to register Redis as the external cache provider for
 `CoreSystem.Cache`.
 
-## Installation
+## 📦 Installation
 
 Install the core package first, then the Redis provider:
 
@@ -12,7 +12,7 @@ dotnet add package CoreSystem.Cache
 dotnet add package CoreSystem.Cache.Redis
 ```
 
-## Prerequisites
+## 📋 Prerequisites
 
 Register `CoreSystem.Cache` before registering the Redis provider.
 
@@ -39,7 +39,7 @@ services.AddCoreCacheRedis(options =>
 configuration delegate. If either requirement is missing, registration throws
 an `InvalidOperationException`.
 
-## Using the Cache
+## 💡 Using the Cache
 
 Application services continue to use `ICoreCache`:
 
@@ -56,7 +56,7 @@ public sealed class ProductService(ICoreCache cache)
 The Redis provider registers its implementation through the
 `IExternalCacheStorage` contract.
 
-## Resilience and Rehydration
+## 🛡️ Resilience and Rehydration
 
 Redis can be used together with the optional `CoreSystem.Resilience` and
 `CoreSystem.Cache.Rehydration` packages.

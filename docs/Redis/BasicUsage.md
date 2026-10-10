@@ -3,7 +3,7 @@
 `CoreSystem.Cache.Redis` uses the same `ICoreCache` API exposed by
 `CoreSystem.Cache`.
 
-## Store Data
+## 💾 Store Data
 
 ```csharp
 await cache.SetAsync(
@@ -14,7 +14,7 @@ await cache.SetAsync(
 
 The value is serialized and stored in Redis.
 
-## Retrieve Data
+## 📖 Retrieve Data
 
 ```csharp
 var product =
@@ -24,7 +24,7 @@ var product =
 
 A missing entry returns `null`.
 
-## Cache-Aside
+## ⚡ Cache-Aside
 
 ```csharp
 var product =
@@ -37,7 +37,7 @@ var product =
 For a missing key, the Redis provider acquires a distributed lock, checks Redis
 again, and executes the factory only when the value is still missing.
 
-## Tags
+## 🏷️ Tags
 
 ```csharp
 await cache.SetAsync(
@@ -53,7 +53,7 @@ Invalidate all entries associated with the tag:
 await cache.InvalidateByTagAsync("products");
 ```
 
-## Remove an Entry
+## 🗑️ Remove an Entry
 
 ```csharp
 await cache.RemoveAsync("products:1");
@@ -61,7 +61,7 @@ await cache.RemoveAsync("products:1");
 
 Removing an entry also removes its Redis tag-index information.
 
-## Recovery
+## 🔁 Recovery
 
 With the core fallback and `CoreSystem.Cache.Rehydration` enabled, entries
 written to the memory fallback after a Redis failure can later be written back

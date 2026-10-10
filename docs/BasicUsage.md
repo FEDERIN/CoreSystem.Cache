@@ -15,7 +15,7 @@ By the end of this guide you'll know how to:
 
 ---
 
-## Required Namespaces
+## 🧩 Required Namespaces
 
 The examples below rely on implicit usings for readability, so they do not show
 `using` directives. In a real project the namespaces are not obvious, because
@@ -42,7 +42,7 @@ The provider packages follow the same pattern:
 
 ---
 
-## Injecting the Cache Service
+## 💉 Injecting the Cache Service
 
 ```csharp
 public sealed class ProductService(
@@ -53,7 +53,7 @@ public sealed class ProductService(
 
 ---
 
-## Store Data
+## 💾 Store Data
 
 Store an object in the cache.
 
@@ -68,7 +68,7 @@ An optional collection of tags can also be provided.
 
 ---
 
-## Retrieve Data
+## 📖 Retrieve Data
 
 ```csharp
 var product =
@@ -83,7 +83,7 @@ Returns:
 
 ---
 
-## Check if an Entry Exists
+## 🔍 Check if an Entry Exists
 
 ```csharp
 var exists =
@@ -93,7 +93,7 @@ var exists =
 
 ---
 
-## Remove an Entry
+## 🗑️ Remove an Entry
 
 ```csharp
 await cache.RemoveAsync(
@@ -102,7 +102,7 @@ await cache.RemoveAsync(
 
 ---
 
-## Cache-Aside Pattern
+## ⚡ Cache-Aside Pattern
 
 The recommended approach for most scenarios.
 
@@ -121,7 +121,7 @@ The operation is handled by the configured cache provider and execution pipeline
 
 ---
 
-## Using Expiration
+## ⏳ Using Expiration
 
 Expiration can be specified per operation.
 
@@ -139,7 +139,7 @@ only used by the HTTP response cache. Pass an explicit expiration on every
 
 ---
 
-## Using Tags
+## 🏷️ Using Tags
 
 Tags allow related cache entries to be grouped together.
 
@@ -155,7 +155,7 @@ Tags can also be provided through `GetOrAddAsync()`.
 
 ---
 
-## Invalidate a Tag
+## 💥 Invalidate a Tag
 
 ```csharp
 await cache.InvalidateByTagAsync(
@@ -166,7 +166,7 @@ All cache entries associated with that tag are invalidated.
 
 ---
 
-## Working with CancellationToken
+## 🚦 Working with CancellationToken
 
 All asynchronous operations exposed by `ICoreCache` support cancellation.
 
@@ -180,7 +180,7 @@ The cancellation token is propagated through the cache operation.
 
 ---
 
-## Typical Usage Pattern
+## 🧱 Typical Usage Pattern
 
 ```csharp
 public async Task<Product?> GetAsync(
@@ -203,7 +203,7 @@ This is the recommended way to integrate the framework into application services
 
 ---
 
-# Best Practices
+## ✅ Best Practices
 
 ✅ Prefer `GetOrAddAsync()` over manually calling `GetAsync()` and `SetAsync()`.
 

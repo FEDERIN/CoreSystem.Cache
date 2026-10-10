@@ -6,7 +6,7 @@ Instead of implementing cache management logic inside controllers or Minimal API
 
 ---
 
-## Overview
+## 📋 Overview
 
 When an endpoint is associated with the `Cacheable` attribute, the framework automatically:
 
@@ -23,7 +23,7 @@ No additional cache-management code is required inside your endpoints.
 
 ---
 
-## Architecture
+## 🏗️ Architecture
 
 ```mermaid
 flowchart TD
@@ -53,7 +53,7 @@ flowchart TD
 
 ---
 
-## Enable the Middleware
+## 🔌 Enable the Middleware
 
 Register the middleware.
 
@@ -67,7 +67,7 @@ app.Run();
 
 ---
 
-## Basic Usage
+## 💡 Basic Usage
 
 Decorate an endpoint.
 
@@ -84,7 +84,7 @@ The response will be cached for five minutes when it satisfies the default reque
 
 ---
 
-## Minimal API Example
+## 🧩 Minimal API Example
 
 ```csharp
 app.MapGet("/products/{id}",
@@ -97,7 +97,7 @@ app.MapGet("/products/{id}",
 
 ---
 
-## Cache Expiration
+## ⏳ Cache Expiration
 
 Specify the cache lifetime.
 
@@ -115,7 +115,7 @@ When no expiration is specified, the cache uses `CacheOptions.DefaultExpiration`
 
 ---
 
-## Using Cache Tags
+## 🏷️ Using Cache Tags
 
 Tags allow multiple cached responses to be invalidated together.
 
@@ -133,7 +133,7 @@ await cache.InvalidateByTagAsync("Products");
 
 ---
 
-## Cache Key Generation
+## 🔑 Cache Key Generation
 
 HTTP cache keys are generated automatically using:
 
@@ -152,7 +152,7 @@ This allows different paths and query-string combinations to be cached independe
 
 ---
 
-## Cache Hit
+## ✅ Cache Hit
 
 ```
 Request
@@ -170,7 +170,7 @@ No endpoint execution occurs.
 
 ---
 
-## Cache Miss
+## ❌ Cache Miss
 
 ```
 Request
@@ -195,7 +195,7 @@ Responses are stored only when the default response policy allows caching.
 
 ---
 
-## Provider Independence
+## 🔌 Provider Independence
 
 HTTP response caching uses the `ICoreCache` abstraction, so it is independent of the concrete storage implementation.
 
@@ -208,7 +208,7 @@ Changing the configured cache storage does not require changes to controllers.
 
 ---
 
-## Pipeline Integration
+## 🔧 Pipeline Integration
 
 HTTP response cache operations use the cache pipeline through `ICoreCache`.
 
@@ -245,7 +245,7 @@ HTTP response caching therefore participates in the cache pipeline's configured:
 
 ---
 
-## Best Practices
+## ✅ Best Practices
 
 ✅ Cache GET and HEAD endpoints only.
 
@@ -257,7 +257,7 @@ HTTP response caching therefore participates in the cache pipeline's configured:
 
 ---
 
-## Limitations
+## ⚠️ Limitations
 
 The default request policy does not cache:
 

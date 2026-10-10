@@ -3,7 +3,7 @@
 `CoreSystem.Cache.Rehydration` works with the fallback behavior implemented by
 `CoreSystem.Cache`.
 
-## Enable Rehydration
+## 🔛 Enable Rehydration
 
 ```csharp
 services.AddCoreCacheRehydration(options =>
@@ -15,7 +15,7 @@ services.AddCoreCacheRehydration(options =>
 
 An external primary cache provider must already be registered.
 
-## Fallback Entries
+## 💾 Fallback Entries
 
 The core cache marks fallback entries with:
 
@@ -33,7 +33,7 @@ The rehydration component preserves:
 - remaining expiration;
 - cache tags.
 
-## Recovery
+## 🔁 Recovery
 
 The component does not immediately copy entries when the primary is unhealthy.
 

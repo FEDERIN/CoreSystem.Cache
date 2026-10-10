@@ -13,7 +13,7 @@ You'll learn how to configure:
 
 ---
 
-## Configuration Overview
+## 📋 Configuration Overview
 
 The framework is configured through the `AddCoreCache()` extension.
 
@@ -26,7 +26,7 @@ builder.Services.AddCoreCache(options =>
 
 ---
 
-## Configuration Options
+## ⚙️ Configuration Options
 
 | Option | Description | Default |
 |----------|-------------|---------|
@@ -37,7 +37,7 @@ builder.Services.AddCoreCache(options =>
 
 ---
 
-## Enable or Disable the Cache
+## 🔛 Enable or Disable the Cache
 
 The cache can be disabled while keeping the same `ICoreCache` abstraction available.
 
@@ -61,7 +61,7 @@ no-op that returns the empty value for its type instead of throwing.
 
 ---
 
-## Instance Name
+## 🏷️ Instance Name
 
 Prefixes cache keys with an application or environment identifier, when an
 external provider is registered.
@@ -77,7 +77,7 @@ no external provider is registered.
 
 ---
 
-## Cache Expiration
+## ⏳ Cache Expiration
 
 `DefaultExpiration` applies **only to the HTTP response cache**. It sets the
 lifetime of a cached response when the endpoint's `CacheableAttribute` does not
@@ -105,13 +105,13 @@ response stays cached.
 
 ---
 
-## Serialization
+## 🔢 Serialization
 
 Choose the serializer used by the cache.
 
 Serialization is provided by **CoreSystem.Serialization**.
 
-## JSON
+## 🧾 JSON
 
 ```csharp
 options.SerializerType =
@@ -122,7 +122,7 @@ JSON is the default serializer.
 
 ---
 
-## MessagePack
+## 📦 MessagePack
 
 ```csharp
 options.SerializerType =
@@ -131,7 +131,7 @@ options.SerializerType =
 
 ---
 
-## Protocol Buffers
+## 📦 Protocol Buffers
 
 ```csharp
 options.SerializerType =
@@ -140,7 +140,7 @@ options.SerializerType =
 
 ---
 
-## Cache Entry Rehydration
+## 🔁 Cache Entry Rehydration
 
 `CacheEntryOptions` provides the `TrackForRehydration` flag.
 
@@ -158,7 +158,7 @@ The rehydration process itself belongs to the external-provider/recovery compone
 
 ---
 
-## External Providers
+## 🔌 External Providers
 
 `CoreSystem.Cache` can operate with its Memory provider without an external cache provider.
 
@@ -168,9 +168,9 @@ The external provider configuration is handled by the corresponding provider pac
 
 ---
 
-## Recommended Configurations
+## 💡 Recommended Configurations
 
-### Development
+### 🧪 Development
 
 ```csharp
 builder.Services.AddCoreCache(options =>
@@ -182,7 +182,7 @@ builder.Services.AddCoreCache(options =>
 
 ---
 
-### Production
+### 🏭 Production
 
 The core package does not define a production provider configuration inside `CacheOptions`.
 
@@ -190,7 +190,7 @@ When using an external provider, configure that provider through its correspondi
 
 ---
 
-## Best Practices
+## ✅ Best Practices
 
 - Use an `InstanceName` when multiple applications share the same cache infrastructure.
 - Configure `DefaultExpiration` for HTTP-cached responses, and pass an explicit `expiration` on every `SetAsync` or `GetOrAddAsync` call that needs a lifetime.
