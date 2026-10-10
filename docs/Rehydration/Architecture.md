@@ -3,7 +3,7 @@
 `CoreSystem.Cache.Rehydration` coordinates recovery between the memory fallback
 and the primary cache provider.
 
-## Rehydration Flow
+## 🔁 Rehydration Flow
 
 ```text
 Core.Cache
@@ -33,7 +33,7 @@ PrimaryRehydrationTarget
 ICacheStorageResolver.Primary
 ```
 
-## Source
+## 📤 Source
 
 `MemoryRehydrationSource` reads tracked keys from memory and creates
 `CacheRehydrationEntry` objects containing:
@@ -45,12 +45,12 @@ ICacheStorageResolver.Primary
 
 Expired entries are ignored.
 
-## Target
+## 🎯 Target
 
 `PrimaryRehydrationTarget` writes each entry to the current primary storage,
 preserving its remaining expiration and tags.
 
-## Recovery Detection
+## 🔍 Recovery Detection
 
 `RehydrationService` executes a health-check cycle and considers the primary
 healthy only when at least one health check tagged `primary` exists and all such
@@ -59,7 +59,7 @@ checks report `Healthy`.
 Rehydration starts only after the service has previously observed the primary as
 unhealthy and then observes it as healthy.
 
-## Background Processing
+## ⏱️ Background Processing
 
 `RehydrationBackgroundService` executes the recovery cycle repeatedly using the
 configured interval.

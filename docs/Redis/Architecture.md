@@ -3,7 +3,7 @@
 `CoreSystem.Cache.Redis` implements the external storage contract consumed by
 `CoreSystem.Cache`.
 
-## Registration Flow
+## 📋 Registration Flow
 
 ```text
 AddCoreCache()
@@ -32,7 +32,7 @@ Core.Cache
 therefore supplies the external storage implementation consumed by the core
 cache.
 
-## Redis Storage
+## 🗄️ Redis Storage
 
 `RedisCacheStorage` implements:
 
@@ -46,18 +46,18 @@ cache.
 Values are serialized through `IPayloadSerializer` before being stored in
 Redis.
 
-## Cache-Aside and Locking
+## ⚡ Cache-Aside and Locking
 
 `GetOrAddAsync()` first checks Redis. When the value is missing, it acquires a
 distributed lock, checks Redis again, executes the factory, and stores the
 generated value.
 
-## Tags
+## 🏷️ Tags
 
 `RedisTagIndex` maintains Redis sets for the relationship between cache keys and
 tags. This supports tag invalidation and cleanup when entries are removed.
 
-## Health and Resilience
+## 🩺 Health and Resilience
 
 The provider registers a Redis health check that verifies connectivity through
 `PING` and maintains Redis health state.

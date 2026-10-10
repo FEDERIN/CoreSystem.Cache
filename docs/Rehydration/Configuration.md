@@ -3,7 +3,7 @@
 This guide describes the configuration options exposed by
 `CoreSystem.Cache.Rehydration`.
 
-## Rehydration Options
+## ⚙️ Rehydration Options
 
 The provider exposes `RehydrationOptions`:
 
@@ -24,7 +24,7 @@ services.AddCoreCacheRehydration(options =>
 });
 ```
 
-### Enabled
+### 🔛 Enabled
 
 Controls whether the rehydration services and hosted background service are
 registered.
@@ -32,7 +32,7 @@ registered.
 When disabled, the `RehydrationOptions` instance is still registered, but the
 source, target, rehydrator, service, and hosted service are not registered.
 
-### Interval
+### ⏱️ Interval
 
 Defines the delay between background rehydration cycles.
 
@@ -42,7 +42,7 @@ The default value is:
 30 seconds
 ```
 
-## Core Cache Requirement
+## 💉 Core Cache Requirement
 
 Rehydration requires the `CacheOptions` instance registered by
 `AddCoreCache()`.
@@ -50,7 +50,7 @@ Rehydration requires the `CacheOptions` instance registered by
 If the core cache is disabled, rehydration registration returns without
 registering the rehydration services.
 
-## Primary Provider Requirement
+## 🎯 Primary Provider Requirement
 
 An external cache provider must already be registered. It is picked up through
 the internal `IExternalCacheStorage` contract, which a provider package

@@ -6,7 +6,7 @@ The roadmap is intended to provide visibility into the long-term direction of th
 
 ---
 
-## Guiding Principles
+## 🧭 Guiding Principles
 
 The framework will continue to evolve following these principles:
 
@@ -23,7 +23,7 @@ The framework will continue to evolve following these principles:
 
 The following capabilities are already available in the current project.
 
-### Core Infrastructure
+### 🏗️ Core Infrastructure
 
 - [x] Memory cache provider
 - [x] Provider abstraction
@@ -31,7 +31,7 @@ The following capabilities are already available in the current project.
 
 ---
 
-### Cache Pipeline
+### 🔧 Cache Pipeline
 
 - [x] Composable execution pipeline
 - [x] Logging behavior
@@ -41,7 +41,7 @@ The following capabilities are already available in the current project.
 
 ---
 
-### Caching Features
+### 💾 Caching Features
 
 - [x] Cache Aside pattern (`GetOrAddAsync`)
 - [x] Tag-based invalidation
@@ -50,7 +50,7 @@ The following capabilities are already available in the current project.
 
 ---
 
-### Serialization
+### 🔢 Serialization
 
 - [x] JSON
 - [x] MessagePack
@@ -60,7 +60,7 @@ Serialization is selected through `CacheOptions.SerializerType` and delegated to
 
 ---
 
-### Observability
+### 📊 Observability
 
 - [x] OpenTelemetry Metrics
 - [ ] Health Checks
@@ -71,14 +71,14 @@ Serialization is selected through `CacheOptions.SerializerType` and delegated to
 
 The next releases will focus on improving flexibility and performance.
 
-### Pipeline
+### 🔧 Pipeline
 
 - [x] Behaviors included conditionally, based on configured resilience and available fallback storage
 - [ ] Public registration of custom behaviors
 
 ---
 
-### Performance
+### ⚡ Performance
 
 - [ ] Compression behavior
 - [ ] Benchmark suite
@@ -86,7 +86,7 @@ The next releases will focus on improving flexibility and performance.
 
 ---
 
-### Developer Experience
+### 🛠️ Developer Experience
 
 - [ ] More samples
 - [ ] Extended documentation
@@ -99,7 +99,7 @@ The next releases will focus on improving flexibility and performance.
 
 Future versions aim to transform the framework into a complete caching platform.
 
-### Multi-Level Cache
+### 🗄️ Multi-Level Cache
 
 - [ ] L1 Cache
 - [ ] L2 Cache
@@ -107,7 +107,7 @@ Future versions aim to transform the framework into a complete caching platform.
 
 ---
 
-### Provider SDK
+### 🏗️ Provider SDK
 
 - [ ] Public provider SDK
 - [ ] Storage provider templates
@@ -115,7 +115,7 @@ Future versions aim to transform the framework into a complete caching platform.
 
 ---
 
-### Advanced Features
+### 🚀 Advanced Features
 
 - [ ] Adaptive expiration
 - [ ] Cache analytics
@@ -141,7 +141,7 @@ Possible future behaviors include:
 
 ---
 
-## Community Ideas
+## 💬 Community Ideas
 
 Ideas proposed by the community may be incorporated into future releases.
 
@@ -153,7 +153,7 @@ Suggestions are welcome through:
 
 ---
 
-## Release Strategy
+## 📦 Release Strategy
 
 The project follows Semantic Versioning.
 
@@ -166,7 +166,7 @@ The project follows Semantic Versioning.
 
 ---
 
-## Contributing
+## 🤝 Contributing
 
 If you'd like to contribute to any roadmap item, feel free to open an issue or submit a Pull Request.
 

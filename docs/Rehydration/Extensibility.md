@@ -3,7 +3,7 @@
 `CoreSystem.Cache.Rehydration` separates the source of recoverable entries from
 the target used to store them.
 
-## Rehydration Source
+## 📤 Rehydration Source
 
 `IRehydrationSource` defines:
 
@@ -17,7 +17,7 @@ Task RemoveForRehydrationAsync(
 
 The current implementation is `MemoryRehydrationSource`.
 
-## Rehydration Target
+## 🎯 Rehydration Target
 
 `IRehydrationTarget` defines:
 
@@ -30,7 +30,7 @@ Task StoreAsync(
 The current implementation is `PrimaryRehydrationTarget`, which writes through
 `ICacheStorageResolver.Primary`.
 
-## Public Extensibility
+## 🌐 Public Extensibility
 
 The source and target abstractions are internal. The current code therefore
 does not provide a public SDK for replacing the rehydration source or target.

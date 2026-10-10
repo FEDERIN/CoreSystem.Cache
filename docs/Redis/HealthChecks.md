@@ -3,7 +3,7 @@
 `CoreSystem.Cache.Redis` registers a Redis health check through the
 `IHealthCheckContributor` abstraction.
 
-## Redis Check
+## 🩺 Redis Check
 
 The health check executes a Redis `PING` operation.
 
@@ -29,7 +29,7 @@ cache
 primary
 ```
 
-## Health State
+## 💚 Health State
 
 `RedisHealthState` tracks Redis availability.
 
@@ -41,7 +41,7 @@ The provider also exposes `IPrimaryHealthStateWriter`, allowing the core cache
 integration to mark Redis as unavailable when that integration detects a
 primary-storage failure.
 
-## Rehydration
+## 🔁 Rehydration
 
 Health recovery and cache rehydration are separate responsibilities.
 

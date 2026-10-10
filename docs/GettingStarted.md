@@ -13,7 +13,7 @@ In this guide you'll learn how to:
 
 ---
 
-## Prerequisites
+## 📋 Prerequisites
 
 Before getting started, ensure you have:
 
@@ -23,7 +23,7 @@ Before getting started, ensure you have:
 
 ---
 
-## Step 1 — Install the Package
+## 1️⃣ 📦 Install the Package
 
 Install the NuGet package.
 
@@ -33,7 +33,7 @@ dotnet add package CoreSystem.Cache
 
 ---
 
-## Step 2 — Register the Framework
+## 2️⃣ ⚙️ Register the Framework
 
 Register the framework in your application's dependency injection container.
 
@@ -49,7 +49,7 @@ External providers such as Redis can be configured when the corresponding provid
 
 ---
 
-## Step 3 — Inject the Cache Service
+## 3️⃣ 💉 Inject the Cache Service
 
 Inject `ICoreCache` wherever caching is required.
 
@@ -62,7 +62,7 @@ public sealed class ProductService(
 
 ---
 
-## Step 4 — Store a Value
+## 4️⃣ 💾 Store a Value
 
 ```csharp
 await cache.SetAsync(
@@ -73,7 +73,7 @@ await cache.SetAsync(
 
 ---
 
-## Step 5 — Retrieve a Value
+## 5️⃣ 📖 Retrieve a Value
 
 ```csharp
 var product = await cache.GetAsync<Product>(
@@ -82,7 +82,7 @@ var product = await cache.GetAsync<Product>(
 
 ---
 
-## Step 6 — Use the Cache-Aside Pattern
+## 6️⃣ ⚡ Use the Cache-Aside Pattern
 
 The recommended way to retrieve cached data is through `GetOrAddAsync`.
 
@@ -105,7 +105,7 @@ The framework automatically:
 
 ---
 
-## Step 7 — Enable HTTP Response Caching (Optional)
+## 7️⃣ 🌐 Enable HTTP Response Caching (Optional)
 
 If you want to cache HTTP responses, register the middleware.
 
@@ -132,7 +132,7 @@ For a complete guide to HTTP response caching, see **HTTP Cache**.
 
 ---
 
-## Need Help?
+## ❓ Need Help?
 
 If you encounter an issue or have a suggestion:
 

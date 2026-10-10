@@ -213,7 +213,7 @@ The integration tests verify that concurrent calls for the same key execute the 
 
 ---
 
-# 🏷️ Cache Tags
+## 🏷️ Cache Tags
 
 Tags are part of the storage abstraction and can be supplied when setting an entry or using `GetOrAddAsync()`.
 
@@ -235,7 +235,7 @@ The Memory provider maintains indexes for both tag-to-key and key-to-tag relatio
 
 ---
 
-# 🌐 HTTP Cache Architecture
+## 🌐 HTTP Cache Architecture
 
 HTTP response caching is implemented as a separate layer on top of `ICoreCache`.
 
