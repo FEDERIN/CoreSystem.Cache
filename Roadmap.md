@@ -29,7 +29,7 @@ The roadmap provides visibility into the long-term direction of the project. Fea
 
 - [x] Composable execution pipeline
 - [x] Logging, metrics, resilience, and fallback behaviors
-- [x] Configurable pipeline ordering and conditional behaviors
+- [x] Behaviors are included conditionally, depending on whether resilience is configured and whether a fallback storage exists
 
 ### Caching Features
 

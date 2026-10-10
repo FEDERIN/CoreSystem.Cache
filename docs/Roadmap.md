@@ -73,9 +73,8 @@ The next releases will focus on improving flexibility and performance.
 
 ### Pipeline
 
-- [x] Configurable pipeline ordering
-- [x] Conditional behaviors
-- [ ] Custom behavior registration
+- [x] Behaviors included conditionally, based on configured resilience and available fallback storage
+- [ ] Public registration of custom behaviors
 
 ---
 
