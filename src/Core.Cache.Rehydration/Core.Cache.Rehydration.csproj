@@ -5,10 +5,10 @@
 		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageId>CoreSystem.Cache.Rehydration</PackageId>
-		<Version>3.0.1</Version>
-		<AssemblyVersion>3.0.1</AssemblyVersion>
-		<FileVersion>3.0.1.0</FileVersion>
-		<InformationalVersion>3.0.1</InformationalVersion>
+		<Version>2.1.2</Version>
+		<AssemblyVersion>2.1.2</AssemblyVersion>
+		<FileVersion>2.1.2.0</FileVersion>
+		<InformationalVersion>2.1.2</InformationalVersion>
 		<Authors>Federin Pastor Gutierrez Ortiz</Authors>
 		<Description>
 			Cache recovery component for CoreSystem.Cache on .NET 8 that restores
@@ -38,7 +38,7 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-	  <ProjectReference Include="..\Core.Cache\Core.Cache.csproj" />
+	  <PackageReference Include="CoreSystem.Cache" />
 	</ItemGroup>
 
 </Project>
