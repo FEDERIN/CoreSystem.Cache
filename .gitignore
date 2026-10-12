@@ -58,3 +58,4 @@ prometheus/data/
 # Allow repository development scripts
 !serve-docs.bat
 !generate-lock-files.bat
+!publish-package.bat
