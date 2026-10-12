@@ -5,10 +5,10 @@
 		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageId>CoreSystem.Cache.Rehydration</PackageId>
-		<Version>3.0.0</Version>
-		<AssemblyVersion>3.0.0</AssemblyVersion>
-		<FileVersion>3.0.0.0</FileVersion>
-		<InformationalVersion>3.0.0</InformationalVersion>
+		<Version>3.0.1</Version>
+		<AssemblyVersion>3.0.1</AssemblyVersion>
+		<FileVersion>3.0.1.0</FileVersion>
+		<InformationalVersion>3.0.1</InformationalVersion>
 		<Authors>Federin Pastor Gutierrez Ortiz</Authors>
 		<Description>
 			Cache recovery component for CoreSystem.Cache on .NET 8 that restores
@@ -24,7 +24,7 @@
 		<PackageTags>
 			Cache;Caching;Rehydration;Recovery;Fallback;DistributedCache;.NET8
 		</PackageTags>
-		<PackageReleaseNotes>3.0.0: Released to move the CoreSystem.Cache dependency to 3.0.0, which removes CacheOptions.MaxCacheableSize. That property was declared but never read by any code, so nothing in this package ever enforced it and no behaviour here changes. If you set MaxCacheableSize, delete the assignment; there is no replacement and no size limit is applied. No other public API is removed, renamed, or changed, and RehydrationService behaves exactly as in 2.1.1. The AddHealthChecks() prerequisite still applies: RehydrationService takes a HealthCheckService, so without it the host fails to start, and without a primary-tagged check rehydration silently never runs.</PackageReleaseNotes>
+		<PackageReleaseNotes>3.0.1: Moves the dependency to CoreSystem.Cache 3.0.1, which depends on CoreSystem.Resilience 2.0.2. That combination is what restores this package on .NET SDK 10 and later: Resilience 2.0.1 pinned Microsoft.Extensions.* to 8.0.x while OpenTelemetry.Extensions.Hosting 1.19.0 asks for 10.0.0, and the resulting NU1605 broke restore before anything compiled. 3.0.0 cannot be fixed, because published versions are immutable. No public API changed, nothing was renamed, and no code changed here. The AddHealthChecks() prerequisite still applies: RehydrationService takes a HealthCheckService, so without it the host fails to start, and without a primary-tagged check rehydration silently never runs.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>
