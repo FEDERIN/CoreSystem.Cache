@@ -53,7 +53,8 @@ Suppressions are inline `[SuppressMessage]` with a justification. CA1716 (`ICach
 - `publish.yml`: tag-driven, see Release below. `codeql.yml` and `dependabot.yml` also exist.
 - `samples-smoke.yml` is **inert**: there is no `samples/` directory here, and its path filters match only `samples/**`, so it only runs on `workflow_dispatch`. Do not re-add `src/**` to its filters.
 - `main` is protected: never push directly. Branch, then `gh pr create`.
-- `*.bat` files are gitignored except `serve-docs.bat` and `generate-lock-files.bat` (explicitly allow-listed in `.gitignore`).
+- **PR titles, descriptions and commit messages must be in English.** This applies to every PR, including docs-only and one-line changes. The codebase, its XML docs, its READMEs and its workflow comments are all English, so a Spanish PR stands out and forces the reviewer to switch languages for no benefit. Write the reasoning in English too, not just the subject line: a commit message that states *what* changed is half a message.
+- `*.bat` files are gitignored except `serve-docs.bat`, `generate-lock-files.bat` and `publish-package.bat` (explicitly allow-listed in `.gitignore`).
 - Write files as UTF-8 explicitly. PowerShell `Set-Content` without `-Encoding utf8` emits mojibake (`U+FFFD`) and silently corrupts files; prefer the editor tools. Many committed files carry a UTF-8 BOM from Visual Studio — that is the existing state, do not churn it.
 
 ## Release
