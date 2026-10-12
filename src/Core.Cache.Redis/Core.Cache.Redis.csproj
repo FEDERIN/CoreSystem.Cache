@@ -7,10 +7,10 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 
 		<PackageId>CoreSystem.Cache.Redis</PackageId>
-		<Version>3.0.1</Version>
-		<AssemblyVersion>3.0.1</AssemblyVersion>
-		<FileVersion>3.0.1.0</FileVersion>
-		<InformationalVersion>3.0.1</InformationalVersion>
+		<Version>2.1.2</Version>
+		<AssemblyVersion>2.1.2</AssemblyVersion>
+		<FileVersion>2.1.2.0</FileVersion>
+		<InformationalVersion>2.1.2</InformationalVersion>
 
 		<Authors>Federin Pastor Gutierrez Ortiz</Authors>
 
@@ -27,7 +27,7 @@
 		<PackageTags>
 			Distributed;Cache;Redis;Caching;CacheAside;DistributedLock;HealthChecks;Resilience;.NET8;CloudNative
 		</PackageTags>
-		<PackageReleaseNotes>3.0.1: Moves the dependency to CoreSystem.Cache 3.0.1, which depends on CoreSystem.Resilience 2.0.2. That combination is what restores this package on .NET SDK 10 and later: Resilience 2.0.1 pinned Microsoft.Extensions.* to 8.0.x while OpenTelemetry.Extensions.Hosting 1.19.0 asks for 10.0.0, and the resulting NU1605 broke restore before anything compiled. 3.0.0 cannot be fixed, because published versions are immutable. No public API changed, nothing was renamed, and no code changed here. AddCoreCacheRedis and the rest of the provider behave exactly as in 3.0.0. The AddHealthChecks() prerequisite still applies: without it the redis_cache health check is never registered and rehydration cannot observe a recovery.</PackageReleaseNotes>
+		<PackageReleaseNotes>2.1.2: Moves the dependency to CoreSystem.Cache.Rehydration 2.1.2, which itself depends on CoreSystem.Cache 3.0.1 and CoreSystem.Resilience 2.0.2. That chain is what restores this package on .NET SDK 10 and later: Resilience 2.0.1 pinned Microsoft.Extensions.* to 8.0.x while OpenTelemetry.Extensions.Hosting 1.19.0 asks for 10.0.0, and the resulting NU1605 broke restore before anything compiled. The 3.0.0 and 3.0.1 versions of this package were never published, so nothing to migrate from; 2.1.1 is the last release before this one. No public API changed, nothing was renamed, and no code changed here. AddCoreCacheRedis and the rest of the provider behave exactly as in 2.1.1. The AddHealthChecks() prerequisite still applies: without it the redis_cache health check is never registered and rehydration cannot observe a recovery.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -45,7 +45,7 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-	  <ProjectReference Include="..\Core.Cache.Rehydration\Core.Cache.Rehydration.csproj" />
+	  <PackageReference Include="CoreSystem.Cache.Rehydration" />
 	  <PackageReference Include="CoreSystem.Redis" />
 	</ItemGroup>
 </Project>
