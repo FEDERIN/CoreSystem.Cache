@@ -104,20 +104,15 @@ example `CoreSystem.Cache` from `[2.1.1, )` to `[3.0.0, )`. That is a correct
 update, not damage, but it is unrelated to the release. If any lock file
 changes as a side effect, revert it before committing.
 
-## 5. Vulnerability report
+## 5. Vulnerability report — skipped
 
-```bash
-dotnet list CoreSystem.Cache.sln package --vulnerable --include-transitive
-```
-
-This command is **informational only**. It exits 0 even when it reports a High
-advisory, in both text and JSON, so a clean exit does not mean the package is
-safe. The real gate already ran in the restore step: `NuGetAudit` with
-`NuGetAuditMode=all` and `TreatWarningsAsErrors` turns NU1902/NU1903 into a
-restore failure.
-
-Report the findings. If the restore failed with NU1902 or NU1903, ABORT even
-though this command exits cleanly.
+Do not run `dotnet list package --vulnerable`. It exits 0 even when it reports
+a High advisory, in both text and JSON, so it never gates anything and its
+output can only mislead. The real gate already ran in the restore step of
+section 4: `NuGetAudit` with `NuGetAuditMode=all` plus `TreatWarningsAsErrors`
+turns NU1902/NU1903 into a restore failure, and section 4 aborts on a failed
+restore. A restore that succeeds is the audit result. Do not add this step back
+"just to show the report".
 
 ## 6. Tests
 
@@ -144,9 +139,10 @@ there are conflicts, stop and ask.
 
 ## 8. Confirm, then tag and publish
 
-Show the component, the version, the resolved solution, the tag, and the build,
-test and vulnerability results. Wait for explicit confirmation before any
-operation that modifies the repository or pushes.
+Show the component, the version, the resolved solution, the tag, and the build
+and test results. Wait for explicit confirmation before any operation that
+modifies the repository or pushes. Keep the summary to that: no polling loop,
+no repeated re-checking of a value that will not change within the run.
 
 After confirmation:
 
@@ -156,6 +152,10 @@ git push origin Core.$argumentA/v$argumentB
 ```
 
 Push only that tag. Then summarise the release.
+
+Do not sleep in a loop polling nuget.org for the new version to appear. The
+index lags a publish by several minutes and the workflow result already states
+whether the push succeeded. Report what the workflow returned and stop.
 
 Published versions are immutable. `CoreSystem.Cache` 3.0.0 is already live, so
 it can never be re-pushed; a re-publish attempt fails with 409, which is the
