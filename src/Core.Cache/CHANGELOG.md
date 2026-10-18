@@ -1,5 +1,28 @@
 # CHANGELOG
 
+## [3.0.2]
+
+### Changed
+
+- **Dependency refresh.** `CoreSystem.Resilience` 2.0.2 → 2.0.3 and `CoreSystem.Serialization` 1.2.3 → 1.2.4. Resilience 2.0.3 carries Polly 8.8.0, OpenTelemetry 1.20.0 and `CoreSystem.Observability.Abstractions` 1.0.2; Serialization 1.2.4 carries MessagePack 3.1.12 and protobuf-net 3.4.30. No API changed, nothing was renamed, and no code changed in this package: the difference is entirely in the declared dependency versions.
+- The sibling providers were switched from `PackageReference` to `ProjectReference`, so `Core.Cache.Rehydration` and `Core.Cache.Redis` build against this project instead of against the previously published package. The generated nuspec still declares a dependency on this package, so consumers see no difference; the packed dependency version now tracks the project version instead of a pin that has to be maintained separately.
+
+### Fixed
+
+- **The 3.0.1 release notes claimed a fix that does not exist.** They stated that moving to Resilience 2.0.2 is what restores this package on .NET SDK 10 and later. Tested against a real `net10.0` consumer, it does not: the published Redis 2.1.2 chain fails restore with NU1605, and so does a direct reference to Resilience 2.0.2. The cause is unchanged by the refresh — Resilience constrains `Microsoft.Extensions.*` to 8.0.x while OpenTelemetry asks for 10.0.0. Resilience 2.0.3 fails the same way, so 3.0.2 does not fix it either. A `net10.0` consumer must pin `Microsoft.Extensions.*` to 10.0.x directly until `CoreSystem.Resilience` stops constraining them. Projects on .NET 8 are unaffected.
+
+## [3.0.1]
+
+### Changed
+
+- Depends on `CoreSystem.Resilience` 2.0.2 instead of 2.0.1. No API changed, nothing was renamed, and no code changed: the entire difference is the declared dependency version.
+
+### Fixed
+
+- The 2.0.1 nuspec of `CoreSystem.Resilience` declared `CoreSystem.Observability.Abstractions` 1.0.0 rather than 1.0.1, because the upstream package was tagged before its central pin was refreshed.
+
+> **Note.** These notes originally claimed this release restores the package on .NET SDK 10 and later. That claim was never verified and is wrong; see the correction in 3.0.2 above.
+
 ## [3.0.0]
 
 ### Removed

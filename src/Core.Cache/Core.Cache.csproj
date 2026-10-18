@@ -6,10 +6,10 @@
 
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageId>CoreSystem.Cache</PackageId>
-		<Version>3.0.1</Version>
-		<AssemblyVersion>3.0.1</AssemblyVersion>
-		<FileVersion>3.0.1.0</FileVersion>
-		<InformationalVersion>3.0.1</InformationalVersion>
+		<Version>3.0.2</Version>
+		<AssemblyVersion>3.0.2</AssemblyVersion>
+		<FileVersion>3.0.2.0</FileVersion>
+		<InformationalVersion>3.0.2</InformationalVersion>
 		<Authors>Federin Pastor Gutierrez Ortiz</Authors>
 		<Description>Production-ready cache abstraction for .NET 8 with In-Memory caching, extensible external storage, tag-based invalidation, HTTP response caching, and OpenTelemetry metrics.</Description>
 		<RepositoryUrl>https://github.com/FEDERIN/CoreSystem.Cache</RepositoryUrl>
@@ -17,7 +17,7 @@
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageTags>Cache;Caching;DistributedCache;MemoryCache;HTTP;OpenTelemetry;Observability;.NET8</PackageTags>
-		<PackageReleaseNotes>3.0.1: Depends on CoreSystem.Resilience 2.0.2, which fixes a transitive version conflict that made this package unrestorable on .NET SDK 10 and later. Resilience 2.0.1 pinned Microsoft.Extensions.* to 8.0.x while OpenTelemetry.Extensions.Hosting 1.19.0 asks for 10.0.0, so restore produced NU1605 and the build failed before compiling anything. 3.0.0 was affected and cannot be replaced, since published versions are immutable; use 3.0.1 instead. Projects on SDK 8 are unaffected by either version. No API changed, nothing is renamed, and no code changed: the fix is entirely in the dependency version. The two breaking changes introduced in 3.0.0 still apply, so migrating from 2.x means deleting any assignment to CacheOptions.MaxCacheableSize, referencing IExternalCacheStorage instead of ICacheTagIndex&lt;T&gt;, and removing any direct use of MemoryKeyTracker or DefaultRequestCachePolicy.</PackageReleaseNotes>
+		<PackageReleaseNotes>3.0.2: Dependency refresh. Moves to CoreSystem.Resilience 2.0.3, which carries Polly 8.8.0, OpenTelemetry 1.20.0 and CoreSystem.Observability.Abstractions 1.0.2, and to CoreSystem.Serialization 1.2.4. No API changed, nothing is renamed, and no code changed: the entire difference is in the declared dependency versions. Projects on .NET 8 are unaffected by the refresh. Correction to the 3.0.1 notes, which stated that this package restores on .NET SDK 10 and later: that claim is false and was never verified. Tested against a real net10.0 consumer, Resilience 2.0.2 and 2.0.3 both fail restore with NU1605, because Resilience constrains Microsoft.Extensions.* to 8.0.x while OpenTelemetry asks for 10.0.0. Until CoreSystem.Resilience stops constraining them, a net10.0 consumer has to pin Microsoft.Extensions.* to 10.0.x directly. The two breaking changes introduced in 3.0.0 still apply, so migrating from 2.x means deleting any assignment to CacheOptions.MaxCacheableSize, referencing IExternalCacheStorage instead of ICacheTagIndex&lt;T&gt;, and removing any direct use of MemoryKeyTracker or DefaultRequestCachePolicy.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>
