@@ -5,7 +5,7 @@
 ### Changed
 
 - **Dependency refresh.** `CoreSystem.Resilience` 2.0.2 → 2.0.3 and `CoreSystem.Serialization` 1.2.3 → 1.2.4. Resilience 2.0.3 carries Polly 8.8.0, OpenTelemetry 1.20.0 and `CoreSystem.Observability.Abstractions` 1.0.2; Serialization 1.2.4 carries MessagePack 3.1.12 and protobuf-net 3.4.30. No API changed, nothing was renamed, and no code changed in this package: the difference is entirely in the declared dependency versions.
-- The sibling providers were switched from `PackageReference` to `ProjectReference`, so `Core.Cache.Rehydration` and `Core.Cache.Redis` build against this project instead of against the previously published package. The generated nuspec still declares a dependency on this package, so consumers see no difference; the packed dependency version now tracks the project version instead of a pin that has to be maintained separately.
+- `Core.Cache.Redis` was switched from `PackageReference` to `ProjectReference`, so it builds against this project instead of against the previously published package. The generated nuspec still declares a dependency on this package, so consumers see no difference; the packed dependency version now tracks the project version instead of a pin that has to be maintained separately. `Core.Cache.Rehydration` keeps the `PackageReference`, pinned to 3.0.2, because it has to be publishable on its own: a `ProjectReference` would make its nuspec declare whichever version this project happens to carry, which would put a package on the feed whose dependency does not exist yet the next time this version moves.
 
 ### Fixed
 

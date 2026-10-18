@@ -38,7 +38,7 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-	  <ProjectReference Include="..\Core.Cache\Core.Cache.csproj" />
+	  <PackageReference Include="CoreSystem.Cache" />
 	</ItemGroup>
 
 </Project>
