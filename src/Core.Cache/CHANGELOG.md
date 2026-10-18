@@ -46,7 +46,7 @@
 
 ## [Unreleased]
 
-Nothing pending.
+- **`Core.Cache.Redis` also uses a `PackageReference` to `CoreSystem.Cache.Rehydration` again**, pinned centrally at 2.1.3. This reverses the `ProjectReference` described in 3.0.2, which could not stand. All three projects now reference each other by pinned package rather than by project, so each one can be published on its own: a `ProjectReference` makes the packed nuspec declare whichever version the referenced project currently carries, so moving this package forward before a provider had been published would silently produce a provider build depending on a version nobody can restore. The cost is that the pins in `Directory.Packages.props` have to be kept in step by hand. **3.0.2 shipped with the earlier wording describing the `ProjectReference`, and that text is frozen in the published package**; it is not corrected here, because a changelog entry records what a given version actually did.
 
 The declarative caching work described in earlier versions of this file was
 shipped in 2.0.2; that history is kept below so it is explicit rather than
