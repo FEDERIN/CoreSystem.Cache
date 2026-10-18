@@ -2,6 +2,18 @@
   "version": 2,
   "dependencies": {
     "net8.0": {
+      "CoreSystem.Cache": {
+        "type": "Direct",
+        "requested": "[3.0.2, )",
+        "resolved": "3.0.2",
+        "contentHash": "vJTt8426M6VqmhKQhiWGSQzvhugnsIdK2hzR3vYfP6rb+b7g8abMO5/Cp2nvAJJYgISmyvC5Nl4dYpWVzhkinQ==",
+        "dependencies": {
+          "CoreSystem.Http": "1.1.0",
+          "CoreSystem.Memory": "1.0.3",
+          "CoreSystem.Resilience": "2.0.3",
+          "CoreSystem.Serialization": "1.2.4"
+        }
+      },
       "CoreSystem.Observability.Abstractions": {
         "type": "Transitive",
         "resolved": "1.0.2",
@@ -256,15 +268,6 @@
         "type": "Transitive",
         "resolved": "10.0.0",
         "contentHash": "0KdBK+h7G13PuOSC2R/DalAoFMvdYMznvGRuICtkdcUMXgl/gYXsG6z4yUvTxHSMACorWgHCU1Faq0KUHU6yAQ=="
-      },
-      "CoreSystem.Cache": {
-        "type": "Project",
-        "dependencies": {
-          "CoreSystem.Http": "[1.1.0, )",
-          "CoreSystem.Memory": "[1.0.3, )",
-          "CoreSystem.Resilience": "[2.0.3, )",
-          "CoreSystem.Serialization": "[1.2.4, )"
-        }
       },
       "CoreSystem.Http": {
         "type": "CentralTransitive",

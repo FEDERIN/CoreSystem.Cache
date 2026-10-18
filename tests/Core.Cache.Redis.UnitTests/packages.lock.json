@@ -501,15 +501,6 @@
           "xunit.v3.runner.common": "[4.0.2]"
         }
       },
-      "CoreSystem.Cache": {
-        "type": "Project",
-        "dependencies": {
-          "CoreSystem.Http": "[1.1.0, )",
-          "CoreSystem.Memory": "[1.0.3, )",
-          "CoreSystem.Resilience": "[2.0.3, )",
-          "CoreSystem.Serialization": "[1.2.4, )"
-        }
-      },
       "CoreSystem.Cache.Redis": {
         "type": "Project",
         "dependencies": {
@@ -521,6 +512,18 @@
         "type": "Project",
         "dependencies": {
           "CoreSystem.Cache": "[3.0.2, )"
+        }
+      },
+      "CoreSystem.Cache": {
+        "type": "CentralTransitive",
+        "requested": "[3.0.2, )",
+        "resolved": "3.0.2",
+        "contentHash": "vJTt8426M6VqmhKQhiWGSQzvhugnsIdK2hzR3vYfP6rb+b7g8abMO5/Cp2nvAJJYgISmyvC5Nl4dYpWVzhkinQ==",
+        "dependencies": {
+          "CoreSystem.Http": "1.1.0",
+          "CoreSystem.Memory": "1.0.3",
+          "CoreSystem.Resilience": "2.0.3",
+          "CoreSystem.Serialization": "1.2.4"
         }
       },
       "CoreSystem.Http": {

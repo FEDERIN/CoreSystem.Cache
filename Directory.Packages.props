@@ -4,6 +4,7 @@
     <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
   </PropertyGroup>
   <ItemGroup>
+    <PackageVersion Include="CoreSystem.Cache" Version="3.0.2" />
     <PackageVersion Include="CoreSystem.Http" Version="1.1.0" />
     <PackageVersion Include="CoreSystem.Memory" Version="1.0.3" />
     <PackageVersion Include="CoreSystem.Redis" Version="1.0.4" />
