@@ -1,9 +1,11 @@
-﻿using Core.Cache.Redis.Diagnostics;
+﻿using System.Diagnostics.CodeAnalysis;
+using Core.Cache.Redis.Diagnostics;
 using Core.Cache.Redis.Storage.Abstractions;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Logging;
 using Moq;
 using StackExchange.Redis;
+using Xunit;
 
 namespace Core.Cache.Redis.UnitTests.Diagnostics;
 
@@ -197,6 +199,13 @@ public sealed class RedisHealthCheckTests
             Times.Never);
     }
 
+    // CA1873: the ILogger.Log call sits inside a Moq Verify expression tree, so its
+    // arguments are never evaluated; the analyzer only recognizes the syntax, not
+    // that Moq inspects the tree instead of invoking the method.
+    [SuppressMessage(
+        "Performance",
+        "CA1873:Do not use expensive log message arguments when logging is disabled",
+        Justification = "Arguments belong to a Moq Verify expression tree and are never evaluated.")]
     [Fact]
     public async Task CheckHealthAsync_DoesNotLogRecovery_WhenRedisRemainsHealthy()
     {
