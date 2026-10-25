@@ -4,15 +4,15 @@
     "net10.0": {
       "CoreSystem.Cache.Rehydration": {
         "type": "Direct",
-        "requested": "[2.1.3, )",
-        "resolved": "2.1.3",
-        "contentHash": "Gm/qezEYgN4MQMCDEFroQeV/de+j2qrhUE3kwYnChRbP+MZdsOVNJYyv6tOPsSOSTyAzeSezvAHGdixjSuMUYQ==",
+        "requested": "[2.2.0, )",
+        "resolved": "2.2.0",
+        "contentHash": "BboiW0UA7jlkHvGBXo0CwQqGx6DoDmmvN6x5fz31xlEsLQdC23+5Wp5pSYLzALPV6kstzX7MuTVla410SJm8Qg==",
         "dependencies": {
-          "CoreSystem.Cache": "3.0.2",
-          "CoreSystem.Http": "1.1.0",
-          "CoreSystem.Memory": "1.0.3",
-          "CoreSystem.Resilience": "2.0.3",
-          "CoreSystem.Serialization": "1.2.4"
+          "CoreSystem.Cache": "3.1.0",
+          "CoreSystem.Http": "1.2.0",
+          "CoreSystem.Memory": "1.1.0",
+          "CoreSystem.Resilience": "2.1.0",
+          "CoreSystem.Serialization": "1.3.0"
         }
       },
       "CoreSystem.Redis": {
@@ -180,15 +180,15 @@
     "net8.0": {
       "CoreSystem.Cache.Rehydration": {
         "type": "Direct",
-        "requested": "[2.1.3, )",
-        "resolved": "2.1.3",
-        "contentHash": "Gm/qezEYgN4MQMCDEFroQeV/de+j2qrhUE3kwYnChRbP+MZdsOVNJYyv6tOPsSOSTyAzeSezvAHGdixjSuMUYQ==",
+        "requested": "[2.2.0, )",
+        "resolved": "2.2.0",
+        "contentHash": "BboiW0UA7jlkHvGBXo0CwQqGx6DoDmmvN6x5fz31xlEsLQdC23+5Wp5pSYLzALPV6kstzX7MuTVla410SJm8Qg==",
         "dependencies": {
-          "CoreSystem.Cache": "3.0.2",
-          "CoreSystem.Http": "1.1.0",
-          "CoreSystem.Memory": "1.0.3",
-          "CoreSystem.Resilience": "2.0.3",
-          "CoreSystem.Serialization": "1.2.4"
+          "CoreSystem.Cache": "3.1.0",
+          "CoreSystem.Http": "1.2.0",
+          "CoreSystem.Memory": "1.1.0",
+          "CoreSystem.Resilience": "2.1.0",
+          "CoreSystem.Serialization": "1.3.0"
         }
       },
       "CoreSystem.Redis": {
@@ -364,15 +364,15 @@
     "net9.0": {
       "CoreSystem.Cache.Rehydration": {
         "type": "Direct",
-        "requested": "[2.1.3, )",
-        "resolved": "2.1.3",
-        "contentHash": "Gm/qezEYgN4MQMCDEFroQeV/de+j2qrhUE3kwYnChRbP+MZdsOVNJYyv6tOPsSOSTyAzeSezvAHGdixjSuMUYQ==",
+        "requested": "[2.2.0, )",
+        "resolved": "2.2.0",
+        "contentHash": "BboiW0UA7jlkHvGBXo0CwQqGx6DoDmmvN6x5fz31xlEsLQdC23+5Wp5pSYLzALPV6kstzX7MuTVla410SJm8Qg==",
         "dependencies": {
-          "CoreSystem.Cache": "3.0.2",
-          "CoreSystem.Http": "1.1.0",
-          "CoreSystem.Memory": "1.0.3",
-          "CoreSystem.Resilience": "2.0.3",
-          "CoreSystem.Serialization": "1.2.4"
+          "CoreSystem.Cache": "3.1.0",
+          "CoreSystem.Http": "1.2.0",
+          "CoreSystem.Memory": "1.1.0",
+          "CoreSystem.Resilience": "2.1.0",
+          "CoreSystem.Serialization": "1.3.0"
         }
       },
       "CoreSystem.Redis": {
