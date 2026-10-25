@@ -1,6 +1,6 @@
 # 🚀 Getting Started
 
-Welcome to **CoreSystem.Cache**, a distributed caching framework for **.NET 8**.
+Welcome to **CoreSystem.Cache**, a distributed caching framework for **.NET 8, .NET 9 and .NET 10**.
 
 In this guide you'll learn how to:
 
@@ -17,7 +17,7 @@ In this guide you'll learn how to:
 
 Before getting started, ensure you have:
 
-- .NET 8 SDK
+- .NET 8, .NET 9 or .NET 10 SDK
 - An ASP.NET Core application
 - *(Optional)* A Redis server
 

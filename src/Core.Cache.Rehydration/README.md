@@ -1,16 +1,19 @@
 # ⚡ CoreSystem.Cache.Rehydration
 
-> **Cache recovery component for CoreSystem.Cache on .NET 8**
+> **Cache recovery component for CoreSystem.Cache on .NET 8, 9 and 10**
 
 CoreSystem.Cache.Rehydration restores entries that were kept in the memory
 fallback after the primary cache provider becomes healthy again. It does not
 implement a cache provider: it reads tracked entries from the memory fallback
 and writes them to the current primary storage.
 
+The package targets .NET 8, .NET 9 and .NET 10, and ships an assembly for each
+of those frameworks.
+
 ![NuGet](https://img.shields.io/nuget/v/CoreSystem.Cache.Rehydration?style=for-the-badge)
 ![Downloads](https://img.shields.io/nuget/dt/CoreSystem.Cache.Rehydration?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
-![.NET](https://img.shields.io/badge/.NET-8.0-blue?style=for-the-badge)
+![.NET](https://img.shields.io/badge/.NET-8.0%20%7C%209.0%20%7C%2010.0-blue?style=for-the-badge)
 
 ------------------------------------------------------------------------
 
@@ -41,6 +44,7 @@ dotnet add package CoreSystem.Cache.Redis
 | Package | Responsibility |
 |----------|----------------|
 | [**CoreSystem.Cache**](https://www.nuget.org/packages/CoreSystem.Cache) | Cache orchestration, storage resolution and fallback support |
+| [**CoreSystem.Cache.Redis**](https://www.nuget.org/packages/CoreSystem.Cache.Redis) | Redis as the external primary storage, with Memory as the fallback |
 | [**CoreSystem.Cache.Rehydration**](https://www.nuget.org/packages/CoreSystem.Cache.Rehydration) | Recovery of tracked fallback entries into the primary storage |
 
 ------------------------------------------------------------------------
@@ -211,7 +215,7 @@ The full reference is published at
 
 Issues and pull requests are welcome. Build and test the full solution with
 `dotnet build CoreSystem.Cache.sln -c Release` and
-`dotnet test CoreSystem.Cache.sln -c Release` before opening a PR.
+`dotnet test --solution CoreSystem.Cache.sln -c Release` before opening a PR.
 
 ------------------------------------------------------------------------
 

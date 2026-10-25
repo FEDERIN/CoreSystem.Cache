@@ -1,10 +1,13 @@
 # ⚡ CoreSystem.Cache.Redis
 
-> **Redis distributed cache provider for CoreSystem.Cache on .NET 8**
+> **Redis distributed cache provider for CoreSystem.Cache on .NET 8, 9 and 10**
 
 `CoreSystem.Cache.Redis` registers Redis as the external primary cache storage
 for `CoreSystem.Cache`. Memory caching becomes the automatic fallback, so cache
 reads keep working while Redis is unreachable.
+
+The package targets .NET 8, .NET 9 and .NET 10, and ships an assembly for each
+of those frameworks.
 
 The package does not implement a cache API. Application services continue to use
 `ICoreCache` exactly as they do with the core package.
@@ -12,7 +15,7 @@ The package does not implement a cache API. Application services continue to use
 ![NuGet](https://img.shields.io/nuget/v/CoreSystem.Cache.Redis?style=for-the-badge)
 ![Downloads](https://img.shields.io/nuget/dt/CoreSystem.Cache.Redis?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
-![.NET](https://img.shields.io/badge/.NET-8.0-blue?style=for-the-badge)
+![.NET](https://img.shields.io/badge/.NET-8.0%20%7C%209.0%20%7C%2010.0-blue?style=for-the-badge)
 
 ------------------------------------------------------------------------
 
@@ -36,6 +39,12 @@ Install the core package first, then the Redis provider:
 dotnet add package CoreSystem.Cache
 dotnet add package CoreSystem.Cache.Redis
 ```
+
+| Package | Responsibility |
+|----------|----------------|
+| [**CoreSystem.Cache**](https://www.nuget.org/packages/CoreSystem.Cache) | Cache orchestration, storage resolution and fallback support |
+| [**CoreSystem.Cache.Redis**](https://www.nuget.org/packages/CoreSystem.Cache.Redis) | Redis as the external primary storage, with Memory as the fallback |
+| [**CoreSystem.Cache.Rehydration**](https://www.nuget.org/packages/CoreSystem.Cache.Rehydration) | Recovery of tracked fallback entries into the primary storage |
 
 ------------------------------------------------------------------------
 

@@ -1,14 +1,14 @@
 # ⚡ CoreSystem.Cache
 
-> **Production-ready distributed caching framework for .NET 8**
+> **Production-ready distributed caching framework for .NET 8, 9 and 10**
 
 ![NuGet](https://img.shields.io/nuget/v/CoreSystem.Cache?style=for-the-badge)
 ![Downloads](https://img.shields.io/nuget/dt/CoreSystem.Cache?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
-![.NET](https://img.shields.io/badge/.NET-8.0-blue?style=for-the-badge)
+![.NET](https://img.shields.io/badge/.NET-8.0%20%7C%209.0%20%7C%2010.0-blue?style=for-the-badge)
 ![OpenTelemetry](https://img.shields.io/badge/OpenTelemetry-Enabled-purple?style=for-the-badge)
 
-CoreSystem.Cache is a distributed caching framework for .NET 8.
+CoreSystem.Cache is a distributed caching framework for .NET 8, .NET 9 and .NET 10.
 
 It provides a unified cache API with Cache-Aside support, HTTP response caching, resilience, fallback storage, and OpenTelemetry metrics. Health checks are supplied by the provider packages rather than by the core.
 

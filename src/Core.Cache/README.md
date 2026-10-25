@@ -1,15 +1,18 @@
 # ⚡ CoreSystem.Cache
 
-> **Production-ready distributed caching framework for .NET 8**
+> **Production-ready distributed caching framework for .NET 8, 9 and 10**
 
 CoreSystem.Cache provides a unified cache abstraction with an execution
 pipeline, Memory caching, optional external cache storage with fallback,
 HTTP response caching, OpenTelemetry metrics, and tag-based invalidation.
 
+The package targets .NET 8, .NET 9 and .NET 10, and ships an assembly for each
+of those frameworks.
+
 ![NuGet](https://img.shields.io/nuget/v/CoreSystem.Cache?style=for-the-badge)
 ![Downloads](https://img.shields.io/nuget/dt/CoreSystem.Cache?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
-![.NET](https://img.shields.io/badge/.NET-8.0-blue?style=for-the-badge)
+![.NET](https://img.shields.io/badge/.NET-8.0%20%7C%209.0%20%7C%2010.0-blue?style=for-the-badge)
 
 ------------------------------------------------------------------------
 
@@ -42,6 +45,12 @@ For Redis support, add the Redis provider package separately:
 ```bash
 dotnet add package CoreSystem.Cache.Redis
 ```
+
+| Package | Responsibility |
+|----------|----------------|
+| [**CoreSystem.Cache**](https://www.nuget.org/packages/CoreSystem.Cache) | Cache orchestration, storage resolution and fallback support |
+| [**CoreSystem.Cache.Redis**](https://www.nuget.org/packages/CoreSystem.Cache.Redis) | Redis as the external primary storage, with Memory as the fallback |
+| [**CoreSystem.Cache.Rehydration**](https://www.nuget.org/packages/CoreSystem.Cache.Rehydration) | Recovery of tracked fallback entries into the primary storage |
 
 ------------------------------------------------------------------------
 
@@ -184,7 +193,8 @@ The full documentation includes:
 -   Extensibility
 -   Roadmap
 
-Visit the GitHub repository for the complete documentation.
+Visit [federin.github.io/CoreSystem.Cache](https://federin.github.io/CoreSystem.Cache/)
+for the complete reference.
 
 ------------------------------------------------------------------------
 

@@ -1,11 +1,11 @@
 # 🔄 CoreSystem.Cache.Rehydration
 
-> **Cache recovery component for CoreSystem.Cache on .NET 8**
+> **Cache recovery component for CoreSystem.Cache on .NET 8, 9 and 10**
 
 ![NuGet](https://img.shields.io/nuget/v/CoreSystem.Cache.Rehydration?style=for-the-badge)
 ![Downloads](https://img.shields.io/nuget/dt/CoreSystem.Cache.Rehydration?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
-![.NET](https://img.shields.io/badge/.NET-8.0-blue?style=for-the-badge)
+![.NET](https://img.shields.io/badge/.NET-8.0%20%7C%209.0%20%7C%2010.0-blue?style=for-the-badge)
 
 `CoreSystem.Cache.Rehydration` restores cache entries that were temporarily
 stored in the memory fallback after the primary cache provider becomes healthy

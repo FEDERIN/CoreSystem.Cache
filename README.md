@@ -2,7 +2,7 @@
 
 Production-ready caching libraries for modern .NET applications.
 
-CoreSystem.Cache is a modular caching solution for .NET applications, providing a core cache implementation together with Redis distributed caching and cache rehydration capabilities.
+CoreSystem.Cache is a modular caching solution for .NET applications, providing a core cache implementation together with Redis distributed caching and cache rehydration capabilities. Every package targets .NET 8, .NET 9 and .NET 10.
 
 ## Components
 
@@ -162,7 +162,7 @@ CoreSystem.Cache is part of the broader CoreSystem ecosystem.
 
 ## Requirements
 
-- .NET 8
+- .NET 8, .NET 9 or .NET 10
 - Redis is required only when using `CoreSystem.Cache.Redis`
 
 ## License
