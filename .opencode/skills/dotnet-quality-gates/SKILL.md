@@ -68,16 +68,16 @@ naming convention — do not rename thousands of tests to satisfy it.
 
 ```yaml
 - name: Setup .NET
-  uses: actions/setup-dotnet@v4
+  uses: actions/setup-dotnet@v6
   with:
-    dotnet-version: '8.0.x'
+    dotnet-version: '10.0.x'
     cache: true
     cache-dependency-path: '**/packages.lock.json'
 
 - run: dotnet restore <solution>
 - run: dotnet build <solution> --configuration Release --no-restore
 - run: dotnet format <solution> --verify-no-changes --no-restore
-- run: dotnet test <solution> --configuration Release --no-build
+- run: dotnet test --solution <solution> --configuration Release --no-build
 ```
 
 Put the format check **after** build (it needs the restored graph) and test with

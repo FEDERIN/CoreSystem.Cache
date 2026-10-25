@@ -27,7 +27,7 @@ rem  live version fails with 409 instead of pretending to succeed. Check the
 rem  version before running this.
 rem ============================================================================
 
-cd /d "%~dp0"
+cd /d "%~dp0.."
 
 set "SLN=CoreSystem.Cache.sln"
 set "PROJECT=%~1"
@@ -216,7 +216,7 @@ echo [6/8] Running tests...
 for %%T in (%TESTS%) do (
     echo.
     echo       %%~nxT
-    dotnet test "%%T" -c Release --no-restore
+    dotnet test --project "%%T" -c Release --no-restore
     if errorlevel 1 goto :fail
 )
 

@@ -117,10 +117,10 @@ restore. A restore that succeeds is the audit result. Do not add this step back
 ## 6. Tests
 
 ```bash
-dotnet test tests/Core.$argumentA.UnitTests/Core.$argumentA.UnitTests.csproj \
+dotnet test --project tests/Core.$argumentA.UnitTests/Core.$argumentA.UnitTests.csproj \
   -c Release --no-restore
 
-dotnet test "$TEST_INTEGRATION" -c Release --no-restore   # only if it exists
+dotnet test --project "$TEST_INTEGRATION" -c Release --no-restore   # only if it exists
 ```
 
 Do not continue if the build fails, a test fails, or a required test module
