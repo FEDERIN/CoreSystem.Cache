@@ -88,9 +88,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{B05F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{8FCF9515-A088-4494-AE9D-038A0ED9F1C6}"
 	ProjectSection(SolutionItems) = preProject
+		.github\workflows\ci.yml = .github\workflows\ci.yml
 		.github\workflows\codeql.yml = .github\workflows\codeql.yml
 		.github\workflows\documentation.yml = .github\workflows\documentation.yml
 		.github\workflows\publish.yml = .github\workflows\publish.yml
+		.github\workflows\samples-smoke.yml = .github\workflows\samples-smoke.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "local-tools", "local-tools", "{A6AEE7E2-41A3-4B3E-8937-18DB6F1A830D}"
