@@ -480,14 +480,14 @@
       },
       "CoreSystem.Cache": {
         "type": "CentralTransitive",
-        "requested": "[3.0.2, )",
-        "resolved": "3.0.2",
-        "contentHash": "vJTt8426M6VqmhKQhiWGSQzvhugnsIdK2hzR3vYfP6rb+b7g8abMO5/Cp2nvAJJYgISmyvC5Nl4dYpWVzhkinQ==",
+        "requested": "[3.1.0, )",
+        "resolved": "3.1.0",
+        "contentHash": "u0Y3F2VjO5zYpYlc05dV4XoX/6ViH4a9xakB7ZfE7p0C3djI2Yr4yHUm31Jnopg5QLCnHZ3i1Bn8FWx8RKoKvw==",
         "dependencies": {
-          "CoreSystem.Http": "1.1.0",
-          "CoreSystem.Memory": "1.0.3",
-          "CoreSystem.Resilience": "2.0.3",
-          "CoreSystem.Serialization": "1.2.4"
+          "CoreSystem.Http": "1.2.0",
+          "CoreSystem.Memory": "1.1.0",
+          "CoreSystem.Resilience": "2.1.0",
+          "CoreSystem.Serialization": "1.3.0"
         }
       },
       "CoreSystem.Cache.Rehydration": {
@@ -1052,14 +1052,14 @@
       },
       "CoreSystem.Cache": {
         "type": "CentralTransitive",
-        "requested": "[3.0.2, )",
-        "resolved": "3.0.2",
-        "contentHash": "vJTt8426M6VqmhKQhiWGSQzvhugnsIdK2hzR3vYfP6rb+b7g8abMO5/Cp2nvAJJYgISmyvC5Nl4dYpWVzhkinQ==",
+        "requested": "[3.1.0, )",
+        "resolved": "3.1.0",
+        "contentHash": "u0Y3F2VjO5zYpYlc05dV4XoX/6ViH4a9xakB7ZfE7p0C3djI2Yr4yHUm31Jnopg5QLCnHZ3i1Bn8FWx8RKoKvw==",
         "dependencies": {
-          "CoreSystem.Http": "1.1.0",
-          "CoreSystem.Memory": "1.0.3",
-          "CoreSystem.Resilience": "2.0.3",
-          "CoreSystem.Serialization": "1.2.4"
+          "CoreSystem.Http": "1.2.0",
+          "CoreSystem.Memory": "1.1.0",
+          "CoreSystem.Resilience": "2.1.0",
+          "CoreSystem.Serialization": "1.3.0"
         }
       },
       "CoreSystem.Cache.Rehydration": {
@@ -1613,14 +1613,14 @@
       },
       "CoreSystem.Cache": {
         "type": "CentralTransitive",
-        "requested": "[3.0.2, )",
-        "resolved": "3.0.2",
-        "contentHash": "vJTt8426M6VqmhKQhiWGSQzvhugnsIdK2hzR3vYfP6rb+b7g8abMO5/Cp2nvAJJYgISmyvC5Nl4dYpWVzhkinQ==",
+        "requested": "[3.1.0, )",
+        "resolved": "3.1.0",
+        "contentHash": "u0Y3F2VjO5zYpYlc05dV4XoX/6ViH4a9xakB7ZfE7p0C3djI2Yr4yHUm31Jnopg5QLCnHZ3i1Bn8FWx8RKoKvw==",
         "dependencies": {
-          "CoreSystem.Http": "1.1.0",
-          "CoreSystem.Memory": "1.0.3",
-          "CoreSystem.Resilience": "2.0.3",
-          "CoreSystem.Serialization": "1.2.4"
+          "CoreSystem.Http": "1.2.0",
+          "CoreSystem.Memory": "1.1.0",
+          "CoreSystem.Resilience": "2.1.0",
+          "CoreSystem.Serialization": "1.3.0"
         }
       },
       "CoreSystem.Cache.Rehydration": {
