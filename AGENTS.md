@@ -48,6 +48,7 @@ Suppressions are inline `[SuppressMessage]` with a justification. CA1716 (`ICach
 - Docs: use `.venv\Scripts\mkdocs.exe build` (CI runs `mkdocs build --strict`). Do not use system Python. `local-tools\serve-docs.bat` is a local-only convenience.
 
 ## CI / branches
+- **Both workflows install the 8.0, 9.0 and 10.0 SDKs.** Multi-targeting needs the apphost packs to build the `net8.0`/`net9.0` assets and the runtimes to run them; with only `10.0.x` installed, the build fails with MSB3030 (apphost not found) for every framework below 10. The SDK in `global.json` still decides which one builds the solution.
 - `ci.yml`: restore → build (Release) → `dotnet format --verify-no-changes` → test (Release) → NuGet vulnerability report on push/PR to `main`. **The vulnerability gate is the restore step, not the last one.** `dotnet list package --vulnerable` always exits 0 even when it reports a High advisory, so that step is informational; the real gate is `NuGetAudit` + `NuGetAuditMode=all` in the root `Directory.Build.props` combined with `TreatWarningsAsErrors`, which turns NU1902/NU1903 into a hard restore failure.
 - `documentation.yml`: `mkdocs build --strict` → GitHub Pages, gated on `docs/**` + `mkdocs.yml`.
 - `publish.yml`: tag-driven, see Release below. `codeql.yml` and `dependabot.yml` also exist.
