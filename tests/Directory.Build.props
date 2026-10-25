@@ -1,22 +1,29 @@
 <Project>
+	<Import Project="$(MSBuildThisFileDirectory)..\Directory.Build.props" />
 
-  <Import Project="$(MSBuildThisFileDirectory)..\Directory.Build.props" />
+	<PropertyGroup>
+		<GenerateDocumentationFile>false</GenerateDocumentationFile>
+		<NoWarn>$(NoWarn);CA1707</NoWarn>
+		<IsPackable>false</IsPackable>
+		<IsTestProject>true</IsTestProject>
+	</PropertyGroup>
 
-  <!--
-    Test projects are not shipped, so they carry no XML documentation
-    requirement. The root file is imported for the shared settings.
-  -->
-  <PropertyGroup>
-    <GenerateDocumentationFile>false</GenerateDocumentationFile>
-  </PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="coverlet.collector">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
 
-  <PropertyGroup>
-    <!--
-      CA1707: xUnit convention is Method_Scenario. The entire point of the
-      naming is the double underscore, so renaming thousands of tests to satisfy
-      the rule would work against the convention.
-    -->
-    <NoWarn>$(NoWarn);CA1707</NoWarn>
-  </PropertyGroup>
+		<PackageReference Include="FluentAssertions" />
+		<PackageReference Include="Microsoft.AspNetCore.TestHost" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" />
+		<PackageReference Include="Moq" />
 
+		<PackageReference Include="xunit.runner.visualstudio">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+
+		<PackageReference Include="xunit.v3" />
+	</ItemGroup>
 </Project>
