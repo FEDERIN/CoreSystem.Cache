@@ -2,6 +2,7 @@
 using FluentAssertions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Net.Http.Headers;
+using Xunit;
 
 namespace Core.Cache.UnitTests.Http;
 

@@ -1,4 +1,5 @@
 ﻿using Core.Cache.Rehydration.Abstractions;
+using Xunit;
 
 namespace Core.Cache.Rehydration.UnitTests.Abstractions;
 

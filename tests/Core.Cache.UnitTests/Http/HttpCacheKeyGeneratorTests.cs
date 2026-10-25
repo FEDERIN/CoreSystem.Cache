@@ -1,6 +1,7 @@
 ﻿using Core.Cache.Http.Caching;
 using FluentAssertions;
 using Microsoft.AspNetCore.Http;
+using Xunit;
 
 namespace Core.Cache.UnitTests.Http;
 

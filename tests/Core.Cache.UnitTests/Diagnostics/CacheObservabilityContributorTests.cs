@@ -3,6 +3,7 @@ using FluentAssertions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OpenTelemetry.Metrics;
+using Xunit;
 
 namespace Core.Cache.UnitTests.Diagnostics;
 

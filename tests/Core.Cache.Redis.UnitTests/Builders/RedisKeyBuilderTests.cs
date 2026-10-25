@@ -1,4 +1,5 @@
 ﻿using Core.Cache.Redis.Builders;
+using Xunit;
 
 namespace Core.Cache.Redis.UnitTests.Builders;
 

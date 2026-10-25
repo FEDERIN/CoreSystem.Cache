@@ -2,6 +2,7 @@
 using Core.Cache.Pipeline.Contexts;
 using FluentAssertions;
 using Microsoft.Extensions.Logging.Abstractions;
+using Xunit;
 
 namespace Core.Cache.UnitTests.Pipeline;
 

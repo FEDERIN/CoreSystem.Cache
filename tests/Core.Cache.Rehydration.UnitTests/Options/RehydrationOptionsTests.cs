@@ -1,4 +1,5 @@
 ﻿using Core.Cache.Rehydration.Options;
+using Xunit;
 
 namespace Core.Cache.Rehydration.UnitTests.Options;
 

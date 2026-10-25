@@ -1,4 +1,5 @@
 ﻿using Core.Cache.Redis.Diagnostics;
+using Xunit;
 
 namespace Core.Cache.Redis.UnitTests.Diagnostics;
 

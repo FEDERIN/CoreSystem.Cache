@@ -11,6 +11,7 @@ using Core.Resilience.Abstractions;
 using Core.Resilience.Options;
 using Microsoft.Extensions.DependencyInjection;
 using StackExchange.Redis;
+using Xunit;
 
 namespace Core.Cache.Redis.UnitTests.DependencyInjection;
 

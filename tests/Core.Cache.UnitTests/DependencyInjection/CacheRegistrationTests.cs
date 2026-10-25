@@ -3,6 +3,7 @@ using Core.Cache.DependencyInjection;
 using Core.Cache.Options;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
+using Xunit;
 
 namespace Core.Cache.UnitTests.DependencyInjection;
 

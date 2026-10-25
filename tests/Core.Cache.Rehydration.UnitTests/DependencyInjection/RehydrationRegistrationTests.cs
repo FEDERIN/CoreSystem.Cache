@@ -6,6 +6,7 @@ using Core.Cache.Storage.Abstractions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
+using Xunit;
 
 namespace Core.Cache.Rehydration.UnitTests.DependencyInjection;
 
