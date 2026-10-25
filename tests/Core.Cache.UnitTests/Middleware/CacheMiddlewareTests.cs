@@ -2,6 +2,7 @@
 using Core.Cache.Http;
 using Microsoft.AspNetCore.Http;
 using Moq;
+using Xunit;
 
 namespace Core.Cache.UnitTests.Middleware;
 

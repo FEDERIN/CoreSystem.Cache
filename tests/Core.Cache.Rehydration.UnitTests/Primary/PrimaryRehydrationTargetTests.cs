@@ -2,6 +2,7 @@
 using Core.Cache.Rehydration.Abstractions;
 using Core.Cache.Rehydration.Primary;
 using Core.Cache.Storage;
+using Xunit;
 
 namespace Core.Cache.Rehydration.UnitTests.Primary;
 

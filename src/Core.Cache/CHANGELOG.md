@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## [3.1.0]
+
+### Added
+
+- **Multi-targeting.** The package now ships `net8.0`, `net9.0` and `net10.0` assets. A project on .NET 9 or .NET 10 resolves the assembly compiled for its own framework instead of the .NET 8 one; the `net8.0` asset, its dependencies and its behaviour are unchanged.
+
+### Changed
+
+- Dependency refresh: `CoreSystem.Http` 1.1.0 → 1.2.0, `CoreSystem.Memory` 1.0.3 → 1.1.0, `CoreSystem.Resilience` 2.0.3 → 2.1.0 and `CoreSystem.Serialization` 1.2.4 → 1.3.0.
+- **`Core.Cache.Redis` also uses a `PackageReference` to `CoreSystem.Cache.Rehydration` again**, pinned centrally at 2.1.3. This reverses the `ProjectReference` described in 3.0.2, which could not stand. All three projects now reference each other by pinned package rather than by project, so each one can be published on its own: a `ProjectReference` makes the packed nuspec declare whichever version the referenced project currently carries, so moving this package forward before a provider had been published would silently produce a provider build depending on a version nobody can restore. The cost is that the pins in `Directory.Packages.props` have to be kept in step by hand. **3.0.2 shipped with the earlier wording describing the `ProjectReference`, and that text is frozen in the published package**; it is not corrected there, because a changelog entry records what a given version actually did.
+
+### Fixed
+
+- **The .NET 10 restore failure is fixed, and this time it was measured.** `CoreSystem.Resilience` 2.0.x constrained `Microsoft.Extensions.*` to 8.0.x while OpenTelemetry asks for 10.0.0, so a `net10.0` consumer failed restore with NU1605 no matter which cache package it referenced. Resilience 2.1.0 removes that constraint, and the refreshed dependencies in this release carry it. Verified against bare `net8.0`, `net9.0` and `net10.0` consumer projects for all three packages: nine combinations, all restore and resolve with no consumer-side workaround.
+
+### Compatibility
+
+- No public API change, nothing renamed and no production code changed; the difference is the target frameworks and the declared dependency versions.
+- The three breaking changes from 3.0.0 still apply when migrating from 2.x: `CacheOptions.MaxCacheableSize` is gone, `IExternalCacheStorage` replaces `ICacheTagIndex<T>`, and `MemoryKeyTracker` and `DefaultRequestCachePolicy` are no longer public.
+
 ## [3.0.2]
 
 ### Changed
@@ -45,8 +65,6 @@
 - The CHANGELOG no longer claims aspect-oriented caching "via reflection-based interception". No such infrastructure exists; `CacheableAttribute` is read only by the HTTP response cache middleware.
 
 ## [Unreleased]
-
-- **`Core.Cache.Redis` also uses a `PackageReference` to `CoreSystem.Cache.Rehydration` again**, pinned centrally at 2.1.3. This reverses the `ProjectReference` described in 3.0.2, which could not stand. All three projects now reference each other by pinned package rather than by project, so each one can be published on its own: a `ProjectReference` makes the packed nuspec declare whichever version the referenced project currently carries, so moving this package forward before a provider had been published would silently produce a provider build depending on a version nobody can restore. The cost is that the pins in `Directory.Packages.props` have to be kept in step by hand. **3.0.2 shipped with the earlier wording describing the `ProjectReference`, and that text is frozen in the published package**; it is not corrected here, because a changelog entry records what a given version actually did.
 
 The declarative caching work described in earlier versions of this file was
 shipped in 2.0.2; that history is kept below so it is explicit rather than

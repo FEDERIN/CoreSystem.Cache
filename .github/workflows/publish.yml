@@ -16,10 +16,17 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
+      # All three SDKs: building the net8.0 and net9.0 assets needs their
+      # apphost packs, and running those tests needs their runtimes. With only
+      # the 10.0 SDK installed the build fails with MSB3030 (apphost not
+      # found) for every target framework below 10.
       - name: Setup .NET
         uses: actions/setup-dotnet@v6
         with:
-          dotnet-version: '8.0.x' 
+          dotnet-version: |
+            8.0.x
+            9.0.x
+            10.0.x
 
       - name: Extract info
         run: |
@@ -88,7 +95,7 @@ jobs:
       - name: Test package project
         run: |
           for test_project in $TEST_PROJECTS; do
-            dotnet test "$test_project" \
+            dotnet test --project "$test_project" \
               --configuration Release \
               --no-restore \
               /p:Version=$VERSION

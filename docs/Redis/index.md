@@ -1,11 +1,11 @@
 # ⚡ CoreSystem.Cache.Redis
 
-> **Redis provider for CoreSystem.Cache on .NET 8**
+> **Redis provider for CoreSystem.Cache on .NET 8, 9 and 10**
 
 ![NuGet](https://img.shields.io/nuget/v/CoreSystem.Cache.Redis?style=for-the-badge)
 ![Downloads](https://img.shields.io/nuget/dt/CoreSystem.Cache.Redis?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
-![.NET](https://img.shields.io/badge/.NET-8.0-blue?style=for-the-badge)
+![.NET](https://img.shields.io/badge/.NET-8.0%20%7C%209.0%20%7C%2010.0-blue?style=for-the-badge)
 
 `CoreSystem.Cache.Redis` provides the Redis storage implementation used by
 `CoreSystem.Cache`.

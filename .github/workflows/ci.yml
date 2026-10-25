@@ -15,10 +15,17 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
+      # All three SDKs, not just 10.0.x: building the net8.0 and net9.0 assets
+      # needs their apphost packs, and running those tests needs their runtimes.
+      # With only the 10.0 SDK installed the build fails with MSB3030 (apphost
+      # not found) for every target framework below 10.
       - name: Setup .NET
         uses: actions/setup-dotnet@v6
         with:
-          dotnet-version: '8.0.x'
+          dotnet-version: |
+            8.0.x
+            9.0.x
+            10.0.x
           cache: true
           cache-dependency-path: '**/packages.lock.json'
 
@@ -32,7 +39,7 @@ jobs:
         run: dotnet format CoreSystem.Cache.sln --verify-no-changes --no-restore
 
       - name: Test solution
-        run: dotnet test CoreSystem.Cache.sln --configuration Release --no-build
+        run: dotnet test --solution CoreSystem.Cache.sln --configuration Release --no-build
 
       # Informational only. `dotnet list package --vulnerable` always exits 0,
       # even when it reports a High severity advisory, so this step cannot fail

@@ -1,26 +1,31 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<OutputType>Library</OutputType>
-		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<!-- Package identity -->
 		<PackageId>CoreSystem.Cache</PackageId>
-		<Version>3.0.2</Version>
-		<AssemblyVersion>3.0.2</AssemblyVersion>
-		<FileVersion>3.0.2.0</FileVersion>
-		<InformationalVersion>3.0.2</InformationalVersion>
-		<Authors>Federin Pastor Gutierrez Ortiz</Authors>
-		<Description>Production-ready cache abstraction for .NET 8 with In-Memory caching, extensible external storage, tag-based invalidation, HTTP response caching, and OpenTelemetry metrics.</Description>
-		<RepositoryUrl>https://github.com/FEDERIN/CoreSystem.Cache</RepositoryUrl>
+		<Version>3.1.0</Version>
+
+		<!-- Assembly versioning -->
+		<AssemblyVersion>3.1.0</AssemblyVersion>
+		<FileVersion>3.1.0.0</FileVersion>
+		<InformationalVersion>3.1.0</InformationalVersion>
+
+		<!-- Package metadata -->
+		<Description>Production-ready cache abstraction for .NET 8, .NET 9 and .NET 10 with In-Memory caching, extensible external storage, tag-based invalidation, HTTP response caching, and OpenTelemetry metrics.</Description>
 		<PackageProjectUrl>https://federin.github.io/CoreSystem.Cache</PackageProjectUrl>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<PackageLicenseFile>LICENSE</PackageLicenseFile>
-		<PackageTags>Cache;Caching;DistributedCache;MemoryCache;HTTP;OpenTelemetry;Observability;.NET8</PackageTags>
-		<PackageReleaseNotes>3.0.2: Dependency refresh. Moves to CoreSystem.Resilience 2.0.3, which carries Polly 8.8.0, OpenTelemetry 1.20.0 and CoreSystem.Observability.Abstractions 1.0.2, and to CoreSystem.Serialization 1.2.4. No API changed, nothing is renamed, and no code changed: the entire difference is in the declared dependency versions. Projects on .NET 8 are unaffected by the refresh. Correction to the 3.0.1 notes, which stated that this package restores on .NET SDK 10 and later: that claim is false and was never verified. Tested against a real net10.0 consumer, Resilience 2.0.2 and 2.0.3 both fail restore with NU1605, because Resilience constrains Microsoft.Extensions.* to 8.0.x while OpenTelemetry asks for 10.0.0. Until CoreSystem.Resilience stops constraining them, a net10.0 consumer has to pin Microsoft.Extensions.* to 10.0.x directly. The two breaking changes introduced in 3.0.0 still apply, so migrating from 2.x means deleting any assignment to CacheOptions.MaxCacheableSize, referencing IExternalCacheStorage instead of ICacheTagIndex&lt;T&gt;, and removing any direct use of MemoryKeyTracker or DefaultRequestCachePolicy.</PackageReleaseNotes>
+		<PackageTags>Cache;Caching;DistributedCache;MemoryCache;HTTP;OpenTelemetry;Observability;.NET8;.NET9;.NET10</PackageTags>
+
+		<!-- Release notes -->
+		<PackageReleaseNotes>3.1.0: Multi-targeting release. The package now ships net8.0, net9.0 and net10.0 assets instead of net8.0 only, so a project on .NET 9 or .NET 10 gets an assembly compiled for its own target framework. The net8.0 asset is unchanged and is still what .NET 8 consumers resolve. Cross-repo dependencies are refreshed to CoreSystem.Http 1.2.0, CoreSystem.Memory 1.1.0, CoreSystem.Resilience 2.1.0 and CoreSystem.Serialization 1.3.0. This is what makes .NET 10 work: earlier Resilience versions constrained Microsoft.Extensions.* to 8.0.x while OpenTelemetry asks for 10.0.0, so a net10.0 consumer failed restore with NU1605. Verified with real net8.0, net9.0 and net10.0 consumer projects: all three restore and resolve with no workaround. The net9.0 and net10.0 assets carry the same code as net8.0. No public API changed, nothing is renamed and no production code changed; the difference is the target frameworks and the declared dependency versions. The three breaking changes from 3.0.0 still apply when migrating from 2.x: CacheOptions.MaxCacheableSize is gone, IExternalCacheStorage replaces ICacheTagIndex&lt;T&gt;, and MemoryKeyTracker and DefaultRequestCachePolicy are no longer public.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>
+		<!-- Framework references -->
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!-- Dependencies -->
 		<PackageReference Include="CoreSystem.Http" />
 		<PackageReference Include="CoreSystem.Memory" />
 		<PackageReference Include="CoreSystem.Resilience" />
@@ -28,16 +33,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Include="README.md" Pack="true" PackagePath="\" />
+		<!-- Package files -->
 		<None Include="CHANGELOG.md" Pack="true" PackagePath="\" />
-		<None Include="..\..\LICENSE" Pack="true" PackagePath="" />
 	</ItemGroup>
 
 	<ItemGroup>
-    	<FrameworkReference Include="Microsoft.AspNetCore.App" />
-	</ItemGroup>
-	
-	<ItemGroup>
+		<!-- Internal visibility -->
 		<InternalsVisibleTo Include="Core.Cache.Redis" />
 		<InternalsVisibleTo Include="Core.Cache.Rehydration" />
 		<InternalsVisibleTo Include="Core.Cache.Redis.UnitTests" />

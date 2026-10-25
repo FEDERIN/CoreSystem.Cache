@@ -1,14 +1,34 @@
 ﻿<Project>
+	<Import Project="$(MSBuildThisFileDirectory)..\Directory.Build.props" />
 
-  <!--
-    MSBuild stops at the nearest Directory.Build.props, so this file shadows the
-    root one and must import it explicitly to keep TargetFramework, ImplicitUsings
-    and Nullable.
-  -->
-  <Import Project="$(MSBuildThisFileDirectory)..\Directory.Build.props" />
+	<PropertyGroup>
+		<!-- Package metadata -->
+		<Authors>Federin Pastor Gutierrez Ortiz</Authors>
+		<RepositoryUrl>https://github.com/FEDERIN/CoreSystem.Cache</RepositoryUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 
-  <PropertyGroup>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-  </PropertyGroup>
+		<!-- Build configuration -->
+		<OutputType>Library</OutputType>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
 
+		<!-- Documentation and packaging -->
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	</PropertyGroup>
+	<ItemGroup>
+		<!--
+			PackageReadmeFile names README.md inside the package, so the packed
+			file must be the README of the project being packed, not the one at
+			the repository root. Using MSBuildThisFileDirectory here would put
+			the root README inside every package.
+		-->
+		<None Include="$(MSBuildProjectDirectory)\README.md"
+			  Pack="true"
+			  PackagePath="\" />
+
+		<None Include="$(MSBuildThisFileDirectory)..\LICENSE"
+			  Pack="true"
+			  PackagePath="\" />
+	</ItemGroup>
 </Project>

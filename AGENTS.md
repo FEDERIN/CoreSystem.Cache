@@ -1,6 +1,6 @@
 # AGENTS.md
 
-.NET 8 (SDK pinned to 8.0.402 in `global.json`) repository of three independently published NuGet caching libraries. Project folders are `src/Core.*`, package IDs are `CoreSystem.Cache*`. Solution: **`CoreSystem.Cache.sln`**. CoreSystem.Cache is part of the wider CoreSystem ecosystem (Http, Memory, Redis, Resilience, Serialization, Observability…), but those live in other repositories — do not re-create them here.
+.NET 8+ (SDK pinned to 10.0.201 in `global.json`; `src/Directory.Build.props`/per-project files set the target frameworks) repository of three independently published NuGet caching libraries. Project folders are `src/Core.*`, package IDs are `CoreSystem.Cache*`. Solution: **`CoreSystem.Cache.sln`**. CoreSystem.Cache is part of the wider CoreSystem ecosystem (Http, Memory, Redis, Resilience, Serialization, Observability…), but those live in other repositories — do not re-create them here.
 
 ## Packages
 
@@ -15,7 +15,7 @@ The dependency chain is `Core.Cache.Redis → Core.Cache.Rehydration → Core.Ca
 All three projects set `GeneratePackageOnBuild=true`, so every build also produces a `.nupkg`. Each packs its own `README.md` via `PackageReadmeFile`; `Core.Cache` additionally packs its `CHANGELOG.md`. Never introduce a `README_NUGET.md` convention.
 
 ## Layout
-- `tests/Core.Cache.UnitTests`, `Core.Cache.Redis.UnitTests`, `Core.Cache.Rehydration.UnitTests`: xUnit v3 + FluentAssertions + Moq.
+- `tests/Core.Cache.UnitTests`, `Core.Cache.Redis.UnitTests`, `Core.Cache.Rehydration.UnitTests`: xUnit v3 + FluentAssertions + Moq. All three TFMs run **in parallel**, so a test that starts a real host must bind an ephemeral port (`UseUrls("http://127.0.0.1:0")`); a fixed port makes the three processes collide and one loses at random.
 - `tests/Core.Cache.IntegrationTests`: Testcontainers (`Testcontainers.PostgreSql`, `Testcontainers.Redis`) — needs Docker.
 - `docs/` + `mkdocs.yml`: MkDocs site. `docs/`, `docs/Redis/` and `docs/Rehydration/` mirror the same page set; `mkdocs.yml` nav must list a page for it to build. Deployed to GitHub Pages on push to `main`.
 - There is **no `samples/` directory** in this repository.
@@ -29,25 +29,26 @@ All three projects set `GeneratePackageOnBuild=true`, so every build also produc
 - `Directory.Build.props` imports `Directory.Build.local.props` if present (gitignored). See `Directory.Build.local.props.example`. `UseLocalProjectReferences` no longer changes the reference graph: the conditional `ProjectReference` groups it used to add were removed (Oct 2026), because MSBuild silently collapsed the duplicated items instead of erroring, so the csproj misdescribed its own graph. It now only turns **off** `RestorePackagesWithLockFile` and `RestoreLockedMode`, so setting it locally regenerates the lock files in place. That is its only remaining effect.
 
 ## Build properties
-Root `Directory.Build.props`: `TargetFramework`, `ImplicitUsings`, `Nullable`, `RestorePackagesWithLockFile`, `RestoreLockedMode`, plus the quality gates `TreatWarningsAsErrors`, `EnforceCodeStyleInBuild`, `AnalysisLevel=latest-recommended`, `Deterministic`.
+Root `Directory.Build.props`: `TargetFrameworks` (`net8.0;net9.0;net10.0`), `ImplicitUsings`, `Nullable`, `RestorePackagesWithLockFile`, `RestoreLockedMode`, plus the quality gates `TreatWarningsAsErrors`, `EnforceCodeStyleInBuild`, `AnalysisLevel=latest-recommended`, `Deterministic`.
 
-`src/Directory.Build.props` adds `GenerateDocumentationFile=true`, so **every public member in `src/` needs an XML doc** (CS1591) and the generated file is packed into the `.nupkg`. Write real summaries, not filler.
+`src/Directory.Build.props` adds the shared package metadata (`Authors`, `RepositoryUrl`, `PackageReadmeFile`, `PackageLicenseFile`, `GeneratePackageOnBuild`) plus `GenerateDocumentationFile=true`, so **every public member in `src/` needs an XML doc** (CS1591) and the generated file is packed into the `.nupkg`. It also packs each project's own `README.md` (via `MSBuildProjectDirectory`) and the repository `LICENSE`. Write real summaries, not filler.
 
 `tests/Directory.Build.props` sets `GenerateDocumentationFile=false` and `NoWarn=CA1707`, since tests ship nothing and the xUnit `Method_Scenario` convention is the point of the double underscore.
 
-**Both subdirectory files import the root explicitly.** MSBuild stops at the nearest `Directory.Build.props`, so without that import they shadow the root and `TargetFramework` is never set — restore then fails NU1004 and **rewrites the committed lock files with empty ones** instead of leaving them alone.
+**Both subdirectory files import the root explicitly.** MSBuild stops at the nearest `Directory.Build.props`, so without that import they shadow the root and `TargetFrameworks` is never set — restore then fails NU1004 and **rewrites the committed lock files with empty ones** instead of leaving them alone.
 
 Suppressions are inline `[SuppressMessage]` with a justification. CA1716 (`ICacheBehavior.InvokeAsync`'s `next`) and CA1711 (`CacheDelegate`) are suppressed because renaming either breaks a published 2.x contract; do not "fix" them.
 
 ## Commands
 - Build: `dotnet build CoreSystem.Cache.sln -c Release`
-- Test all: `dotnet test CoreSystem.Cache.sln -c Release` (CI uses Release)
-- Single project: `dotnet test tests/Core.Cache.Redis.UnitTests -c Release`
+- Test all: `dotnet test --solution CoreSystem.Cache.sln -c Release` (CI uses Release)
+- Single project: `dotnet test --project tests/Core.Cache.Redis.UnitTests -c Release`
 - Formatting is enforced in CI: `dotnet format CoreSystem.Cache.sln --verify-no-changes`; run `dotnet format CoreSystem.Cache.sln` to apply fixes.
-- Regenerate lock files: `generate-lock-files.bat` (local only, gitignored exception).
-- Docs: use `.venv\Scripts\mkdocs.exe build` (CI runs `mkdocs build --strict`). Do not use system Python. `serve-docs.bat` is a local-only convenience.
+- Regenerate lock files: `local-tools\generate-lock-files.bat` (local only, gitignored exception).
+- Docs: use `.venv\Scripts\mkdocs.exe build` (CI runs `mkdocs build --strict`). Do not use system Python. `local-tools\serve-docs.bat` is a local-only convenience.
 
 ## CI / branches
+- **Both workflows install the 8.0, 9.0 and 10.0 SDKs.** Multi-targeting needs the apphost packs to build the `net8.0`/`net9.0` assets and the runtimes to run them; with only `10.0.x` installed, the build fails with MSB3030 (apphost not found) for every framework below 10. The SDK in `global.json` still decides which one builds the solution.
 - `ci.yml`: restore → build (Release) → `dotnet format --verify-no-changes` → test (Release) → NuGet vulnerability report on push/PR to `main`. **The vulnerability gate is the restore step, not the last one.** `dotnet list package --vulnerable` always exits 0 even when it reports a High advisory, so that step is informational; the real gate is `NuGetAudit` + `NuGetAuditMode=all` in the root `Directory.Build.props` combined with `TreatWarningsAsErrors`, which turns NU1902/NU1903 into a hard restore failure.
 - `documentation.yml`: `mkdocs build --strict` → GitHub Pages, gated on `docs/**` + `mkdocs.yml`.
 - `publish.yml`: tag-driven, see Release below. `codeql.yml` and `dependabot.yml` also exist.

@@ -1,7 +1,9 @@
 ﻿using Core.Cache.DependencyInjection;
 using Core.Cache.Options;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Xunit;
 
 namespace Core.Cache.UnitTests.DependencyInjection;
 
@@ -11,6 +13,10 @@ public class CacheMiddlewareRegistrationTests
     public async Task UseCoreCache_RegistersMiddlewareInPipeline()
     {
         var builder = WebApplication.CreateBuilder();
+
+        // The test matrix runs one process per target framework in parallel, so a fixed port
+        // would collide across them. Port 0 lets Kestrel pick a free one.
+        builder.WebHost.UseUrls("http://127.0.0.1:0");
 
         builder.Services.AddCoreCache(options => { });
 

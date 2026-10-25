@@ -1,5 +1,6 @@
 ﻿using Core.Cache.Abstractions;
 using FluentAssertions;
+using Xunit;
 
 namespace Core.Cache.IntegrationTests.Cache;
 

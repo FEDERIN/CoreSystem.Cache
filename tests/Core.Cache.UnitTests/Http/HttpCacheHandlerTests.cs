@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Moq;
 using Core.Http.Abstractions;
 using Core.Http.Responses;
+using Xunit;
 
 namespace Core.Cache.UnitTests.Http;
 

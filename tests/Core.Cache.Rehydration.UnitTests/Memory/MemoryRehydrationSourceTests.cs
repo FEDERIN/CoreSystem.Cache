@@ -4,6 +4,7 @@ using Core.Cache.Storage.Abstractions;
 using Core.Cache.Storage.Memory;
 using Microsoft.Extensions.Caching.Memory;
 using ICacheEntry = Core.Cache.Storage.Abstractions.ICacheEntry;
+using Xunit;
 
 namespace Core.Cache.Rehydration.UnitTests.Memory;
 

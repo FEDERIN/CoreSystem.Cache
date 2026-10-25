@@ -1,5 +1,6 @@
 ﻿using Core.Cache.Attributes;
 using FluentAssertions;
+using Xunit;
 
 namespace Core.Cache.UnitTests.Attributes;
 

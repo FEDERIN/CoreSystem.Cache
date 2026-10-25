@@ -3,6 +3,7 @@ using Core.Cache.Rehydration.Background;
 using Core.Cache.Rehydration.Options;
 using Microsoft.Extensions.Logging.Abstractions;
 using Moq;
+using Xunit;
 
 namespace Core.Cache.Rehydration.UnitTests.Background;
 
@@ -139,6 +140,10 @@ public sealed class RehydrationBackgroundServiceTests
         using var cancellationTokenSource =
             new CancellationTokenSource();
 
+        var cycleExecuted =
+            new TaskCompletionSource(
+                TaskCreationOptions.RunContinuationsAsynchronously);
+
         var rehydrationService =
             new Mock<IRehydrationService>();
 
@@ -148,6 +153,7 @@ public sealed class RehydrationBackgroundServiceTests
             .Callback(() =>
             {
                 cancellationTokenSource.Cancel();
+                cycleExecuted.SetResult();
             })
             .ThrowsAsync(
                 new OperationCanceledException());
@@ -156,13 +162,20 @@ public sealed class RehydrationBackgroundServiceTests
             rehydrationService,
             TimeSpan.Zero);
 
-        await service.StartAsync(
+        var executionTask = service.StartAsync(
             cancellationTokenSource.Token);
+
+        // On .NET 10 BackgroundService.StartAsync no longer runs ExecuteAsync
+        // synchronously, so waiting for the cycle is what makes this test
+        // deterministic instead of racing the thread pool.
+        await cycleExecuted.Task;
 
         rehydrationService.Verify(
             x => x.ExecuteCycleAsync(
                 It.IsAny<CancellationToken>()),
             Times.Once);
+
+        await executionTask;
     }
 
     private static RehydrationBackgroundService CreateService(

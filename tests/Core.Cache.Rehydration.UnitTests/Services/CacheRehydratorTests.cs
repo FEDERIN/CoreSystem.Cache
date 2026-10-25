@@ -2,6 +2,7 @@
 using Core.Cache.Rehydration.Services;
 using Microsoft.Extensions.Logging;
 using Moq;
+using Xunit;
 
 namespace Core.Cache.Rehydration.UnitTests.Services;
 
