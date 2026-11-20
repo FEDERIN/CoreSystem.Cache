@@ -17,19 +17,19 @@ The package does not implement a cache API. Application services continue to use
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 ![.NET](https://img.shields.io/badge/.NET-8.0%20%7C%209.0%20%7C%2010.0-blue?style=for-the-badge)
 
-------------------------------------------------------------------------
+---
 
 ## ✨ Features
 
--   ✅ Redis as the external primary cache storage
--   ✅ Automatic Memory fallback when Redis is unavailable
--   ✅ Tag-based invalidation through a Redis tag index
--   ✅ Distributed locking for concurrent cache population
--   ✅ Health check reported as `redis_cache`, tagged `cache` and `primary`
--   ✅ Optional resilience integration through `CoreSystem.Resilience`
--   ✅ Configurable serialization through `Core.Serialization`
+- ✅ Redis as the external primary cache storage
+- ✅ Automatic Memory fallback when Redis is unavailable
+- ✅ Tag-based invalidation through a Redis tag index
+- ✅ Distributed locking for concurrent cache population
+- ✅ Health check reported as `redis_cache`, tagged `cache` and `primary`
+- ✅ Optional resilience integration through `CoreSystem.Resilience`
+- ✅ Configurable serialization through `CoreSystem.Serialization`
 
-------------------------------------------------------------------------
+---
 
 ## 📦 Installation
 
@@ -46,7 +46,7 @@ dotnet add package CoreSystem.Cache.Redis
 | [**CoreSystem.Cache.Redis**](https://www.nuget.org/packages/CoreSystem.Cache.Redis) | Redis as the external primary storage, with Memory as the fallback |
 | [**CoreSystem.Cache.Rehydration**](https://www.nuget.org/packages/CoreSystem.Cache.Rehydration) | Recovery of tracked fallback entries into the primary storage |
 
-------------------------------------------------------------------------
+---
 
 ## 🚀 Quick Start
 
@@ -54,6 +54,8 @@ Register the core cache first. `AddCoreCacheRedis()` reads the `CacheOptions`
 instance registered here, so the order matters:
 
 ```csharp
+using Core.Cache.DependencyInjection;
+
 builder.Services.AddCoreCache(options =>
 {
     options.InstanceName = "my-app";
@@ -63,6 +65,8 @@ builder.Services.AddCoreCache(options =>
 Then register Redis:
 
 ```csharp
+using Core.Cache.Redis.DependencyInjection;
+
 builder.Services.AddCoreCacheRedis(options =>
 {
     options.Configuration = redis =>
@@ -84,6 +88,8 @@ builder.Services.AddHealthChecks();
 Application services keep using `ICoreCache`:
 
 ```csharp
+using Core.Cache.Abstractions;
+
 public sealed class ProductService(ICoreCache cache)
 {
     public Task<Product?> GetAsync(
@@ -103,21 +109,20 @@ var product = await cache.GetOrAddAsync(
     tags: ["products"]);
 ```
 
-------------------------------------------------------------------------
+---
 
 ## ⚠️ Registration Requirements
 
 `AddCoreCacheRedis()` throws `InvalidOperationException` when:
 
--   `AddCoreCache()` has not been called, because no `CacheOptions` instance is
-    registered (`CacheRedisRegistration.cs:139`);
--   the `Configuration` delegate did not assign `Configuration`
-    (`CacheRedisRegistration.cs:124`).
+- `AddCoreCache()` has not been called, because no `CacheOptions` instance is
+  registered;
+- the `Configuration` delegate did not assign `RedisOptions.Configuration`.
 
 When the core cache is registered but disabled (`CacheOptions.Enabled` is
 `false`), the Redis services are not registered and no exception is thrown.
 
-------------------------------------------------------------------------
+---
 
 ## 🔑 Key Prefixing
 
@@ -137,7 +142,7 @@ my-app:products:1
 If no instance name is configured, no prefix is added. The Memory storage does
 not apply this prefix.
 
-------------------------------------------------------------------------
+---
 
 ## ❤️ Health Checks
 
@@ -155,7 +160,7 @@ The check reports:
 The check is contributed through an `IHealthCheckContributor`, so
 `AddHealthChecks()` must be called for it to be registered.
 
-------------------------------------------------------------------------
+---
 
 ## 🔁 Fallback and Locking
 
@@ -166,7 +171,7 @@ storage resolver resolves Redis as primary and Memory as fallback.
 then re-reads the value inside the lock. This prevents several instances from
 populating the same key concurrently.
 
-------------------------------------------------------------------------
+---
 
 ## 🛡 Resilience
 
@@ -174,14 +179,14 @@ populating the same key concurrently.
 resilience pipeline is configured, the provider adds the following exceptions to
 the Retry and Circuit Breaker handling:
 
--   `RedisConnectionException`
--   `RedisTimeoutException`
--   `TimeoutException`
+- `RedisConnectionException`
+- `RedisTimeoutException`
+- `TimeoutException`
 
 The strategies and their options belong to `CoreSystem.Resilience`, not to
 `RedisOptions`, which exposes only `Configuration`.
 
-------------------------------------------------------------------------
+---
 
 ## 🏗 Architecture
 
@@ -193,8 +198,8 @@ ICoreCache
       │
       ├── Logging
       ├── Metrics
-      ├── Fallback (enabled by the Redis provider)
-      └── Resilience (when a Redis pipeline is configured)
+      ├── Resilience (when a Redis pipeline is configured)
+      └── Fallback (enabled by the Redis provider)
       │
       ▼
  Cache Storage Resolver
@@ -204,30 +209,30 @@ ICoreCache
       └── Memory Storage (Fallback)
 ```
 
-------------------------------------------------------------------------
+---
 
 ## 📚 Documentation
 
 The full documentation covers:
 
--   Getting Started
--   Architecture
--   Configuration
--   Basic Usage
--   Health Checks
--   Extensibility
--   Roadmap
+- Getting Started
+- Architecture
+- Configuration
+- Basic Usage
+- Health Checks
+- Extensibility
+- Roadmap
 
-Visit [federin.github.io/CoreSystem.Cache/Redis](https://federin.github.io/CoreSystem.Cache/Redis)
+Visit [federin.github.io/CoreSystem.Cache/Redis](https://federin.github.io/CoreSystem.Cache/Redis/)
 for the complete reference.
 
-------------------------------------------------------------------------
+---
 
 ## 🤝 Contributing
 
 Issues, discussions and pull requests are welcome.
 
-------------------------------------------------------------------------
+---
 
 ## 📄 License
 
