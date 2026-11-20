@@ -17,17 +17,17 @@
       },
       "CoreSystem.Redis": {
         "type": "Direct",
-        "requested": "[1.1.0, )",
-        "resolved": "1.1.0",
-        "contentHash": "mpEGdZULQ783Lo20/2U3chuZ3l2cIVQqtIbNSi7wLe3V5hn2zN6JwM+Tgy8j2HsNH/5jYblJnsPGgFZx3rVI0Q==",
+        "requested": "[1.1.1, )",
+        "resolved": "1.1.1",
+        "contentHash": "2JnMPow40Ka9HfYG0wTQ/TGS2M8lwk3ZuK8T51Lx0Ib4ndqRoZoPFlBYi+QpfqhM4EXhJbxrpRVv4vM2ocWfRg==",
         "dependencies": {
           "StackExchange.Redis": "2.13.17"
         }
       },
       "CoreSystem.Observability.Abstractions": {
         "type": "Transitive",
-        "resolved": "1.1.0",
-        "contentHash": "jvqF4P9398+LdSDqvy9LfRpTz8SxbCW1GCmg+b5RF1x8/8ttNJghl3/ThpAX2OEYZ//H4xbqOTPKUyZdeosRbw=="
+        "resolved": "1.1.1",
+        "contentHash": "+Xxd9UkyEQ2mrfi2Y5tMrc8LsiSCe9BUxzHa7yc5WVer6qMXZDDU25v5ubuYmQyN8jFyBqORnw9MaklKGBJ15w=="
       },
       "MessagePack": {
         "type": "Transitive",
@@ -56,31 +56,34 @@
       },
       "OpenTelemetry": {
         "type": "Transitive",
-        "resolved": "1.20.1",
-        "contentHash": "+XDw3fYbiv1a40aFnDJSQleeuUJciXuhoIA19XmcGhT47Hy/xZRqk8NCjHUDKrg72Ixjthicecp8ygBDNeH/Jw==",
+        "resolved": "1.21.0",
+        "contentHash": "ynAzNO/ebDTPxARbz4z/HgL8azMk/iDk4GXFuIRQ6krr1+a5QMC4eoiXRl+e7COd+3RLyL/yTuE6bevwqbv4Bw==",
         "dependencies": {
-          "OpenTelemetry.Api.ProviderBuilderExtensions": "1.20.1"
+          "OpenTelemetry.Api.ProviderBuilderExtensions": "1.21.0"
         }
       },
       "OpenTelemetry.Api": {
         "type": "Transitive",
-        "resolved": "1.20.1",
-        "contentHash": "QO9hlwadOdJGR4vDpJyDnl9B62v7epIBSTIHUA4C+bCtrRaB4TWmYSnu3QVOIe7caH8dt7NaHRei6zebESJJyw=="
+        "resolved": "1.21.0",
+        "contentHash": "KptD6ThegQORUzwot75zW2AUH6IDyKXH1R2yhovJPYfrzqSgHQidMfVfKLjaYEnJa5ySQgQm0RjuM6X+TCJ9yw==",
+        "dependencies": {
+          "System.Diagnostics.DiagnosticSource": "11.0.0"
+        }
       },
       "OpenTelemetry.Api.ProviderBuilderExtensions": {
         "type": "Transitive",
-        "resolved": "1.20.1",
-        "contentHash": "eDzDY/jTBqRytkYECmVKF7ZP5sKmCIqv1SSnA5BSWltIIvc3931TOMRyCW1qCGNIgmtldtJhISnsmFNxOCfauQ==",
+        "resolved": "1.21.0",
+        "contentHash": "ZcBCBTGbzjj8Y+9UnZKbSjnRyKc2ub2IvvU68fFHKmyKzTS4hU+4/f0PO1GoIf7FTYLKTyw+l/EwLL/PPIDkxg==",
         "dependencies": {
-          "OpenTelemetry.Api": "1.20.1"
+          "OpenTelemetry.Api": "1.21.0"
         }
       },
       "OpenTelemetry.Extensions.Hosting": {
         "type": "Transitive",
-        "resolved": "1.20.1",
-        "contentHash": "wnoK07COxyQBR47QwP80SIO4cpD2xeF4PrBDYFXDMnhDLmOP4nN0Szy1wCBLo5UABU1I4xwWRGzZM0bFdCbRog==",
+        "resolved": "1.21.0",
+        "contentHash": "+cOZFDBLktHT8V/aUb2SXQVFNP5JrcX/F24TgHcbD2kd4SFcKlBMChYeU/K+Tg3nuL+4HAS7dcR7Y2+tcSnFbQ==",
         "dependencies": {
-          "OpenTelemetry": "1.20.1"
+          "OpenTelemetry": "1.21.0"
         }
       },
       "Pipelines.Sockets.Unofficial": {
@@ -90,29 +93,29 @@
       },
       "Polly": {
         "type": "Transitive",
-        "resolved": "8.8.0",
-        "contentHash": "1/jm0wQA0hjcY8OcGx2HLzj4Tx33IpmEWWPUcekt07V7VO8suAUmeDRD7VM5wy9614pJMI2M0TB1pwKVflh4CQ==",
+        "resolved": "8.9.1",
+        "contentHash": "2a+6qssytViSYiLuvUb7KeFXRcJQyTf0dWLpvtZLNBohF28oXKVExeKdU2aXXVZlVO0swuEtkhhuCK3gFaJmrw==",
         "dependencies": {
-          "Polly.Core": "8.8.0"
+          "Polly.Core": "8.9.1"
         }
       },
       "Polly.Core": {
         "type": "Transitive",
-        "resolved": "8.8.0",
-        "contentHash": "TewV9uNFsoRFggoFbTAGFwsMYPuckA+wTIpQPyhLL9BANRPQRENz2S4bwATrB3HBOakN5oKLFIllPiDnVecmJg=="
+        "resolved": "8.9.1",
+        "contentHash": "L0vfggkkI2nDAW9lCFYSqX9g/+3TkVXhAq+sh6owBq656X9XW0kE2NG+dPYGNQGeK66HS1rKHRPWMm1bMv91kw=="
       },
       "protobuf-net": {
         "type": "Transitive",
-        "resolved": "3.4.30",
-        "contentHash": "N49mhnY5fpWds085lO6ocppox9y4cTb1EmbHAAYVJMl/iYSYyNpz4Ohxnk80qtqv52dNZI+/6hQbaiz3+rTEwA==",
+        "resolved": "3.4.40",
+        "contentHash": "Gds96uOs0bZlDfLIYHRMee1xmrWxUTLM9HSOlDzUmyzkTGDcMWw3Lgx9TPUxD94r+/E/Y9OEL5Cf3PiTHn9bfw==",
         "dependencies": {
-          "protobuf-net.Core": "3.4.30"
+          "protobuf-net.Core": "3.4.40"
         }
       },
       "protobuf-net.Core": {
         "type": "Transitive",
-        "resolved": "3.4.30",
-        "contentHash": "CZf8U6eON9OBtcPyOiXJ6Oq3Opi/lWtEiireyLCy43iof1A2oA0GEOrEHZISzmQ46s61iOC06Sa4Cs+D41t1DA=="
+        "resolved": "3.4.40",
+        "contentHash": "UDQ8fbEKqpQktJfFyqkZ22S7P01sJWNmqkYjzbwZdZUHFwHIDigmWIzxmExF7NjbNoTqmv2Dfsu3rOpRHXK5EA=="
       },
       "StackExchange.Redis": {
         "type": "Transitive",
@@ -122,6 +125,11 @@
           "Pipelines.Sockets.Unofficial": "2.2.16",
           "System.IO.Hashing": "10.0.2"
         }
+      },
+      "System.Diagnostics.DiagnosticSource": {
+        "type": "Transitive",
+        "resolved": "11.0.0",
+        "contentHash": "+boRR9uSKiIPtFeRLGwO5xylhDF80xpwM+dmk5jgIqqeUKLbujGkGICMTKqQrBzKO6fIp8BU8DV6YZkQukqo3A=="
       },
       "System.IO.Hashing": {
         "type": "Transitive",
@@ -154,26 +162,26 @@
       },
       "CoreSystem.Resilience": {
         "type": "CentralTransitive",
-        "requested": "[2.1.0, )",
-        "resolved": "2.1.0",
-        "contentHash": "nTelQgA9HGEwsbzJCNV5wSIy3OOrDoxoYCU+1dEZ5mFn9uPbTdDTZa8BPR2rWNuAxdE7h+SPwC5TutRNPFa7Bw==",
+        "requested": "[2.1.1, )",
+        "resolved": "2.1.1",
+        "contentHash": "tnFaW6o1Z/CnoYxFS0kmH0BKiSY/BDg8PXKrzhz+HlNvsA5ubMfwXWLxv47eNl4bjND+UTEmz9gmxOJeJxYaBQ==",
         "dependencies": {
-          "CoreSystem.Observability.Abstractions": "1.1.0",
-          "OpenTelemetry": "1.20.1",
-          "OpenTelemetry.Api": "1.20.1",
-          "OpenTelemetry.Extensions.Hosting": "1.20.1",
-          "Polly": "8.8.0"
+          "CoreSystem.Observability.Abstractions": "1.1.1",
+          "OpenTelemetry": "1.21.0",
+          "OpenTelemetry.Api": "1.21.0",
+          "OpenTelemetry.Extensions.Hosting": "1.21.0",
+          "Polly": "8.9.1"
         }
       },
       "CoreSystem.Serialization": {
         "type": "CentralTransitive",
-        "requested": "[1.3.0, )",
-        "resolved": "1.3.0",
-        "contentHash": "2rqYfMmGLuWh5JVqUI7WOGgUl9ONQbFQL3kbTUjAluBhpYmPb0YVK1lTfG1NuZsJCoeqOGvgGSbfZa9yIOEw4A==",
+        "requested": "[1.3.1, )",
+        "resolved": "1.3.1",
+        "contentHash": "i6lL9vWhLrdb6KkC0d1QyOLCxv4e8l5DThZAZdUogGkISiBjSssFWIGSZzf1fyKP5kC9FQ+cqzTphqb+8MgvTA==",
         "dependencies": {
           "MessagePack": "3.1.12",
-          "protobuf-net": "3.4.30",
-          "protobuf-net.Core": "3.4.30"
+          "protobuf-net": "3.4.40",
+          "protobuf-net.Core": "3.4.40"
         }
       }
     },
@@ -193,17 +201,17 @@
       },
       "CoreSystem.Redis": {
         "type": "Direct",
-        "requested": "[1.1.0, )",
-        "resolved": "1.1.0",
-        "contentHash": "mpEGdZULQ783Lo20/2U3chuZ3l2cIVQqtIbNSi7wLe3V5hn2zN6JwM+Tgy8j2HsNH/5jYblJnsPGgFZx3rVI0Q==",
+        "requested": "[1.1.1, )",
+        "resolved": "1.1.1",
+        "contentHash": "2JnMPow40Ka9HfYG0wTQ/TGS2M8lwk3ZuK8T51Lx0Ib4ndqRoZoPFlBYi+QpfqhM4EXhJbxrpRVv4vM2ocWfRg==",
         "dependencies": {
           "StackExchange.Redis": "2.13.17"
         }
       },
       "CoreSystem.Observability.Abstractions": {
         "type": "Transitive",
-        "resolved": "1.1.0",
-        "contentHash": "jvqF4P9398+LdSDqvy9LfRpTz8SxbCW1GCmg+b5RF1x8/8ttNJghl3/ThpAX2OEYZ//H4xbqOTPKUyZdeosRbw=="
+        "resolved": "1.1.1",
+        "contentHash": "+Xxd9UkyEQ2mrfi2Y5tMrc8LsiSCe9BUxzHa7yc5WVer6qMXZDDU25v5ubuYmQyN8jFyBqORnw9MaklKGBJ15w=="
       },
       "MessagePack": {
         "type": "Transitive",
@@ -269,29 +277,30 @@
       },
       "Polly": {
         "type": "Transitive",
-        "resolved": "8.8.0",
-        "contentHash": "1/jm0wQA0hjcY8OcGx2HLzj4Tx33IpmEWWPUcekt07V7VO8suAUmeDRD7VM5wy9614pJMI2M0TB1pwKVflh4CQ==",
+        "resolved": "8.9.1",
+        "contentHash": "2a+6qssytViSYiLuvUb7KeFXRcJQyTf0dWLpvtZLNBohF28oXKVExeKdU2aXXVZlVO0swuEtkhhuCK3gFaJmrw==",
         "dependencies": {
-          "Polly.Core": "8.8.0"
+          "Polly.Core": "8.9.1"
         }
       },
       "Polly.Core": {
         "type": "Transitive",
-        "resolved": "8.8.0",
-        "contentHash": "TewV9uNFsoRFggoFbTAGFwsMYPuckA+wTIpQPyhLL9BANRPQRENz2S4bwATrB3HBOakN5oKLFIllPiDnVecmJg=="
+        "resolved": "8.9.1",
+        "contentHash": "L0vfggkkI2nDAW9lCFYSqX9g/+3TkVXhAq+sh6owBq656X9XW0kE2NG+dPYGNQGeK66HS1rKHRPWMm1bMv91kw=="
       },
       "protobuf-net": {
         "type": "Transitive",
-        "resolved": "3.4.30",
-        "contentHash": "N49mhnY5fpWds085lO6ocppox9y4cTb1EmbHAAYVJMl/iYSYyNpz4Ohxnk80qtqv52dNZI+/6hQbaiz3+rTEwA==",
+        "resolved": "3.4.40",
+        "contentHash": "Gds96uOs0bZlDfLIYHRMee1xmrWxUTLM9HSOlDzUmyzkTGDcMWw3Lgx9TPUxD94r+/E/Y9OEL5Cf3PiTHn9bfw==",
         "dependencies": {
-          "protobuf-net.Core": "3.4.30"
+          "System.Collections.Immutable": "10.0.13",
+          "protobuf-net.Core": "3.4.40"
         }
       },
       "protobuf-net.Core": {
         "type": "Transitive",
-        "resolved": "3.4.30",
-        "contentHash": "CZf8U6eON9OBtcPyOiXJ6Oq3Opi/lWtEiireyLCy43iof1A2oA0GEOrEHZISzmQ46s61iOC06Sa4Cs+D41t1DA=="
+        "resolved": "3.4.40",
+        "contentHash": "UDQ8fbEKqpQktJfFyqkZ22S7P01sJWNmqkYjzbwZdZUHFwHIDigmWIzxmExF7NjbNoTqmv2Dfsu3rOpRHXK5EA=="
       },
       "StackExchange.Redis": {
         "type": "Transitive",
@@ -301,6 +310,11 @@
           "Pipelines.Sockets.Unofficial": "2.2.16",
           "System.IO.Hashing": "10.0.2"
         }
+      },
+      "System.Collections.Immutable": {
+        "type": "Transitive",
+        "resolved": "10.0.13",
+        "contentHash": "mUiVD4AJ0way0QDXNEaU/zEMDgn0kzZEW+gjtQrrC7KsB74JKuLC54hCPUxyodlpiwS/ElbQYbiyjHpZfl6ghA=="
       },
       "System.Diagnostics.DiagnosticSource": {
         "type": "Transitive",
@@ -338,26 +352,26 @@
       },
       "CoreSystem.Resilience": {
         "type": "CentralTransitive",
-        "requested": "[2.1.0, )",
-        "resolved": "2.1.0",
-        "contentHash": "nTelQgA9HGEwsbzJCNV5wSIy3OOrDoxoYCU+1dEZ5mFn9uPbTdDTZa8BPR2rWNuAxdE7h+SPwC5TutRNPFa7Bw==",
+        "requested": "[2.1.1, )",
+        "resolved": "2.1.1",
+        "contentHash": "tnFaW6o1Z/CnoYxFS0kmH0BKiSY/BDg8PXKrzhz+HlNvsA5ubMfwXWLxv47eNl4bjND+UTEmz9gmxOJeJxYaBQ==",
         "dependencies": {
-          "CoreSystem.Observability.Abstractions": "1.1.0",
+          "CoreSystem.Observability.Abstractions": "1.1.1",
           "OpenTelemetry": "1.20.1",
           "OpenTelemetry.Api": "1.20.1",
           "OpenTelemetry.Extensions.Hosting": "1.20.1",
-          "Polly": "8.8.0"
+          "Polly": "8.9.1"
         }
       },
       "CoreSystem.Serialization": {
         "type": "CentralTransitive",
-        "requested": "[1.3.0, )",
-        "resolved": "1.3.0",
-        "contentHash": "2rqYfMmGLuWh5JVqUI7WOGgUl9ONQbFQL3kbTUjAluBhpYmPb0YVK1lTfG1NuZsJCoeqOGvgGSbfZa9yIOEw4A==",
+        "requested": "[1.3.1, )",
+        "resolved": "1.3.1",
+        "contentHash": "i6lL9vWhLrdb6KkC0d1QyOLCxv4e8l5DThZAZdUogGkISiBjSssFWIGSZzf1fyKP5kC9FQ+cqzTphqb+8MgvTA==",
         "dependencies": {
           "MessagePack": "3.1.12",
-          "protobuf-net": "3.4.30",
-          "protobuf-net.Core": "3.4.30"
+          "protobuf-net": "3.4.40",
+          "protobuf-net.Core": "3.4.40"
         }
       }
     },
@@ -377,17 +391,17 @@
       },
       "CoreSystem.Redis": {
         "type": "Direct",
-        "requested": "[1.1.0, )",
-        "resolved": "1.1.0",
-        "contentHash": "mpEGdZULQ783Lo20/2U3chuZ3l2cIVQqtIbNSi7wLe3V5hn2zN6JwM+Tgy8j2HsNH/5jYblJnsPGgFZx3rVI0Q==",
+        "requested": "[1.1.1, )",
+        "resolved": "1.1.1",
+        "contentHash": "2JnMPow40Ka9HfYG0wTQ/TGS2M8lwk3ZuK8T51Lx0Ib4ndqRoZoPFlBYi+QpfqhM4EXhJbxrpRVv4vM2ocWfRg==",
         "dependencies": {
           "StackExchange.Redis": "2.13.17"
         }
       },
       "CoreSystem.Observability.Abstractions": {
         "type": "Transitive",
-        "resolved": "1.1.0",
-        "contentHash": "jvqF4P9398+LdSDqvy9LfRpTz8SxbCW1GCmg+b5RF1x8/8ttNJghl3/ThpAX2OEYZ//H4xbqOTPKUyZdeosRbw=="
+        "resolved": "1.1.1",
+        "contentHash": "+Xxd9UkyEQ2mrfi2Y5tMrc8LsiSCe9BUxzHa7yc5WVer6qMXZDDU25v5ubuYmQyN8jFyBqORnw9MaklKGBJ15w=="
       },
       "MessagePack": {
         "type": "Transitive",
@@ -453,29 +467,30 @@
       },
       "Polly": {
         "type": "Transitive",
-        "resolved": "8.8.0",
-        "contentHash": "1/jm0wQA0hjcY8OcGx2HLzj4Tx33IpmEWWPUcekt07V7VO8suAUmeDRD7VM5wy9614pJMI2M0TB1pwKVflh4CQ==",
+        "resolved": "8.9.1",
+        "contentHash": "2a+6qssytViSYiLuvUb7KeFXRcJQyTf0dWLpvtZLNBohF28oXKVExeKdU2aXXVZlVO0swuEtkhhuCK3gFaJmrw==",
         "dependencies": {
-          "Polly.Core": "8.8.0"
+          "Polly.Core": "8.9.1"
         }
       },
       "Polly.Core": {
         "type": "Transitive",
-        "resolved": "8.8.0",
-        "contentHash": "TewV9uNFsoRFggoFbTAGFwsMYPuckA+wTIpQPyhLL9BANRPQRENz2S4bwATrB3HBOakN5oKLFIllPiDnVecmJg=="
+        "resolved": "8.9.1",
+        "contentHash": "L0vfggkkI2nDAW9lCFYSqX9g/+3TkVXhAq+sh6owBq656X9XW0kE2NG+dPYGNQGeK66HS1rKHRPWMm1bMv91kw=="
       },
       "protobuf-net": {
         "type": "Transitive",
-        "resolved": "3.4.30",
-        "contentHash": "N49mhnY5fpWds085lO6ocppox9y4cTb1EmbHAAYVJMl/iYSYyNpz4Ohxnk80qtqv52dNZI+/6hQbaiz3+rTEwA==",
+        "resolved": "3.4.40",
+        "contentHash": "Gds96uOs0bZlDfLIYHRMee1xmrWxUTLM9HSOlDzUmyzkTGDcMWw3Lgx9TPUxD94r+/E/Y9OEL5Cf3PiTHn9bfw==",
         "dependencies": {
-          "protobuf-net.Core": "3.4.30"
+          "System.Collections.Immutable": "10.0.13",
+          "protobuf-net.Core": "3.4.40"
         }
       },
       "protobuf-net.Core": {
         "type": "Transitive",
-        "resolved": "3.4.30",
-        "contentHash": "CZf8U6eON9OBtcPyOiXJ6Oq3Opi/lWtEiireyLCy43iof1A2oA0GEOrEHZISzmQ46s61iOC06Sa4Cs+D41t1DA=="
+        "resolved": "3.4.40",
+        "contentHash": "UDQ8fbEKqpQktJfFyqkZ22S7P01sJWNmqkYjzbwZdZUHFwHIDigmWIzxmExF7NjbNoTqmv2Dfsu3rOpRHXK5EA=="
       },
       "StackExchange.Redis": {
         "type": "Transitive",
@@ -485,6 +500,11 @@
           "Pipelines.Sockets.Unofficial": "2.2.16",
           "System.IO.Hashing": "10.0.2"
         }
+      },
+      "System.Collections.Immutable": {
+        "type": "Transitive",
+        "resolved": "10.0.13",
+        "contentHash": "mUiVD4AJ0way0QDXNEaU/zEMDgn0kzZEW+gjtQrrC7KsB74JKuLC54hCPUxyodlpiwS/ElbQYbiyjHpZfl6ghA=="
       },
       "System.Diagnostics.DiagnosticSource": {
         "type": "Transitive",
@@ -522,26 +542,26 @@
       },
       "CoreSystem.Resilience": {
         "type": "CentralTransitive",
-        "requested": "[2.1.0, )",
-        "resolved": "2.1.0",
-        "contentHash": "nTelQgA9HGEwsbzJCNV5wSIy3OOrDoxoYCU+1dEZ5mFn9uPbTdDTZa8BPR2rWNuAxdE7h+SPwC5TutRNPFa7Bw==",
+        "requested": "[2.1.1, )",
+        "resolved": "2.1.1",
+        "contentHash": "tnFaW6o1Z/CnoYxFS0kmH0BKiSY/BDg8PXKrzhz+HlNvsA5ubMfwXWLxv47eNl4bjND+UTEmz9gmxOJeJxYaBQ==",
         "dependencies": {
-          "CoreSystem.Observability.Abstractions": "1.1.0",
+          "CoreSystem.Observability.Abstractions": "1.1.1",
           "OpenTelemetry": "1.20.1",
           "OpenTelemetry.Api": "1.20.1",
           "OpenTelemetry.Extensions.Hosting": "1.20.1",
-          "Polly": "8.8.0"
+          "Polly": "8.9.1"
         }
       },
       "CoreSystem.Serialization": {
         "type": "CentralTransitive",
-        "requested": "[1.3.0, )",
-        "resolved": "1.3.0",
-        "contentHash": "2rqYfMmGLuWh5JVqUI7WOGgUl9ONQbFQL3kbTUjAluBhpYmPb0YVK1lTfG1NuZsJCoeqOGvgGSbfZa9yIOEw4A==",
+        "requested": "[1.3.1, )",
+        "resolved": "1.3.1",
+        "contentHash": "i6lL9vWhLrdb6KkC0d1QyOLCxv4e8l5DThZAZdUogGkISiBjSssFWIGSZzf1fyKP5kC9FQ+cqzTphqb+8MgvTA==",
         "dependencies": {
           "MessagePack": "3.1.12",
-          "protobuf-net": "3.4.30",
-          "protobuf-net.Core": "3.4.30"
+          "protobuf-net": "3.4.40",
+          "protobuf-net.Core": "3.4.40"
         }
       }
     }

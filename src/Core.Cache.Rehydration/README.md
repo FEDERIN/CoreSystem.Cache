@@ -15,18 +15,18 @@ of those frameworks.
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 ![.NET](https://img.shields.io/badge/.NET-8.0%20%7C%209.0%20%7C%2010.0-blue?style=for-the-badge)
 
-------------------------------------------------------------------------
+---
 
 ## ✨ Features
 
--   ✅ Restores fallback entries into the primary storage after a recovery
--   ✅ Recovery driven by `primary`-tagged health checks, not by a timer alone
--   ✅ Preserves remaining expiration and tags when writing back
--   ✅ Per-entry fault isolation: one failure never aborts the cycle
--   ✅ Background service with a configurable interval
--   ✅ Disabled by default when the core cache is disabled
+- ✅ Restores fallback entries into the primary storage after a recovery
+- ✅ Recovery driven by `primary`-tagged health checks, not by a timer alone
+- ✅ Preserves remaining expiration and tags when writing back
+- ✅ Per-entry fault isolation: one failure never aborts the cycle
+- ✅ Background service with a configurable interval
+- ✅ Not registered when `CoreSystem.Cache` is disabled
 
-------------------------------------------------------------------------
+---
 
 ## 📦 Installation
 
@@ -47,13 +47,16 @@ dotnet add package CoreSystem.Cache.Redis
 | [**CoreSystem.Cache.Redis**](https://www.nuget.org/packages/CoreSystem.Cache.Redis) | Redis as the external primary storage, with Memory as the fallback |
 | [**CoreSystem.Cache.Rehydration**](https://www.nuget.org/packages/CoreSystem.Cache.Rehydration) | Recovery of tracked fallback entries into the primary storage |
 
-------------------------------------------------------------------------
+---
 
 ## 🚀 Quick Start
 
-Register the core cache and a primary provider first.
+Register the core cache and a primary provider first, with health checks:
 
 ```csharp
+using Core.Cache.DependencyInjection;
+using Core.Cache.Rehydration.DependencyInjection;
+
 services.AddCoreCache(options =>
 {
     options.InstanceName = "my-app";
@@ -70,7 +73,7 @@ services.AddCoreCacheRedis(options =>
 services.AddHealthChecks();
 ```
 
-Then register rehydration.
+Then register rehydration:
 
 ```csharp
 services.AddCoreCacheRehydration(options =>
@@ -92,7 +95,7 @@ yourself. If the core cache is disabled, the rehydration services are not
 registered. If the primary storage is missing, registration throws an
 `InvalidOperationException`.
 
-------------------------------------------------------------------------
+---
 
 ## 🔄 How Recovery Works
 
@@ -126,7 +129,7 @@ storing it fails, the failure is logged, the entry stays in the fallback for a
 later cycle, and processing continues with the next entry. Expired or
 unavailable memory entries are skipped.
 
-------------------------------------------------------------------------
+---
 
 ## ❤️ Primary Recovery Detection
 
@@ -147,7 +150,7 @@ a provider that contributes no `primary`-tagged check.
 After a successful cycle the component does not repeat while the primary stays
 healthy; a new recovery requires another unhealthy-to-healthy transition.
 
-------------------------------------------------------------------------
+---
 
 ## ⚙️ Configuration
 
@@ -168,7 +171,7 @@ When `Enabled` is `false`, the options instance stays registered but the
 rehydration source, target, rehydrator, service and hosted background service
 are not.
 
-------------------------------------------------------------------------
+---
 
 ## 🏗 Architecture
 
@@ -195,21 +198,23 @@ abstractions that separate source from target, like `ICacheStorageResolver`
 behind them, are internal implementation boundaries; the package exposes no
 public provider SDK for replacing either.
 
-------------------------------------------------------------------------
+---
 
 ## 📚 Documentation
 
 The full reference is published at
 [federin.github.io/CoreSystem.Cache/Rehydration](https://federin.github.io/CoreSystem.Cache/Rehydration):
 
--   [Overview](https://federin.github.io/CoreSystem.Cache/Rehydration/)
--   [Getting Started](https://federin.github.io/CoreSystem.Cache/Rehydration/GettingStarted/)
--   [Architecture](https://federin.github.io/CoreSystem.Cache/Rehydration/Architecture/)
--   [Configuration](https://federin.github.io/CoreSystem.Cache/Rehydration/Configuration/)
--   [Basic Usage](https://federin.github.io/CoreSystem.Cache/Rehydration/BasicUsage/)
--   [Roadmap](https://federin.github.io/CoreSystem.Cache/Rehydration/Roadmap/)
+- [Overview](https://federin.github.io/CoreSystem.Cache/Rehydration/)
+- [Getting Started](https://federin.github.io/CoreSystem.Cache/Rehydration/GettingStarted/)
+- [Architecture](https://federin.github.io/CoreSystem.Cache/Rehydration/Architecture/)
+- [Configuration](https://federin.github.io/CoreSystem.Cache/Rehydration/Configuration/)
+- [Basic Usage](https://federin.github.io/CoreSystem.Cache/Rehydration/BasicUsage/)
+- [Health Checks](https://federin.github.io/CoreSystem.Cache/Rehydration/HealthChecks/)
+- [Extensibility](https://federin.github.io/CoreSystem.Cache/Rehydration/Extensibility/)
+- [Roadmap](https://federin.github.io/CoreSystem.Cache/Rehydration/Roadmap/)
 
-------------------------------------------------------------------------
+---
 
 ## 🤝 Contributing
 
@@ -217,7 +222,7 @@ Issues and pull requests are welcome. Build and test the full solution with
 `dotnet build CoreSystem.Cache.sln -c Release` and
 `dotnet test --solution CoreSystem.Cache.sln -c Release` before opening a PR.
 
-------------------------------------------------------------------------
+---
 
 ## 📄 License
 
