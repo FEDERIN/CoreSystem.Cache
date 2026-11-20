@@ -278,11 +278,11 @@
       },
       "CoreSystem.Memory": {
         "type": "CentralTransitive",
-        "requested": "[1.1.0, )",
-        "resolved": "1.1.0",
-        "contentHash": "Y03//toy08e5fJoZ7mpI0gFUQHKkVNP3XkEpG1com+aQTTd0DWd1bsn/pcq38IYKKnWNYqAEgrPuiUvLn8QdyQ==",
+        "requested": "[1.1.1, )",
+        "resolved": "1.1.1",
+        "contentHash": "3vYVpGWvBQpixREC89Iz9ebQPA5Q58Iwpkc+dye4nR2IS7z6E69UeS4K6Lim303DhrqKQRZintquPu3p5kPWvA==",
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.13"
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.15"
         }
       },
       "CoreSystem.Resilience": {
@@ -594,9 +594,9 @@
       },
       "CoreSystem.Memory": {
         "type": "CentralTransitive",
-        "requested": "[1.1.0, )",
-        "resolved": "1.1.0",
-        "contentHash": "Y03//toy08e5fJoZ7mpI0gFUQHKkVNP3XkEpG1com+aQTTd0DWd1bsn/pcq38IYKKnWNYqAEgrPuiUvLn8QdyQ==",
+        "requested": "[1.1.1, )",
+        "resolved": "1.1.1",
+        "contentHash": "3vYVpGWvBQpixREC89Iz9ebQPA5Q58Iwpkc+dye4nR2IS7z6E69UeS4K6Lim303DhrqKQRZintquPu3p5kPWvA==",
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.2"
         }
@@ -910,9 +910,9 @@
       },
       "CoreSystem.Memory": {
         "type": "CentralTransitive",
-        "requested": "[1.1.0, )",
-        "resolved": "1.1.0",
-        "contentHash": "Y03//toy08e5fJoZ7mpI0gFUQHKkVNP3XkEpG1com+aQTTd0DWd1bsn/pcq38IYKKnWNYqAEgrPuiUvLn8QdyQ==",
+        "requested": "[1.1.1, )",
+        "resolved": "1.1.1",
+        "contentHash": "3vYVpGWvBQpixREC89Iz9ebQPA5Q58Iwpkc+dye4nR2IS7z6E69UeS4K6Lim303DhrqKQRZintquPu3p5kPWvA==",
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.21"
         }
