@@ -1,14 +1,14 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<!-- Package identity -->
 		<PackageId>CoreSystem.Cache</PackageId>
-		<Version>3.1.0</Version>
+		<Version>3.1.1</Version>
 
 		<!-- Assembly versioning -->
-		<AssemblyVersion>3.1.0</AssemblyVersion>
-		<FileVersion>3.1.0.0</FileVersion>
-		<InformationalVersion>3.1.0</InformationalVersion>
+		<AssemblyVersion>3.1.1.0</AssemblyVersion>
+		<FileVersion>3.1.1.0</FileVersion>
+		<InformationalVersion>3.1.1</InformationalVersion>
 
 		<!-- Package metadata -->
 		<Description>Production-ready cache abstraction for .NET 8, .NET 9 and .NET 10 with In-Memory caching, extensible external storage, tag-based invalidation, HTTP response caching, and OpenTelemetry metrics.</Description>
@@ -16,7 +16,10 @@
 		<PackageTags>Cache;Caching;DistributedCache;MemoryCache;HTTP;OpenTelemetry;Observability;.NET8;.NET9;.NET10</PackageTags>
 
 		<!-- Release notes -->
-		<PackageReleaseNotes>3.1.0: Multi-targeting release. The package now ships net8.0, net9.0 and net10.0 assets instead of net8.0 only, so a project on .NET 9 or .NET 10 gets an assembly compiled for its own target framework. The net8.0 asset is unchanged and is still what .NET 8 consumers resolve. Cross-repo dependencies are refreshed to CoreSystem.Http 1.2.0, CoreSystem.Memory 1.1.0, CoreSystem.Resilience 2.1.0 and CoreSystem.Serialization 1.3.0. This is what makes .NET 10 work: earlier Resilience versions constrained Microsoft.Extensions.* to 8.0.x while OpenTelemetry asks for 10.0.0, so a net10.0 consumer failed restore with NU1605. Verified with real net8.0, net9.0 and net10.0 consumer projects: all three restore and resolve with no workaround. The net9.0 and net10.0 assets carry the same code as net8.0. No public API changed, nothing is renamed and no production code changed; the difference is the target frameworks and the declared dependency versions. The three breaking changes from 3.0.0 still apply when migrating from 2.x: CacheOptions.MaxCacheableSize is gone, IExternalCacheStorage replaces ICacheTagIndex&lt;T&gt;, and MemoryKeyTracker and DefaultRequestCachePolicy are no longer public.</PackageReleaseNotes>
+		<PackageReleaseNotes>
+			3.1.1: Patch release. Refreshes central package versions, lock files and package READMEs. No public API changed and no production code changed, so this is a patch.
+			3.1.0: Multi-targeting release. The package now ships net8.0, net9.0 and net10.0 assets instead of net8.0 only, so a project on .NET 9 or .NET 10 gets an assembly compiled for its own target framework. The net8.0 asset is unchanged and is still what .NET 8 consumers resolve. Cross-repo dependencies are refreshed to CoreSystem.Http 1.2.0, CoreSystem.Memory 1.1.0, CoreSystem.Resilience 2.1.0 and CoreSystem.Serialization 1.3.0. This is what makes .NET 10 work: earlier Resilience versions constrained Microsoft.Extensions.* to 8.0.x while OpenTelemetry asks for 10.0.0, so a net10.0 consumer failed restore with NU1605. Verified with real net8.0, net9.0 and net10.0 consumer projects: all three restore and resolve with no workaround. The net9.0 and net10.0 assets carry the same code as net8.0. No public API changed, nothing is renamed and no production code changed; the difference is the target frameworks and the declared dependency versions. The three breaking changes from 3.0.0 still apply when migrating from 2.x: CacheOptions.MaxCacheableSize is gone, IExternalCacheStorage replaces ICacheTagIndex&lt;T&gt;, and MemoryKeyTracker and DefaultRequestCachePolicy are no longer public.
+		</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>
