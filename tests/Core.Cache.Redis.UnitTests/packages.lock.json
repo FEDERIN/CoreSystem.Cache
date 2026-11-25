@@ -482,7 +482,7 @@
       "CoreSystem.Cache.Redis": {
         "type": "Project",
         "dependencies": {
-          "CoreSystem.Cache.Rehydration": "[2.2.0, )",
+          "CoreSystem.Cache.Rehydration": "[2.2.1, )",
           "CoreSystem.Redis": "[1.1.1, )"
         }
       },
@@ -500,15 +500,15 @@
       },
       "CoreSystem.Cache.Rehydration": {
         "type": "CentralTransitive",
-        "requested": "[2.2.0, )",
-        "resolved": "2.2.0",
-        "contentHash": "BboiW0UA7jlkHvGBXo0CwQqGx6DoDmmvN6x5fz31xlEsLQdC23+5Wp5pSYLzALPV6kstzX7MuTVla410SJm8Qg==",
+        "requested": "[2.2.1, )",
+        "resolved": "2.2.1",
+        "contentHash": "ym429oX/zhvJUDyNk52JNViyk4Ns77lLgWQCvWO8S/LI6AoolvPJCeiqFrD8u0RcuIFNO9bfapPXdgPnWc1lfw==",
         "dependencies": {
-          "CoreSystem.Cache": "3.1.0",
+          "CoreSystem.Cache": "3.1.2",
           "CoreSystem.Http": "1.2.0",
-          "CoreSystem.Memory": "1.1.0",
-          "CoreSystem.Resilience": "2.1.0",
-          "CoreSystem.Serialization": "1.3.0"
+          "CoreSystem.Memory": "1.1.1",
+          "CoreSystem.Resilience": "2.1.1",
+          "CoreSystem.Serialization": "1.3.1"
         }
       },
       "CoreSystem.Http": {
@@ -1060,7 +1060,7 @@
       "CoreSystem.Cache.Redis": {
         "type": "Project",
         "dependencies": {
-          "CoreSystem.Cache.Rehydration": "[2.2.0, )",
+          "CoreSystem.Cache.Rehydration": "[2.2.1, )",
           "CoreSystem.Redis": "[1.1.1, )"
         }
       },
@@ -1078,15 +1078,15 @@
       },
       "CoreSystem.Cache.Rehydration": {
         "type": "CentralTransitive",
-        "requested": "[2.2.0, )",
-        "resolved": "2.2.0",
-        "contentHash": "BboiW0UA7jlkHvGBXo0CwQqGx6DoDmmvN6x5fz31xlEsLQdC23+5Wp5pSYLzALPV6kstzX7MuTVla410SJm8Qg==",
+        "requested": "[2.2.1, )",
+        "resolved": "2.2.1",
+        "contentHash": "ym429oX/zhvJUDyNk52JNViyk4Ns77lLgWQCvWO8S/LI6AoolvPJCeiqFrD8u0RcuIFNO9bfapPXdgPnWc1lfw==",
         "dependencies": {
-          "CoreSystem.Cache": "3.1.0",
+          "CoreSystem.Cache": "3.1.2",
           "CoreSystem.Http": "1.2.0",
-          "CoreSystem.Memory": "1.1.0",
-          "CoreSystem.Resilience": "2.1.0",
-          "CoreSystem.Serialization": "1.3.0"
+          "CoreSystem.Memory": "1.1.1",
+          "CoreSystem.Resilience": "2.1.1",
+          "CoreSystem.Serialization": "1.3.1"
         }
       },
       "CoreSystem.Http": {
@@ -1627,7 +1627,7 @@
       "CoreSystem.Cache.Redis": {
         "type": "Project",
         "dependencies": {
-          "CoreSystem.Cache.Rehydration": "[2.2.0, )",
+          "CoreSystem.Cache.Rehydration": "[2.2.1, )",
           "CoreSystem.Redis": "[1.1.1, )"
         }
       },
@@ -1645,15 +1645,15 @@
       },
       "CoreSystem.Cache.Rehydration": {
         "type": "CentralTransitive",
-        "requested": "[2.2.0, )",
-        "resolved": "2.2.0",
-        "contentHash": "BboiW0UA7jlkHvGBXo0CwQqGx6DoDmmvN6x5fz31xlEsLQdC23+5Wp5pSYLzALPV6kstzX7MuTVla410SJm8Qg==",
+        "requested": "[2.2.1, )",
+        "resolved": "2.2.1",
+        "contentHash": "ym429oX/zhvJUDyNk52JNViyk4Ns77lLgWQCvWO8S/LI6AoolvPJCeiqFrD8u0RcuIFNO9bfapPXdgPnWc1lfw==",
         "dependencies": {
-          "CoreSystem.Cache": "3.1.0",
+          "CoreSystem.Cache": "3.1.2",
           "CoreSystem.Http": "1.2.0",
-          "CoreSystem.Memory": "1.1.0",
-          "CoreSystem.Resilience": "2.1.0",
-          "CoreSystem.Serialization": "1.3.0"
+          "CoreSystem.Memory": "1.1.1",
+          "CoreSystem.Resilience": "2.1.1",
+          "CoreSystem.Serialization": "1.3.1"
         }
       },
       "CoreSystem.Http": {
